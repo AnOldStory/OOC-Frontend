@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MenuContainer from "container/menu/MenuContainer";
 import MainContainer from "container/main/MainContainer";
 import BookContainer from "container/book/BookContainer";
+import Shop from "container/shop/Shop";
+import MyPage from "container/mypage/MyPage";
 
 class Router extends Component {
   render() {
@@ -24,6 +26,20 @@ class Router extends Component {
               path="/book"
               component={() => (
                 <BookContainer/>
+              )}
+              />
+            <Route
+              exact
+              path="/shop"
+              component={() => (
+                <Shop/>
+              )}
+              />
+              <Route
+              exact
+              path="/mypage"
+              component={() => (
+                <MyPage/>
               )}
               />
           </Switch>

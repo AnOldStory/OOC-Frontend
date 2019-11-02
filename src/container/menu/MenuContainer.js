@@ -15,6 +15,8 @@ class MenuContainer extends Component {
           <Link to='/book'><div>예매</div></Link>
         </div>
         <div className="menu_item"><Link>차트</Link></div>
+        <div className="menu_item"><Link to='/shop'>먹거리</Link></div>
+        <div className="menu_item"><Link to='/mypage'>마이페이지</Link></div>
       </div>
     );
   }

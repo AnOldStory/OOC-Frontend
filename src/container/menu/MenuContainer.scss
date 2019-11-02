@@ -9,12 +9,22 @@
     }
     margin-bottom: 30%;
   }
+  .menuLink{
+    text-decoration: none;
+    &:visited{
+        text-decoration: none;
+        color: black;
+    }
+  }
   .menu_item {
+    background-color: $container-top-border-bottom;
+
     text-align: center;
-    border-bottom: 5px green solid;
     margin-top: 8%;
     padding-left: 1%;
-    font-size: 20px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 30px;
   }
 }
 

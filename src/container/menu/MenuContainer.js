@@ -13,18 +13,18 @@ class MenuContainer extends Component {
             <img src={Logo} alt="logo" />
           </Link>
         </div>
-        <Link to="/book">
+        <Link className="menuLink" to="/book">
         <div className="menu_item">
             <div>예매</div>
         </div></Link>
         <div className="menu_item">
-          <Link>차트</Link>
+          <Link className="menuLink" to="/chart">차트</Link>
         </div>
         <div className="menu_item">
-          <Link to="/shop">먹거리</Link>
+          <Link className="menuLink" to="/shop">먹거리</Link>
         </div>
         <div className="menu_item">
-          <Link to="/mypage">마이페이지</Link>
+          <Link className="menuLink" to="/mypage">마이페이지</Link>
         </div>
       </div>
     );

@@ -16,11 +16,15 @@
   .step {
     width: 25vh;
     height: 30vh;
-    margin-top: 30px;
+    margin-top: 1%;
     margin-left: 65%;
     border: 1px solid $container-border;
-    border-radius: 10px;
     position: fixed;
+    overflow: hidden;
+    border-top: none;
+    border-left: none;
+    box-shadow: 5px 5px 0px 0px black; 
+    background-color: ivory;
   }
   .stepLink{
     margin-top: 20px;
@@ -35,14 +39,31 @@
       :hover{
         background-color: cornflowerblue;
       }
+      .linkStyle{
+        text-decoration: none;
+        &:visited{
+        text-decoration: none;
+        color: black;
+        }
+      }
     }
   }
 }
 
-.content{
+.bookContent{
   overflow: hidden;
   margin-left: 20%;
-  width: 50%;
+  padding-top: 20px;
+  padding-left: 20px;
+  width: 55%;
   height: 60vh;
   border: 1px black solid;
+  border-top: none;
+  border-left: none;
+  box-shadow: 5px 5px 0px 0px black; 
+  background-color: ivory;
+  span{
+    font-size: 20pt;
+    border-bottom: 5px solid $container-top-border-bottom;
+  }
 }

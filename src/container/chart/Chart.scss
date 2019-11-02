@@ -1,0 +1,16 @@
+@import "_variables.scss";
+
+.container {
+  height: 25vh;
+  overflow: hidden;
+
+  .top {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 10px $container-top-border-bottom solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+}

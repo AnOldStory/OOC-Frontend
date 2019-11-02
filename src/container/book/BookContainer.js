@@ -43,21 +43,21 @@ class BookContainer extends Component {
         <div className="top">예매</div>
         <div className="stepLink">
           <div className="linkItem">
-            <Link to="/book/cinema" style={{ textDecoration: 'none' }}>
+            <Link to="/book/cinema" className="linkStyle">
               Cinema
             </Link>
           </div>
           <div className="linkItem">
-            <Link to="/book/date" style={{ textDecoration: 'none' }}>
+            <Link to="/book/date" className="linkStyle">
               date
               </Link></div>
           <div className="linkItem">
-            <Link to="/book/movie" style={{ textDecoration: 'none' }}>
+            <Link to="/book/movie" className="linkStyle">
               Movie
             </Link>
           </div>
           <div className="linkItem">
-            <Link to="/book/payment" style={{ textDecoration: 'none' }}>
+            <Link to="/book/payment" className="linkStyle">
               Pay
             </Link>
           </div>

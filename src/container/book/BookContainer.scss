@@ -1,0 +1,70 @@
+.container{
+  height: 95vh;
+  overflow: scroll;
+
+  .top{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 10px green solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .step{
+    width: 25vh;
+    height: 30vh;
+    margin-top: 30px;
+    margin-left: 65%;
+    border: 1px solid white;
+    border-radius: 10px;
+    position: fixed;
+  }
+  .cinema{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin : 30px;
+    margin-left: 10vh;
+    margin-right: 10px;
+    float: left;
+    width: 50vh;
+    height: 40vh;
+  }
+  .movie{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin:30px;
+    margin-left: 0;
+    float: left;
+    width: 50vh;
+    height: 40vh;
+
+  }
+  .date{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin:30px;
+    margin-right: 10px;
+    margin-left: 10vh;
+    float: left;
+    width: 50vh;
+    height: 40vh;
+  }
+  .time{
+    border: 1px solid white;
+    border-radius: 10px;
+    margin:30px;
+    margin-left:0;
+    float: left;
+    width: 50vh;
+    height: 40vh;
+  }
+  .seat{
+    border: 10px solid rgba(255,255,255,100);
+    border-radius: 10px;
+    margin: 7%;
+    clear: both;
+    width : 101vh;
+    height : 40vh;
+  }
+}

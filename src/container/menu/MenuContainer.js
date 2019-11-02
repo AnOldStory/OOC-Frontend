@@ -7,8 +7,14 @@ class MenuContainer extends Component {
   render() {
     return (
       <div className="menu">
-        <Link to='/book'><div>Book</div></Link>
-        <Link className="menu_item">CHART</Link>
+        <div className="logo">
+          <Link to='/'><img src={require("./OOC로고4.png")} alt="logo"/>
+          </Link>
+        </div>
+        <div className="menu_item">
+          <Link to='/book'><div>예매</div></Link>
+        </div>
+        <div className="menu_item"><Link>차트</Link></div>
       </div>
     );
   }

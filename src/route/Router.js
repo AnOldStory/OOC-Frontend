@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import MenuContainer from "container/menu/MenuContainer";
 import MainContainer from "container/main/MainContainer";
@@ -10,12 +10,7 @@ class Router extends Component {
     return (
       <BrowserRouter basename="/">
         <>
-          <Link to="/">
-            <div className="top">
-              <div className="title">OOC-Frontend skeleton</div>
-              <MenuContainer/>
-            </div>
-          </Link>
+          <MenuContainer/>
           <Switch>
             <Route
               exact

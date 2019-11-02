@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./BookContainer.scss";
+import { Link } from "react-router-dom";
 
 const seats = [
   { row: "A", col: "1" },
@@ -32,36 +33,39 @@ class BookContainer extends Component {
       movie: "영화",
       date: "날짜",
       time: "시간",
-      seat: ["공석"]
+      seat: ["공석"],
+      step:"cinema"
     };
   }
   render() {
     return (
       <div className="container">
         <div className="top">예매</div>
-
+        <div className="stepLink">
+          <div className="linkItem">
+            <Link to="/book/cinema" style={{ textDecoration: 'none' }}>
+              Cinema
+            </Link>
+          </div>
+          <div className="linkItem">
+            <Link to="/book/date" style={{ textDecoration: 'none' }}>
+              date
+              </Link></div>
+          <div className="linkItem">
+            <Link to="/book/movie" style={{ textDecoration: 'none' }}>
+              Movie
+            </Link>
+          </div>
+          <div className="linkItem">
+            <Link to="/book/payment" style={{ textDecoration: 'none' }}>
+              Pay
+            </Link>
+          </div>
+        </div>
         <div className="step">
           영화관={this.state.cinema}
           영화={this.state.movie}
           날짜={this.state.date}
-        </div>
-
-        <div className="cinema">cinema</div>
-
-        <div className="movie">
-          movie <hr />
-        </div>
-
-        <div className="date">
-          date <hr />
-        </div>
-
-        <div className="time">
-          time <hr />
-        </div>
-
-        <div className="seat">
-          seats <hr />
         </div>
       </div>
     );

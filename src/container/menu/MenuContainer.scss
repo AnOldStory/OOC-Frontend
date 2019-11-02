@@ -1,13 +1,15 @@
-.menu{
+@import "_variables.scss";
+
+.menu {
   float: left;
   width: 15%;
-  .logo{
-    img{
-      width : 80%
+  .logo {
+    img {
+      width: 80%;
     }
     margin-bottom: 30%;
   }
-  .menu_item{
+  .menu_item {
     text-align: center;
     border-bottom: 5px green solid;
     margin-top: 8%;
@@ -16,9 +18,13 @@
   }
 }
 
-Link{
+link {
+  text-decoration: none;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
     text-decoration: none;
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
+  }
 }

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import MenuContainer from "container/menu/MenuContainer";
 import MainContainer from "container/main/MainContainer";
-import BookContainer from "container/book/BookContainer";
+import BookRouter from "route/BookRouter";
 import Shop from "container/shop/Shop";
 import MyPage from "container/mypage/MyPage";
 
@@ -12,36 +12,12 @@ class Router extends Component {
     return (
       <BrowserRouter basename="/">
         <>
-          <MenuContainer/>
+          <MenuContainer />
           <Switch>
-            <Route
-              exact
-              path="/"
-              component={() => (
-                <MainContainer/>
-              )}
-            />
-            <Route
-              exact
-              path="/book"
-              component={() => (
-                <BookContainer/>
-              )}
-              />
-            <Route
-              exact
-              path="/shop"
-              component={() => (
-                <Shop/>
-              )}
-              />
-              <Route
-              exact
-              path="/mypage"
-              component={() => (
-                <MyPage/>
-              )}
-              />
+            <Route exact path="/" component={MainContainer} />
+            <Route path="/book" component={BookRouter} />
+            <Route path="/shop" component={Shop} />
+            <Route path="/mypage" component={MyPage} />
           </Switch>
         </>
       </BrowserRouter>

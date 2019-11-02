@@ -1,70 +1,71 @@
-.container{
+@import "_variables.scss";
+
+.container {
   height: 95vh;
   overflow: scroll;
 
-  .top{
+  .top {
     font-size: 50px;
     font-weight: bold;
     text-align: center;
-    border-bottom: 10px green solid;
+    border-bottom: 10px $container-top-border-bottom solid;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
   }
-  .step{
+  .step {
     width: 25vh;
     height: 30vh;
     margin-top: 30px;
     margin-left: 65%;
-    border: 1px solid white;
+    border: 1px solid $container-border;
     border-radius: 10px;
     position: fixed;
   }
-  .cinema{
-    border: 1px solid white;
+  .cinema {
+    border: 1px solid $container-border;
     border-radius: 10px;
-    margin : 30px;
+    margin: 30px;
     margin-left: 10vh;
     margin-right: 10px;
     float: left;
     width: 50vh;
     height: 40vh;
   }
-  .movie{
-    border: 1px solid white;
+  .movie {
+    border: 1px solid $container-border;
     border-radius: 10px;
-    margin:30px;
+    margin: 30px;
     margin-left: 0;
     float: left;
     width: 50vh;
     height: 40vh;
-
   }
-  .date{
-    border: 1px solid white;
+  .date {
+    border: 1px solid $container-border;
     border-radius: 10px;
-    margin:30px;
+    margin: 30px;
     margin-right: 10px;
     margin-left: 10vh;
     float: left;
     width: 50vh;
     height: 40vh;
   }
-  .time{
-    border: 1px solid white;
+  .time {
+    border: 1px solid $container-border;
     border-radius: 10px;
-    margin:30px;
-    margin-left:0;
+    margin: 30px;
+    margin-left: 0;
     float: left;
     width: 50vh;
     height: 40vh;
   }
-  .seat{
-    border: 10px solid rgba(255,255,255,100);
+  .seat {
+    border: 10px solid $container-border;
     border-radius: 10px;
     margin: 7%;
     clear: both;
-    width : 101vh;
-    height : 40vh;
+    width: 101vh;
+    height: 40vh;
   }
 }

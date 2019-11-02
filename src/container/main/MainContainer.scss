@@ -1,63 +1,58 @@
 @import "_variables.scss";
 
-.main{
+.main {
   padding-top: 0.1px;
   padding-left: 20%;
-  .content{
+  .content {
     padding-top: 6%;
-    img{
+    img {
       margin-left: 15%;
       width: 30%;
-      bottom:20%;
-      position:absolute;
+      bottom: 20%;
+      position: absolute;
     }
   }
 }
 
-$t: 1s;
-$d: 0.08em;
-$n: 3;
-$e: cubic-bezier(0.860, 0.000, 0.070, 1.000); 
-$front: black;
-$back: #6fd17c;
-
-.popout{
-  :hover{
+.popout {
+  :hover {
     cursor: default;
   }
-	font-family: Futura, sans-serif;
-	font-weight: 900;
-	font-size: 180px;
+  font-family: Futura, sans-serif;
+  font-weight: 900;
+  font-size: 180px;
 
-	@keyframes ani{
-		0%{
-			transform: translate3d(0,0,0);
-			text-shadow: 0em 0em 0 $back;
-			color: $front;
-		}
-		30%{
-			transform: translate3d(0,0,0);
-			text-shadow: 0em 0em 0 $back;
-			color: $front;
-		}
-		70%{
-			transform: translate3d($d,-$d,0);
-			text-shadow: -$d $d $back;
-			color: $front;
-		}
-		100%{
-			transform: translate3d($d,-$d,0);
-			text-shadow: -$d $d $back;
-			color: $front;
-		}
-	}
-	span{
-		position: relative;
-		display: inline-block;
-		animation: ani $t infinite alternate $e;
-		@for $i from 1 through $n{
-			&:nth-last-child(#{$i}n){ animation-delay: -$t*$i/$n/2;}
-		}
-	}
-	
+  @keyframes ani {
+    0% {
+      transform: translate3d(0, 0, 0);
+      text-shadow: 0em 0em 0 $main-back;
+      color: $main-front;
+    }
+    30% {
+      transform: translate3d(0, 0, 0);
+      text-shadow: 0em 0em 0 $main-back;
+      color: $main-front;
+    }
+    70% {
+      transform: translate3d($d, -$d, 0);
+      text-shadow: -$d $d $main-back;
+      color: $main-front;
+    }
+    100% {
+      transform: translate3d($d, -$d, 0);
+      text-shadow: -$d $d $main-back;
+      color: $main-front;
+    }
+  }
+
+  span {
+    position: relative;
+    display: inline-block;
+    animation: ani $t infinite alternate $e;
+    @for $i from 1 through $n {
+      &:nth-last-child(#{$i}n) {
+        animation-delay: -$t * $i/$n/2;
+      }
+    }
+  }
 }

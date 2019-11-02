@@ -5,13 +5,14 @@
     img{
       width : 80%
     }
+    margin-bottom: 30%;
   }
   .menu_item{
-
+    text-align: center;
     border-bottom: 5px green solid;
-    margin-top: 3%;
+    margin-top: 8%;
     padding-left: 10%;
-    font-size: 30px;
+    font-size: 50px;
   }
 }
 
@@ -20,4 +21,4 @@ Link{
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
-  }
+}

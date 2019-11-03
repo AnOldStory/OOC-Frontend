@@ -9,7 +9,7 @@ const yDate = getDate.getTime(1 * 24 * 60 * 60 * 1000);
 getDate.setTime(yDate);
 var yYear = getDate.getFullYear();
 var yMonth = getDate.getMonth() + 1;
-var yDay = getDate.getDate() - 1;
+var yDay = getDate.getDate() -1;
  
 if (yMonth < 10) {
   yMonth = "0" + yMonth;

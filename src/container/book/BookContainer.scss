@@ -1,10 +1,6 @@
 @import "_variables.scss";
 
-.container {
-  height: 25vh;
-  overflow: hidden;
-
-  .top {
+.top {
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -13,6 +9,11 @@
     padding-bottom: 20px;
     margin-bottom: 20px;
   }
+.container {
+  height: 25vh;
+  overflow: hidden;
+
+  
   .step {
     width: 25vh;
     height: 30vh;
@@ -51,7 +52,7 @@
 }
 
 .bookContent{
-  overflow: hidden;
+  overflow: scroll;
   margin-left: 20%;
   padding-top: 20px;
   padding-left: 20px;
@@ -66,7 +67,13 @@
     font-size: 20pt;
     border-bottom: 5px solid $container-top-border-bottom;
   }
+  .selectDiv{
+    width: 30%;
+  }
   .radio{
     margin-top: 20px;
+  }
+  .map{
+    float: right;
   }
 }

@@ -5,9 +5,9 @@ import "./Chart.scss";
 function ChartMovie({ rank, movieNm }) {
   return (
     <div className="Movie">
-      <h1>
+      <h5>
         {rank}위:{movieNm}
-      </h1>
+      </h5>
     </div>
   );
 }

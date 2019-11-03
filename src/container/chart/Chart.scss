@@ -1,16 +1,21 @@
 @import "_variables.scss";
 
-.container {
-  height: 25vh;
-  overflow: hidden;
 
-  .top {
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 10px $container-top-border-bottom solid;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-  }
+.Movie{
+  border: black 1px solid;
+}
+
+.ChartContent{
+  text-align: center;
+  overflow: scroll;
+  margin-left: 20%;
+  padding-top: 20px;
+  padding-left: 20px;
+  width: 55%;
+  height: 75vh;
+  border: 1px black solid;
+  border-top: none;
+  border-left: none;
+  box-shadow: 5px 5px 0px 0px black; 
+  background-color: ivory;
 }

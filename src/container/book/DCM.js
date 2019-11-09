@@ -13,10 +13,13 @@ export default class DCM extends Component {
         </div>
         <div className="cinema content">
           <div className="title">CINEMA</div>
+          <div onClick={() => this.props.setCinema("asd")}>test</div>
         </div>
         <div className="movie content">
           <div className="title">MOVIE</div>
         </div>
+        <Link to="/book/time">NEXT</Link>
+
       </div>
     )
   }

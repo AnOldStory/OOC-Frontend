@@ -7,12 +7,14 @@
     margin-left: 3%;
     margin-right: 3%;
     column-count: 5;
-    :nth-child(1){
-      padding-left: 10px;
-      border-left: 3px #4edd4e solid
-    }
+
     .eachstate{
-      border-right: 3px #4edd4e solid;
+      padding-left: 10px;
+      border-left: 3px #4edd4e solid;
+    }
+    .eachstateafter{
+      padding-left: 10px;
+      border-left: 3px #ec7f40 solid;
     }
   }
 }
@@ -40,4 +42,11 @@
     background-color: #4edd4e;
     color: white;
   }
+}
+.seatList{
+  column-count: 13;
+}
+.seat{
+  width: 30px;
+  border: black 3px solid;
 }

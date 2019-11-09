@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MainContainer.scss";
-
+import Bug from 'image/mainlogo.gif';
 
 class MainContainer extends Component {
   render() {
@@ -16,7 +16,9 @@ class MainContainer extends Component {
             <span>M</span>
             <span>E</span>
           </div>
-
+          <div>
+            <img src={Bug} alt="main"/>
+        </div>
         </div>
       </div>
     );

@@ -6,22 +6,48 @@ import Payment from "container/book/Payment";
 import DCM from 'container/book/DCM';
 import Seat from 'container/book/Seat';
 import Time from 'container/book/Time';
+import Initial from "container/book/Initial";
 
 class BookRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: this.props.match.url
+      route: this.props.match.url,
+      cinema: "선택 전",
+      movie: "선택 전",
+      date: "선택 전",
+      time: "선택 전",
+      seat: ["선택 전"],
     };
+    this.dateHandler = this.dateHandler.bind(this);
+    this.cinemaHandler = this.cinemaHandler.bind(this);
+    this.movieHandler = this.movieHandler.bind(this);
+    this.timeHandler = this.timeHandler.bind(this);
+    this.seatHandler = this.seatHandler.bind(this);
   }
+  dateHandler = (e) => {this.setState({date:e});};  
+  cinemaHandler= (e) => {this.setState({cinema:e});};
+  movieHandler = (e) => {this.setState({movie:e});};
+  timeHandler = (e) => {this.setState({time:e});};
+  seatHandler = (e) => {this.setState({seat:e});};
   render() {
     return (
       <>
-      <BookContainer/>
+      <BookContainer cinema={this.state.cinema}
+      movie={this.state.movie}
+      date={this.state.date}
+      time={this.state.time}
+      seat={this.state.seat}/>
         <Switch>
-          <Route path={this.state.route + "/dcm"} component={DCM} />
-          <Route path={this.state.route + "/time"} component={Time} />
-          <Route path={this.state.route + "/seat"} component={Seat} />
+          <Route exact path={this.state.route} component={Initial}/>
+          <Route path={this.state.route + "/dcm"} component={()=>
+                                        (<DCM setCinema={this.cinemaHandler}
+                                        setDate={this.setDate}
+                                        setMovie={this.setMovie}/>)} />
+          <Route path={this.state.route + "/time"} component={()=>
+                                        (<Time setTime={this.setTime}/>)} />
+          <Route path={this.state.route + "/seat"} component={()=>
+                                        (<Seat setSeat={this.setSeat}/>)} />
           <Route path={this.state.route + "/payment"} component={Payment} />
         </Switch>
       </>

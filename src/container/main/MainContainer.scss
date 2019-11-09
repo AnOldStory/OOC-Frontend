@@ -1,17 +1,16 @@
 @import "_variables.scss";
 
 .main {
-      background-image: url("/public/img/Logo.png");
 
   padding-top: 0.1px;
   padding-left: 20%;
   .content {
-    padding-top: 6%;
+    padding-top: 1%;
     img {
-      margin-left: 15%;
-      width: 30%;
+      margin-left: 16%;
+      width: 40%;
       bottom: 20%;
-      position: absolute;
+
     }
   }
 }

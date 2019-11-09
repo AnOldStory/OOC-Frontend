@@ -42,12 +42,12 @@ class BookRouter extends Component {
           <Route exact path={this.state.route} component={Initial}/>
           <Route path={this.state.route + "/dcm"} component={()=>
                                         (<DCM setCinema={this.cinemaHandler}
-                                        setDate={this.setDate}
-                                        setMovie={this.setMovie}/>)} />
+                                        setDate={this.dateHandler}
+                                        setMovie={this.movieHandler}/>)} />
           <Route path={this.state.route + "/time"} component={()=>
-                                        (<Time setTime={this.setTime}/>)} />
+                                        (<Time setTime={this.timeHandler}/>)} />
           <Route path={this.state.route + "/seat"} component={()=>
-                                        (<Seat setSeat={this.setSeat}/>)} />
+                                        (<Seat setSeat={this.seatHandler} seat={this.state.seat}/>)} />
           <Route path={this.state.route + "/payment"} component={Payment} />
         </Switch>
       </>

@@ -1,40 +1,41 @@
 @import "_variables.scss";
 
-.menu {
+.menu{
+  height: 10vh;
+  overflow: visible;
+  margin-bottom: 5%;
+  img{
   float: left;
-  width: 15%;
-  .logo {
-    img {
-      width: 80%;
-    }
-    margin-bottom: 30%;
+  width: 7%;
   }
-  .menuLink{
-    text-decoration: none;
-    &:visited{
+  ul{
+  list-style-type: none;
+  margin-right: 40px;
+  padding-right: 150px;
+  overflow: hidden;
+  li {
+    margin-left: 80px;
+    float: right;
+    .menuLink{
+      text-decoration: none;
+      &:visited{
         text-decoration: none;
-        color: black;
+      }
+      .menu_item{
+        border-left: 5px #4edd4e solid;
+        border-right: 5px #4edd4e solid;
+        font-size: 20pt;
+        text-align: center;
+        width: 100%;
+        margin-left: 100px;
+        &:hover{
+          border-left: 5px #ec7f40 solid;
+          border-right: 5px #ec7f40 solid;
+          transition: .3s ease;
+        }
+      }
     }
-  }
-  .menu_item {
-    background-color: $container-top-border-bottom;
-
-    text-align: center;
-    margin-top: 8%;
-    padding-left: 1%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-size: 30px;
   }
 }
 
-link {
-  text-decoration: none;
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
 }

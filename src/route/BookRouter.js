@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import BookContainer from "container/book/BookContainer";
-import Cinema from "container/book/Cinema";
-import Date from "container/book/Date";
 import Payment from "container/book/Payment";
-import Movie from "container/book/Movie";
-
+import DCM from 'container/book/DCM';
+import Seat from 'container/book/Seat';
+import Time from 'container/book/Time';
 
 class BookRouter extends Component {
   constructor(props) {
@@ -20,9 +19,9 @@ class BookRouter extends Component {
       <>
       <BookContainer/>
         <Switch>
-          <Route path={this.state.route + "/cinema"} component={Cinema} />
-          <Route path={this.state.route + "/date"} component={Date} />
-          <Route path={this.state.route + "/movie"} component={Movie} />
+          <Route path={this.state.route + "/dcm"} component={DCM} />
+          <Route path={this.state.route + "/time"} component={Time} />
+          <Route path={this.state.route + "/seat"} component={Seat} />
           <Route path={this.state.route + "/payment"} component={Payment} />
         </Switch>
       </>

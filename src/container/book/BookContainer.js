@@ -1,72 +1,32 @@
 import React, { Component } from "react";
 import "./BookContainer.scss";
 import { Link } from "react-router-dom";
+import DCM from "container/book/DCM";
 
-const seats = [
-  { row: "A", col: "1" },
-  { row: "A", col: "2" },
-  { row: "A", col: "3" },
-  { row: "A", col: "4" },
-  { row: "A", col: "5" },
-  { row: "A", col: "6" },
-  { row: "A", col: "7" },
-  { row: "A", col: "8" },
-  { row: "A", col: "9" },
-  { row: "A", col: "10" },
-  { row: "B", col: "1" },
-  { row: "B", col: "2" },
-  { row: "B", col: "3" },
-  { row: "B", col: "4" },
-  { row: "B", col: "5" },
-  { row: "B", col: "6" },
-  { row: "B", col: "7" },
-  { row: "B", col: "8" },
-  { row: "B", col: "9" },
-  { row: "B", col: "10" }
-];
 
 class BookContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cinema: "영화관",
-      movie: "영화",
-      date: "날짜",
-      time: "시간",
-      seat: ["공석"],
-      step:"cinema"
+      cinema: "선택전",
+      movie: "선택 전",
+      date: "선택 전",
+      time: "선택 전",
+      seat: ["선택 전"],
     };
   }
   render() {
     return (
       <div className="container">
-        <div className="top">예매</div>
-        <div className="stepLink">
-          <div className="linkItem">
-            <Link to="/book/cinema" className="linkStyle">
-              Cinema
-            </Link>
-          </div>
-          <div className="linkItem">
-            <Link to="/book/date" className="linkStyle">
-              date
-              </Link></div>
-          <div className="linkItem">
-            <Link to="/book/movie" className="linkStyle">
-              Movie
-            </Link>
-          </div>
-          <div className="linkItem">
-            <Link to="/book/payment" className="linkStyle">
-              Pay
-            </Link>
-          </div>
+        <div className="state">
+          <div className="eachstate">DATE {this.state.date}</div>
+          <div className="eachstate">CINEMA {this.state.cinema}</div>
+          <div className="eachstate">MOVIE {this.state.movie}</div>
+          <div className="eachstate">TIME {this.state.time}</div>
+          <div className="eachstate">SEAT {this.state.seat}</div>
+          
         </div>
-        <div className="step">
-          영화관={this.state.cinema}
-          영화={this.state.movie}
-          날짜={this.state.date}
-        </div>
+        <DCM/>
       </div>
     );
   }

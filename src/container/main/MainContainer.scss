@@ -1,6 +1,8 @@
 @import "_variables.scss";
 
 .main {
+      background-image: url("/public/img/Logo.png");
+
   padding-top: 0.1px;
   padding-left: 20%;
   .content {
@@ -15,14 +17,9 @@
 }
 
 .popout {
-  :hover {
+  &:hover {
     cursor: default;
-  }
-  font-family: Futura, sans-serif;
-  font-weight: 900;
-  font-size: 180px;
-
-  @keyframes ani {
+     @keyframes ani {
     0% {
       transform: translate3d(0, 0, 0);
       text-shadow: 0em 0em 0 $main-back;
@@ -55,4 +52,10 @@
       }
     }
   }
+  }
+  font-family: Futura, sans-serif;
+  font-weight: 900;
+  font-size: 180px;
+
+ 
 }

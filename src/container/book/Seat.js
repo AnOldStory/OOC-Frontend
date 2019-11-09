@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Shop extends Component {
+export default class Seat extends Component {
   render() {
     return (
       <div>
-        Shop
+        
       </div>
     )
   }

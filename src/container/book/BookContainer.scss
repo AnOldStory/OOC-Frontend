@@ -18,6 +18,13 @@
     }
   }
 }
+.title{
+    text-align: center;
+    font-size: 30pt;
+    background-color: #4edd4e;
+    color: white;
+  }
+
 .DCMContent{
   padding: 3%;
   display: grid;
@@ -36,11 +43,16 @@
   .content{
     height: 75vh
   }
-  .title{
-    text-align: center;
-    font-size: 30pt;
-    background-color: #4edd4e;
-    color: white;
+  .next{
+    margin-top:70%;
+  }
+  .select{
+    background-color: lightgoldenrodyellow;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px black solid;
+    font-size: 18pt;
+    cursor: pointer; 
   }
 }
 .seats{
@@ -98,5 +110,21 @@
       box-shadow: 0 10px #666;
       transform: translateY(4px);
     }
+  }
+}
+
+.timeContent{
+  padding: 3%;
+  .times{
+    margin-top: 30px;
+    display: grid;
+    grid-template-rows: repeat(4, 50px);
+    grid-template-columns: repeat(13, 1fr);
+    font-size: 30pt;
+  }
+  .select{
+    margin-right: 30px;
+    background-color: bisque;
+    cursor: pointer;
   }
 }

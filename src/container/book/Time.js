@@ -5,9 +5,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default class Time extends Component {
   render() {
+    var times = ["10:30","12:40","16:40"];
     return (
-      <div>
-        time<br/>
+      <div className="timeContent">
+        <div className="title">Time</div>
+        <div className="times">
+          {times.map((time, index) => 
+          (<div className="select"
+          key={index} onClick={()=>this.props.setTime(time)}>{time}</div>))}
+        </div>
+        
         <Link to="/book/seat">Next</Link>
       </div>
     )

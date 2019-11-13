@@ -91,6 +91,16 @@
     font-size: 12pt;
     cursor: pointer; 
   }
+  .selected{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: green;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px rgb(168, 168, 168) solid;
+    font-size: 12pt;
+    cursor: pointer; 
+  }
 }
 .seats{
   font-size: 20pt;

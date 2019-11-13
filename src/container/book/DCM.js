@@ -112,7 +112,7 @@ export default class DCM extends Component {
           <div className="title">날짜</div>
           {this.state.dates.map((date, index) => (
             <div
-              className="select"
+              className={this.state.date===date? "selected":"select"}
               key={index}
               onClick={() => this.dateClick(date)}
             >
@@ -124,7 +124,7 @@ export default class DCM extends Component {
           <div className="title">영화관</div>
           {this.state.cinemas.map((cinema, index) => (
             <div
-              className="select"
+              className={this.state.cinema===cinema? "selected":"select"}
               key={index}
               onClick={() => this.cinemaClick(cinema)}
             >
@@ -136,7 +136,7 @@ export default class DCM extends Component {
           <div className="title">영화</div>
           {this.state.movies.map((movie, index) => (
             <div
-              className="select"
+              className={this.state.movie===movie? "selected":"select"}
               key={index}
               onClick={() => this.movieClick(movie)}
             >

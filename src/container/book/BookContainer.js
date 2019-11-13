@@ -30,8 +30,10 @@ class BookContainer extends Component {
             {this.props.time}
           </div>
 
-          <div className={this.props.seat==[]?'eachstate':'eachstateafter'}>SEAT 
-            {this.props.seat}
+          <div className={this.props.seat.length==0?'eachstate':'eachstateafter'}>SEAT 
+            {this.props.seat.map((seat, index) => 
+          (
+           <span key={index}>{seat},</span>))}
           </div>
           
         </div>

@@ -7,38 +7,61 @@ export default class DCM extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dates: ["2019/11/08", "2019/11/09", "2019/11/10", "2019/11/11"],
-      cinemas: ["안산", "서울", "평양", "뉴욕"],
-      movies: ["어벤져스", "82년생김지영"]
+      dates: [],
+      cinemas: [],
+      movies: []
     };
   }
+
+  componentDidMount() {
+    this.getDates();
+  }
+
   getDates() {
-    fetch()
+    //examplecode
+    this.setState({
+          dates: ["2019/11/08", "2019/11/09", "2019/11/10", "2019/11/11"],
+          cinemas : [],
+          movies : []
+        }); //
+    fetch("/book/getDate")
       .then(res => res.json(res))
-      .then(res => {
+      .then(dates => {
         this.setState({
-          dates: res
+          dates: dates,
+          cinemas : [],
+          movies : []
         });
       })
       .catch(err => console.log(err));
   }
 
-  getCinemas() {
-    fetch()
+  getCinemas(date) {
+    //examplecode
+    this.setState({
+          cinemas: ["안산", "서울", "평양", "뉴욕"],
+          movies : []
+        }); //
+    fetch("book/getCinema?date="+date)
       .then(res => res.json(res))
-      .then(res => {
+      .then(cinemas => {
         this.setState({
-          cinemas: res
+          cinemas: cinemas,
+          movies : []
         });
       })
       .catch(err => console.log(err));
   }
-  getMovies() {
-    fetch()
+  getMovies(date, cinema) {
+    //examplecode
+    this.setState({
+          movies: ["어벤져스", "82년생김지영"]
+        }); //
+    fetch("book/getMovies?date="+date+"&cinema="+cinema)
       .then(res => res.json(res))
-      .then(res => {
+      .then(movies => {
         this.setState({
-          movies: res
+          movies: movies
         });
       })
       .catch(err => console.log(err));
@@ -52,7 +75,7 @@ export default class DCM extends Component {
             <div
               className="select"
               key={index}
-              onClick={() => this.props.setDate(date)}
+              onClick={() => this.props.setDate(date), () => this.getCinemas(date)}
             >
               {date}
             </div>
@@ -64,7 +87,7 @@ export default class DCM extends Component {
             <div
               className="select"
               key={index}
-              onClick={() => this.props.setCinema(cinema)}
+              onClick={() => this.props.setCinema(cinema), () => this.getMovies(this.props.date, cinema)}
             >
               {cinema}
             </div>

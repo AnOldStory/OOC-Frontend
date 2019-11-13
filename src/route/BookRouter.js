@@ -64,6 +64,7 @@ class BookRouter extends Component {
             path={this.state.route + "/dcm"}
             component={() => (
               <DCM
+                time = {this.state.time}
                 setCinema={this.cinemaHandler}
                 setDate={this.dateHandler}
                 setMovie={this.movieHandler}
@@ -83,7 +84,13 @@ class BookRouter extends Component {
               <Seat setSeat={this.seatHandler} seat={this.state.seat} />
             )}
           />
-          <Route path={this.state.route + "/payment"} component={Payment} />
+          <Route path={this.state.route + "/payment"} component={()=>
+          <Payment 
+          cinema={this.state.cinema}
+          movie={this.state.movie}
+          date={this.state.date}
+          time={this.state.time}
+          seat={this.state.seat} />} />
         </Switch>
       </>
     );

@@ -30,7 +30,7 @@ class BookContainer extends Component {
             {this.props.time}
           </div>
 
-          <div className={this.props.seat[0]==="선택 전"?'eachstate':'eachstateafter'}>SEAT 
+          <div className={this.props.seat==[]?'eachstate':'eachstateafter'}>SEAT 
             {this.props.seat}
           </div>
           

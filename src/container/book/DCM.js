@@ -9,7 +9,10 @@ export default class DCM extends Component {
     this.state = {
       dates: [],
       cinemas: [],
-      movies: []
+      movies: [],
+      date : "",
+      cinema : "",
+      movie : ""
     };
   }
 
@@ -17,20 +20,45 @@ export default class DCM extends Component {
     this.getDates();
   }
 
+  dateClick(date) {
+    this.setState({
+      date : date,
+      cinema : "",
+      movie : ""
+    })
+    this.getCinemas(date)
+  }
+
+  cinemaClick(cinema) {
+    this.setState({
+      cinema : cinema,
+      movie : ""
+    })
+    this.getMovies(this.state.date ,cinema)
+  }
+
+  movieClick(movie) {
+    this.setState({
+      movie : movie
+    })
+  }
+
+  nextClick() {
+    this.props.setDate(this.state.date)
+    this.props.setCinema(this.state.cinema)
+    this.props.setMovie(this.state.movie)
+  }
+
   getDates() {
     //examplecode
     this.setState({
           dates: ["2019/11/08", "2019/11/09", "2019/11/10", "2019/11/11"],
-          cinemas : [],
-          movies : []
         }); //
     fetch("/book/getDate")
       .then(res => res.json(res))
       .then(dates => {
         this.setState({
-          dates: dates,
-          cinemas : [],
-          movies : []
+          dates: dates
         });
       })
       .catch(err => console.log(err));
@@ -38,10 +66,19 @@ export default class DCM extends Component {
 
   getCinemas(date) {
     //examplecode
-    this.setState({
-          cinemas: ["안산", "서울", "평양", "뉴욕"],
-          movies : []
-        }); //
+    if(date == "2019/11/08") {
+    
+      this.setState({
+            cinemas: ["안산", "서울", "평양", "뉴욕"],
+            movies : []
+          }); 
+    } //
+    else{
+      this.setState({
+            cinemas: ["서울", "평양", "뉴욕"],
+            movies : []
+          }); 
+    }
     fetch("book/getCinema?date="+date)
       .then(res => res.json(res))
       .then(cinemas => {
@@ -52,6 +89,7 @@ export default class DCM extends Component {
       })
       .catch(err => console.log(err));
   }
+
   getMovies(date, cinema) {
     //examplecode
     this.setState({
@@ -66,8 +104,10 @@ export default class DCM extends Component {
       })
       .catch(err => console.log(err));
   }
+
   render() {
     return (
+
       <div className="DCMContent">
         <div className="date content">
           <div className="title">DATE</div>
@@ -75,7 +115,7 @@ export default class DCM extends Component {
             <div
               className="select"
               key={index}
-              onClick={() => this.props.setDate(date), () => this.getCinemas(date)}
+              onClick={() => this.dateClick(date)}
             >
               {date}
             </div>
@@ -87,7 +127,7 @@ export default class DCM extends Component {
             <div
               className="select"
               key={index}
-              onClick={() => this.props.setCinema(cinema), () => this.getMovies(this.props.date, cinema)}
+              onClick={() => this.cinemaClick(cinema)}
             >
               {cinema}
             </div>
@@ -99,13 +139,13 @@ export default class DCM extends Component {
             <div
               className="select"
               key={index}
-              onClick={() => this.props.setMovie(movie)}
+              onClick={() => this.movieClick(movie)}
             >
               {movie}
             </div>
           ))}
         </div>
-        <div className="next">
+        <div className="next" onClick={() => this.nextClick()}>
           <Link to="/book/time">NEXT</Link>
         </div>
       </div>

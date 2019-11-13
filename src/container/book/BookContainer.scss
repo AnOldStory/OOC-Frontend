@@ -3,6 +3,9 @@
 .container{
   display: grid;
   .state{
+    background-color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
     font-size: 13pt;
     margin-left: 3%;
     margin-right: 3%;
@@ -41,17 +44,20 @@
     grid-column: 5/7;
   }
   .content{
-    height: 75vh
+    background-color: rgb(221, 221, 181);
+    height: 400px;
   }
   .next{
     margin-top:70%;
   }
   .select{
+    padding-top: 3px;
+    padding-bottom: 3px;
     background-color: lightgoldenrodyellow;
     padding-left: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px black solid;
-    font-size: 18pt;
+    border-bottom: 1px rgb(168, 168, 168) solid;
+    font-size: 12pt;
     cursor: pointer; 
   }
 }

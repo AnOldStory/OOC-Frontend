@@ -14,8 +14,9 @@ export default class Time extends Component {
           (<div className="select"
           key={index} onClick={()=>this.props.setTime(time)}>{time}</div>))}
         </div>
-        
-        <Link to="/book/seat">Next</Link>
+        <div className="next">
+          <Link className="nextButton" to="/book/seat"><span>NEXT</span></Link>
+        </div>
       </div>
     )
   }

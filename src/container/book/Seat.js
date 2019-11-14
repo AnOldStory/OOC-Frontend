@@ -36,8 +36,11 @@ export default class Seat extends Component {
           ))}
         </div>
           <div className="next">
-          <Link className="nextButton" to="/book/payment"><span>NEXT</span></Link>
-        </div>      </div>
+            <Link className="nextButton" to="/book/payment">
+              <span>NEXT</span>
+              </Link>
+          </div>      
+        </div>
     );
   }
 }

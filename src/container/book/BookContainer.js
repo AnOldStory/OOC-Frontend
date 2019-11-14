@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./BookContainer.scss";
-import { Link } from "react-router-dom";
 
 
 class BookContainer extends Component {
@@ -30,7 +29,7 @@ class BookContainer extends Component {
             {this.props.time}
           </div>
 
-          <div className={this.props.seat.length==0?'eachstate':'eachstateafter'}>SEAT 
+          <div className={this.props.seat.length===0?'eachstate':'eachstateafter'}>SEAT 
             {this.props.seat.map((seat, index) => 
           (
            <span key={index}>{seat},</span>))}

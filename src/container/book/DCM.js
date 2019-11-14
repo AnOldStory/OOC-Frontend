@@ -66,7 +66,7 @@ export default class DCM extends Component {
 
   getCinemas(date) {
     //examplecode
-    if(date == "2019/11/08") {
+    if(date === "2019/11/08") {
     
       this.setState({
             cinemas: ["안산", "서울", "평양", "뉴욕"],

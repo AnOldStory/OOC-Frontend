@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import './Payment.scss';
 
 export default class Payment extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      price:0,
+      disrate:1,
+      discount:0,
+    }
+  }
+  componentDidMount(){
+    this.setState({price:this.props.seat.length * 10000})
+  }
   render() {
     return (
       <div className="paymentcontent">
@@ -20,11 +31,14 @@ export default class Payment extends Component {
         <div className="ticketinfo content">
           <div className="title">티켓정보</div>
           <div className="paycontent">
-            {this.props.cinema}<br/>
-            {this.props.date}<br/>
-            {this.props.movie}<br/>
-            {this.props.seat}<br/>
-            {this.props.time}<br/>
+            <ul>
+            <li>{this.props.cinema}</li><br/>
+            <li>{this.props.date}</li><br/>
+            <li>{this.props.movie}</li><br/>
+            <li>{this.props.seat}</li><br/>
+            <li>{this.props.time}</li><br/>
+            <li>{this.state.price}</li>
+            </ul>
           </div>
           <div className="paybutton">결제하기!</div>
         </div>

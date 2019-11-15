@@ -1,8 +1,33 @@
 @import "_variables.scss";
 
+.next{
+    
+    margin-top:150%;
+    text-decoration: none;
+
+    .nextButton{
+      font-weight: bold;
+      font-size: 23pt;
+      text-decoration: none;
+      &:visited{
+        text-decoration: none;
+        color: white;
+      }
+      span{
+        padding:10px;
+      background-color: #4edd4e;
+      &:hover{
+        background-color: yellowgreen;
+      }
+      }
+    }
+  }
 .container{
   display: grid;
   .state{
+    background-color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
     font-size: 13pt;
     margin-left: 3%;
     margin-right: 3%;
@@ -19,11 +44,17 @@
   }
 }
 .title{
-    text-align: center;
-    font-size: 30pt;
-    background-color: #4edd4e;
-    color: white;
-  }
+  width: 30%;
+  position: fixed;
+  padding-left: 20px;
+  padding-top: 8px;
+  padding-bottom : 8px;
+  text-align: left;
+  font-size: 18pt;
+  font-weight: bold;
+  background-color: #4edd4e;
+  color: white;
+}
 
 .DCMContent{
   padding: 3%;
@@ -41,52 +72,67 @@
     grid-column: 5/7;
   }
   .content{
-    height: 75vh
+    overflow: scroll;
+    float: left;
+    background-color: rgb(221, 221, 181);
+    height: 400px;
+    :nth-child(2){
+      margin-top: 50px;
+    }
   }
-  .next{
-    margin-top:70%;
-  }
+  
   .select{
+    padding-top: 3px;
+    padding-bottom: 3px;
     background-color: lightgoldenrodyellow;
     padding-left: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px black solid;
-    font-size: 18pt;
+    border-bottom: 1px rgb(168, 168, 168) solid;
+    font-size: 12pt;
     cursor: pointer; 
   }
-  .choose{
-    background-color: lightcoral;
+  .selected{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: green;
     padding-left: 10px;
     padding-bottom: 10px;
-    border-bottom: 2px black solid;
-    font-size: 18pt;
+    border-bottom: 1px rgb(168, 168, 168) solid;
+    font-size: 12pt;
     cursor: pointer; 
   }
 }
 .seats{
-  font-size: 40pt;
+  font-size: 20pt;
   padding-top: 5%;
   height: 60vh;
   text-align: center;
   .seatList{
+    padding: 5px;
+    background-color: #9c9c9c;
     display: inline-grid;
     grid-template-rows: repeat(4, 120px);
     grid-template-columns: repeat(13, 1fr);
     .seat{
       margin-right: 5px;
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       border: black 3px solid;
       background-color: cornsilk;
     }
     .selectedseat{
       margin-right: 5px;
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       border: black 3px solid;
       background-color: chartreuse;
     }
     
+  }
+  .next{
+    float: right;
+    margin-top:25%;
+    margin-right: 30px;
   }
 }
 
@@ -123,16 +169,24 @@
 
 .timeContent{
   padding: 3%;
+  .title{
+    width: 60%;
+  }
   .times{
-    margin-top: 30px;
+    padding: 1%;
+    margin-top: 70px;
     display: grid;
     grid-template-rows: repeat(4, 50px);
     grid-template-columns: repeat(13, 1fr);
     font-size: 30pt;
+    background-color:  rgb(221, 221, 181);  
   }
   .select{
     margin-right: 30px;
     background-color: bisque;
     cursor: pointer;
+  }
+  .next{
+    margin-top: 0;
   }
 }

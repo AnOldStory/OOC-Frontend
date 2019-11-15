@@ -7,6 +7,7 @@ import DCM from "container/book/DCM";
 import Seat from "container/book/Seat";
 import Time from "container/book/Time";
 import Initial from "container/book/Initial";
+import Login from "container/login/Login";
 
 class BookRouter extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class BookRouter extends Component {
       movie: "선택 전",
       date: "선택 전",
       time: "선택 전",
-      seat: []
+      seat: [],
+      token : "",
     };
     this.dateHandler = this.dateHandler.bind(this);
     this.cinemaHandler = this.cinemaHandler.bind(this);
@@ -48,6 +50,9 @@ class BookRouter extends Component {
       this.setState({ seat: newSeat });
     }
   };
+  tokenHandler = e => {
+    this.setState({token:e})
+  }
   render() {
     return (
       <>
@@ -81,11 +86,13 @@ class BookRouter extends Component {
           <Route
             path={this.state.route + "/seat"}
             component={() => (
-              <Seat setSeat={this.seatHandler} seat={this.state.seat} />
+              <Seat setSeat={this.seatHandler} seat={this.state.seat} token={this.state.token} />
             )}
           />
-          <Route path={this.state.route + "/payment"} component={()=>
-          <Payment 
+          
+          <Route path={this.state.route + "/payment"} component={()=>this.state.token ===""
+          ?<Login tokenHandler={this.tokenHandler} token={this.token}/>
+          :<Payment 
           cinema={this.state.cinema}
           movie={this.state.movie}
           date={this.state.date}

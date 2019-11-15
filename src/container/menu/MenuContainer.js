@@ -10,7 +10,7 @@ class MenuContainer extends Component {
       <div className="menu">
         <Link to="/"><img src={Logo} alt="logo"/></Link>
         <ul>
-          <li><Link to="/" className="menuLink">
+          <li><Link to="/ticket" className="menuLink">
             <div className="menu_item">TICKET</div></Link>
           </li>
           <li><Link to="/book" className="menuLink">

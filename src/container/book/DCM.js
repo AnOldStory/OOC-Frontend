@@ -72,13 +72,13 @@ export default class DCM extends Component {
             cinemas: ["안산", "서울", "평양", "뉴욕"],
             movies : []
           }); 
-    } //
+    }
     else{
       this.setState({
             cinemas: ["서울", "평양", "뉴욕"],
             movies : []
           }); 
-    }
+    } //
     fetch("book/getCinema?date="+date)
       .then(res => res.json(res))
       .then(cinemas => {
@@ -105,6 +105,16 @@ export default class DCM extends Component {
       .catch(err => console.log(err));
   }
 
+  showChoose(object)
+  {
+    if (object == this.state.date || object == this.state.cinema || object == this.state.movie){
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   render() {
     return (
 
@@ -113,7 +123,7 @@ export default class DCM extends Component {
           <div className="title">DATE</div>
           {this.state.dates.map((date, index) => (
             <div
-              className="select"
+              className={this.showChoose(date) ? "choose": "select"}
               key={index}
               onClick={() => this.dateClick(date)}
             >
@@ -125,7 +135,7 @@ export default class DCM extends Component {
           <div className="title">CINEMA</div>
           {this.state.cinemas.map((cinema, index) => (
             <div
-              className="select"
+              className={this.showChoose(cinema) ? "choose": "select"}
               key={index}
               onClick={() => this.cinemaClick(cinema)}
             >
@@ -137,7 +147,7 @@ export default class DCM extends Component {
           <div className="title">MOVIE</div>
           {this.state.movies.map((movie, index) => (
             <div
-              className="select"
+              className={this.showChoose(movie) ? "choose": "select"}
               key={index}
               onClick={() => this.movieClick(movie)}
             >

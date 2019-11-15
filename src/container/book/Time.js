@@ -4,6 +4,22 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 export default class Time extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      time : [],
+    }
+  }
+  componentDidMount(){
+    fetch("book/getCinema?date="+this.props.time+"&cinema="+this.props.cinema+"&movie="+this.props.movie)
+      .then(res => res.json(res))
+      .then(res => {
+        this.setState({
+          time: res
+        });
+      })
+      .catch(err => console.log(err));
+  }
   render() {
     var times = ["00:00","10:30","12:40","16:40"];
     return (

@@ -29,12 +29,30 @@ export default class Login extends Component {
   handlePhoneChange(e){
     this.setState({phone:e.target.value})
   }
-  loginSubmit =()=>{
-    
-  }
-  noLoginSubmit(){
-
-  }
+  loginSubmit =(event)=>{
+    event.preventDefault();
+    fetch('/login', {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: {
+        "id": this.state.id,
+        "pw" : this.state.pw,
+      }
+    }).then(res => res.json(res))
+    .then(res=>this.props.tokenHandler(res));
+  }; 
+  noLoginSubmit=(event)=>{
+    event.preventDefault();
+    fetch('/login', {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: {
+        "name": this.state.name,
+        "phone" : this.state.phone,
+      }
+    }).then(res => res.json(res))
+    .then(res=>this.props.tokenHandler(res));
+}; 
 
   render() {
     return (

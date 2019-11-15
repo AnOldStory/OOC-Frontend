@@ -50,7 +50,7 @@ class BookRouter extends Component {
       this.setState({ seat: newSeat });
     }
   };
-  tokenHandler = e => {
+  tokenHandler(e){
     this.setState({token:e})
   }
   render() {
@@ -81,7 +81,11 @@ class BookRouter extends Component {
           />
           <Route
             path={this.state.route + "/time"}
-            component={() => <Time setTime={this.timeHandler} />}
+            component={() => <Time setTime={this.timeHandler}
+                                    cinema={this.state.cinema}
+                                    date={this.state.date}
+                                    movie={this.state.movie}
+                                     />}
           />
           <Route
             path={this.state.route + "/seat"}

@@ -13,6 +13,7 @@ class BookContainer extends Component {
     return (
       <div className="container">
         <div className="state">
+          {}
           <div className={this.props.date==="선택 전"?'eachstate':'eachstateafter'}>DATE 
             {this.props.date}
           </div>

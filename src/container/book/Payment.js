@@ -11,7 +11,9 @@ export default class Payment extends Component {
     }
   }
   componentDidMount(){
-    this.setState({price:this.props.seat.length * 10000})
+    var hour = this.props.time.substring(0,2);
+    var price = (hour >= 22 || hour < 6 ?7000:(hour >= 6 && hour < 10 ? 8000 : 10000))
+    this.setState({price:this.props.seat.length * price})
   }
   render() {
     return (

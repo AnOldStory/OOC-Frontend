@@ -33,15 +33,13 @@ export default class MainLogin extends Component {
       <div>
         <div className="login content">
           <div>회원 로그인</div>
-          <form action={this.loginSubmit}>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <input type="submit" value="login" onClick={this.props.LoginHandler}/>
-          </form>
+            <button onClick={()=>this.props.LoginHandler(this.state.id, this.state.pw)}/>
         </div>    
       </div>
     )

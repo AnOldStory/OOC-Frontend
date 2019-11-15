@@ -11,12 +11,14 @@ class Router extends Component {
   constructor(props){
     super(props);
     this.state = {
+      id : "id",
+      pw : "pw",
       isLoggedin:false,
     }
     this.LoginHandler = this.LoginHandler.bind(this);
   }
-  LoginHandler(){
-    this.setState({isLoggedin:true});
+  LoginHandler(id, pw){
+    this.setState({id : id ,pw : pw ,isLoggedin:true});
   }
   render() {
     return (
@@ -25,7 +27,8 @@ class Router extends Component {
           <MenuContainer />
           {!this.state.isLoggedin && 
           <MainLogin LoginHandler={this.LoginHandler}/>
-}
+}          
+<div>{this.state.id}</div>
           <Switch>
             <Route exact path="/" component={MainContainer} />
             <Route path="/book" component={BookRouter} />

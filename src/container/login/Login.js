@@ -59,7 +59,6 @@ export default class Login extends Component {
       <div className="loginContent">
         <div className="login content">
           <div>회원 로그인</div>
-          <form action={this.loginSubmit}>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
@@ -67,7 +66,6 @@ export default class Login extends Component {
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
             <input type="submit" value="login" onClick={()=>this.props.tokenHandler("awe")}/>
-          </form>
         </div>
         <div className="noMember content">
           <div>비회원 로그인</div>

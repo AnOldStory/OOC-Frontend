@@ -50,7 +50,7 @@ class BookRouter extends Component {
       this.setState({ seat: newSeat });
     }
   };
-  tokenHandler(e){
+  tokenHandler=(e)=>{
     this.setState({token:e})
   }
   render() {

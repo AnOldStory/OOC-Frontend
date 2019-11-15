@@ -29,7 +29,7 @@ class Router extends Component {
           <Switch>
             <Route exact path="/" component={MainContainer} />
             <Route path="/book" component={BookRouter} />
-            <Route path="/ticket" component={Ticket}/>
+            <Route path="/ticket" component={()=><Ticket/>}/>
           </Switch>
         </>
       </BrowserRouter>

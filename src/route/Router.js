@@ -56,7 +56,13 @@ class Router extends Component {
     }
   };
   initializeState(){
-    this.forceUpdate();
+    this.setState({
+      cinema: "선택 전",
+      movie: "선택 전",
+      date: "선택 전",
+      time: "선택 전",
+      seat: [],
+    });
   }
   render() {
     return (

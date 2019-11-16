@@ -22,7 +22,7 @@ export default class Result extends Component {
               <li>좌석 : {this.props.seat.join()}</li>
             </ul>
           </div>
-          <div onClick={()=>this.props.initializeState}><Link to="/">확인</Link></div>
+          <div onClick={()=>this.props.initialize()}><Link to="/">확인</Link></div>
         </div>
          }
     </div>

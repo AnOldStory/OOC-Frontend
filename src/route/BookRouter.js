@@ -20,6 +20,7 @@ class BookRouter extends Component {
       time: "선택 전",
       seat: [],
       token : "",
+      id : this.props.id
     };
     this.dateHandler = this.dateHandler.bind(this);
     this.cinemaHandler = this.cinemaHandler.bind(this);
@@ -56,6 +57,7 @@ class BookRouter extends Component {
   render() {
     return (
       <>
+        <div>haha {this.state.id}</div>
         <BookContainer
           cinema={this.state.cinema}
           movie={this.state.movie}

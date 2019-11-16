@@ -16,12 +16,15 @@ class BookRouter extends Component {
     this.state = {
       route: "/book",
       result: true,
+      token : "",
+      id : this.props.id
     };
     
   }
   render() {
     return (
       <>
+        <div>haha {this.state.id}</div>
         <BookContainer
           cinema={this.props.cinema}
           movie={this.props.movie}

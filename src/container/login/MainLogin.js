@@ -37,7 +37,7 @@ export default class MainLogin extends Component {
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <button onClick={this.props.LoginHandler}>로그인</button>
+            <button onClick={this.props.tokenHandler}>로그인</button>
         </div>    
       </div>
     )

@@ -65,7 +65,7 @@ export default class Login extends Component {
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <button onClick={()=>this.props.tokenHandler()}>login</button>
+            <button onClick={()=>this.props.tokenHandler}>login</button>
         </div>
         <div className="noMember content">
           <div>비회원 로그인</div>

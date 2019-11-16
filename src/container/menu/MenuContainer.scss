@@ -1,43 +1,37 @@
 @import "_variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap');
 
 .menu{
-  height: 10vh;
+  height: 9vh;
   overflow: visible;
-  margin-bottom: 5%;
+  width:100%;
+  background-color:white;
   img{
   display: block;
-  width: 10%;
-  margin-left:auto;
-  margin-right: auto;
+  width: 7%;
+  float: left;
+  margin-left:150px;
   }
   ul{
   list-style-type: none;
-  margin-right: 40px;
-  padding-right: 150px;
-  overflow: hidden;
+  margin-right:200px;
   li {
-    margin-left: 80px;
     float: right;
     .menuLink{
       text-decoration: none;
-      &:visited{
-        text-decoration: none;
-      }
+    }
       .menu_item{
-        border-left: 5px #4edd4e solid;
-        border-right: 5px #4edd4e solid;
+        border-left:1px solid gray;
+        border-right:1px solid gray;
+        margin-right:5px;
+        margin-left:5px;
         font-size: 20pt;
         text-align: center;
+        font-family: Rubik;
         width: 100%;
-        margin-left: 100px;
-        &:hover{
-          border-left: 5px #ec7f40 solid;
-          border-right: 5px #ec7f40 solid;
-          transition: .3s ease;
-        }
       }
     }
   }
 }
 
-}
+

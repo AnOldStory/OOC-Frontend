@@ -58,14 +58,14 @@ export default class Login extends Component {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인</div>
+          <div>회원 로그인 {this.props.time}</div>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <button onClick={()=>this.props.tokenHandler}>login</button>
+            <button onClick={()=>{this.props.settoken()}}>login</button>
         </div>
         <div className="noMember content">
           <div>비회원 로그인</div>

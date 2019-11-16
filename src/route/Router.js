@@ -63,14 +63,14 @@ class Router extends Component {
       <BrowserRouter basename="/">
         <>
           <MenuContainer />
-          {this.state.token}
           {(this.state.token == "") && 
           <MainLogin tokenHandler={this.tokenHandler}/>}
+          token = {this.state.token}
           <Switch>
             <Route exact path="/" component={MainContainer} />
             <Route path="/book" component={
               ()=><BookRouter 
-              tokenHandler={this.state.tokenHandler}
+              tokenHandler={this.tokenHandler}
               dateHandler={this.dateHandler}
               cinemaHandler={this.cinemaHandler}
               movieHandler={this.movieHandler}

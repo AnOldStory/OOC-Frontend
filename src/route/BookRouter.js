@@ -18,13 +18,12 @@ class BookRouter extends Component {
       result: true,
       token : "",
       id : this.props.id
-    };
-    
+    };   
   }
+
   render() {
     return (
       <>
-        <div>haha {this.state.id}</div>
         <BookContainer
           cinema={this.props.cinema}
           movie={this.props.movie}
@@ -65,7 +64,14 @@ class BookRouter extends Component {
           />
           
           <Route path={this.state.route + "/payment"} component={()=>(this.props.token ===""
-          ?<Login tokenHandler={()=>this.props.tokenHandler} token={this.props.token}/>
+          
+          ?<Login
+          
+          time={this.props.time} 
+          settoken={this.props.tokenHandler}
+          token={this.props.token} 
+          id={this.props.id}/>
+
           :<Payment 
           cinema={this.props.cinema}
           movie={this.props.movie}

@@ -31,9 +31,7 @@ class BookContainer extends Component {
           </div>
 
           <div className={this.props.seat.length===0?'eachstate':'eachstateafter'}>SEAT 
-            {this.props.seat.map((seat, index) => 
-          (
-           <span key={index}>{seat},</span>))}
+            {this.props.seat.join()}
           </div>
           
         </div>

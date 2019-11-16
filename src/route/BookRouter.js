@@ -13,13 +13,12 @@ class BookRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: this.props.match.url,
+      route: "/book",
       cinema: "선택 전",
       movie: "선택 전",
       date: "선택 전",
       time: "선택 전",
       seat: [],
-      token : "",
     };
     this.dateHandler = this.dateHandler.bind(this);
     this.cinemaHandler = this.cinemaHandler.bind(this);
@@ -27,6 +26,8 @@ class BookRouter extends Component {
     this.timeHandler = this.timeHandler.bind(this);
     this.seatHandler = this.seatHandler.bind(this);
   }
+
+
   dateHandler = e => {
     this.setState({ date: e });
   };
@@ -50,8 +51,8 @@ class BookRouter extends Component {
       this.setState({ seat: newSeat });
     }
   };
-  tokenHandler=(e)=>{
-    this.setState({token:e})
+  tokenHandler(){
+    this.props.LoginHandler()
   }
   render() {
     return (
@@ -94,8 +95,8 @@ class BookRouter extends Component {
             )}
           />
           
-          <Route path={this.state.route + "/payment"} component={()=>this.state.token ===""
-          ?<Login tokenHandler={this.tokenHandler} token={this.token}/>
+          <Route path={this.state.route + "/payment"} component={()=>this.props.token ===""
+          ?<Login tokenHandler={()=>this.props.tokenHandler} token={this.props.token}/>
           :<Payment 
           cinema={this.state.cinema}
           movie={this.state.movie}

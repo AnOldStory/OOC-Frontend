@@ -7,8 +7,6 @@ export default class MainLogin extends Component {
     this.state = {
       id : '',
       pw : '',
-      name : '',
-      phone : '',
       isMemberLogin : false,
     }
     this.handleIDChange = this.handleIDChange.bind(this);
@@ -39,7 +37,7 @@ export default class MainLogin extends Component {
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <button onClick={()=>this.props.LoginHandler(this.state.id, this.state.pw)}/>
+            <button onClick={this.props.LoginHandler}>로그인</button>
         </div>    
       </div>
     )

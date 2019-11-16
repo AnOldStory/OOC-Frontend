@@ -7,32 +7,33 @@ import BookRouter from "route/BookRouter";
 import Ticket from "container/ticket/Ticket";
 
 import MainLogin from "container/login/MainLogin";
+
+
 class Router extends Component {
   constructor(props){
     super(props);
     this.state = {
-      id : "id",
-      pw : "pw",
+      token:"",
       isLoggedin:false,
     }
     this.LoginHandler = this.LoginHandler.bind(this);
   }
-  LoginHandler(id, pw){
-    this.setState({id : id ,pw : pw ,isLoggedin:true});
+  LoginHandler(){
+    this.setState({token:"asdf"});
   }
   render() {
     return (
       <BrowserRouter basename="/">
         <>
           <MenuContainer />
-          {!this.state.isLoggedin && 
-          <MainLogin LoginHandler={this.LoginHandler}/>
-}          
-<div>{this.state.id}</div>
+          {this.state.token}
+          {(this.state.token == "") && 
+          <MainLogin LoginHandler={this.LoginHandler}/>}
           <Switch>
             <Route exact path="/" component={MainContainer} />
-            <Route path="/book" component={BookRouter} />
-            <Route path="/ticket" component={Ticket}/>
+            <Route path="/book" component={
+              ()=><BookRouter LoginHandler={this.state.LoginHandler} token={this.state.token}/>} />
+            <Route path="/ticket" component={()=><Ticket token={this.state.token}/>}/>
           </Switch>
         </>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Payment.scss';
-
+import {Link} from 'react-router-dom';
 
 export default class Payment extends Component {
   constructor(props){
@@ -22,6 +22,12 @@ export default class Payment extends Component {
     this.setState({
       disrate :e,
     })
+  }
+  paySubmit = () => {
+    fetch("book/pay?date="+this.props.date+"&cinema="+this.props.cinema+"&movie="+this.props.movie
+    +"&time="+this.props.time+"&seat="+this.props.seat+"&price="+(this.state.price * (1-this.state.disrate)).toFixed(0))
+    .then(res => res.json(res))
+    .then()
   }
   render() {
     var discounts = [{name:"생일",rate:0.15},
@@ -54,9 +60,10 @@ export default class Payment extends Component {
             <li>{this.props.seat}</li><br/>
             <li>{this.props.time}</li><br/>
             <li>{(this.state.price * (1-this.state.disrate)).toFixed(0)}</li>
+            <li>할인율 : {this.state.disrate * 100}%</li>
             </ul>
           </div>
-          <div className="paybutton">결제하기!</div>
+          <div className="paybutton" onClick={this.paySubmit}><Link to="/book/result">결제하기!</Link></div>
         </div>
       </div>
     )

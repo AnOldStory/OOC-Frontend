@@ -39,7 +39,7 @@ export default class Ticket extends Component {
     return (
       <div className="ticketcontainer">
         {this.props.token == "" ?
-        <div>로그인하십쇼</div>:
+        <div className="notLogined">로그인하십쇼</div>:
 
         <div className="tickets">
           {this.state.tickets

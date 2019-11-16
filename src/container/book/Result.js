@@ -13,16 +13,16 @@ export default class Result extends Component {
 
         {this.props.result &&
         <div>
-          {alert("예매성공!")}
           <div className="ticket">
-            this is ticket<hr/>
-            날짜 : {this.props.date}<br/>
-            시간 : {this.props.time} <br/>
-            영화 : {this.props.movie} <r/>
-            영화관 : {this.props.cinema}<br/>
-            좌석 : {this.props.seat.join()}
+            <span className="ticketTitle">TICKET :{this.props.movie} </span><hr/>
+            <ul>
+              <li>날짜 : {this.props.date}</li>
+              <li>시간 : {this.props.time} </li>
+              <li>영화관 : {this.props.cinema}</li>
+              <li>좌석 : {this.props.seat.join()}</li>
+            </ul>
           </div>
-          <div onClick={window.location.reload}><Link to="/">확인</Link></div>
+          <div onClick={()=>this.props.initializeState}><Link to="/">확인</Link></div>
         </div>
          }
     </div>

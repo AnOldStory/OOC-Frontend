@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./MainContainer.scss";
+import Slideshow from "./Slide.js";
 
 class MainContainer extends Component {
   render() {
@@ -11,10 +12,11 @@ class MainContainer extends Component {
           </div>
           <div className = "List_movie">
             <ol>
-              <li> 1.어벤져스</li>
-              <li> 2.82년생 김지영</li>
+              <li> 1. 어벤져스</li>
+              <li> 2. 82년생 김지영</li>
             </ol>
           </div>
+        <div className="Carousel"><Slideshow/></div>
         </div>
       </div>
     );

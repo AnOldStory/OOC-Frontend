@@ -16,7 +16,6 @@ class MenuContainer extends Component {
           <li><Link to="/book" className="menuLink">
             <div className="menu_item">BOOK</div></Link>
           </li>
-          
         </ul>
       </div>
     );

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import "./MainContainer.scss";
-import Bug from 'image/mainlogo.gif';
 
 class MainContainer extends Component {
   render() {
     return (
       <div className="main">
         <div className="content">
-          <div>
-            <img src={Bug} alt="main"/>
-        </div>
+          <div className = "List_title">
+            <p> Screening List </p>
+          </div>
+          <div className = "List_movie">
+            <ol>
+              <li> 1.어벤져스</li>
+              <li> 2.82년생 김지영</li>
+            </ol>
+          </div>
         </div>
       </div>
     );

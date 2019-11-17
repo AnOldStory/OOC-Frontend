@@ -1,16 +1,47 @@
 @import "_variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&display=swap');
 
 .main {
   background-color: #f5f5dc;
-  padding-top: 0.1px;
-  padding-left: 20%;
+  padding-top: 1px;
+  
   .content {
     padding-top: 1%;
-    img {
-      margin-left: 16%;
-      width: 40%;
-      bottom: 20%;
-
+    .List_title
+    {
+      color:white;
+      margin: 50px 50px 50px 100px;
+      border: 2px solid black;
+      padding: 20px 30px 20px 30px;
+      width:150px;
+      text-align:center;
+      font-size: 25px;
+      font-style:italic;
+      color:#f5f5dc;
+      font-family:Oswald;
+      background-color: black;
+    }
+    .List_movie
+    {
+      margin:50px 50px 50px 100px;
+      padding: 0;
+      height:1500px;
+      width:180px;
+    ol
+    {
+      text-align:left;
+      list-style: none;
+      li
+      {
+        line-height: 1.2cm;
+        font-family: nanum+Gothic;
+        &:hover
+        {
+          border : 2px solid gray;
+        }
+      }
+    }
     }
   }
 }

@@ -9,6 +9,7 @@ export default class Payment extends Component {
       price:0,
       disrate:0,
       discount:0,
+      disname:""
     }
   }
   
@@ -18,9 +19,10 @@ export default class Payment extends Component {
     var ticket = (hour >= 22 || hour < 6 ?7000:(hour >= 6 && hour < 10 ? 8000 : 10000))
     this.setState({price:this.props.seat.length * ticket })
   }
-  applyDiscount = (e) => {
+  applyDiscount = (rate, name) => {
     this.setState({
-      disrate :e,
+      disrate : rate,
+      disname : name
     })
   }
   paySubmit = () => {
@@ -40,8 +42,8 @@ export default class Payment extends Component {
         <div className="dc content">
           <div className="title">할인</div>
           <div className="paycontent">
-           {discounts.map((index,name,rate)=> <div 
-            key={index} onClick={()=>this.applyDiscount(index.rate)}>{index.name}</div>)}
+           {discounts.map((index,name,rate)=> <div className={index.name==this.state.disname?"selected_dis":"unselected_dis"}
+            key={index} onClick={()=>this.applyDiscount(index.rate, index.name)}>{index.name}</div>)}
           </div>
         </div>
         <div className="payment content">

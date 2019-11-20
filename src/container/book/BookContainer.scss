@@ -179,7 +179,13 @@
     grid-template-rows: repeat(4, 50px);
     grid-template-columns: repeat(13, 1fr);
     font-size: 30pt;
-    background-color:  rgb(221, 221, 181);  
+    background-color:  rgb(221, 221, 181);
+    .selectedtime{
+      background-color: #3e8e41;
+
+    }
+    .unselectedtime{
+    }
   }
   .select{
     margin-right: 30px;

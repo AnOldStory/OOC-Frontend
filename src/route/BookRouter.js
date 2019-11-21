@@ -18,7 +18,7 @@ class BookRouter extends Component {
       result: true,
       token : "",
       id : this.props.id
-    };   
+    };
   }
 
   render() {

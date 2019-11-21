@@ -5,6 +5,12 @@
   column-gap: 5px;
   .paycontent{
     margin-top: 50px;
+    .selected_dis{
+      background-color: green;
+    }
+    .unselected_dis{
+
+    }
   }
   .content{
     background-color: rgb(221, 221, 181);

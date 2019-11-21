@@ -32,9 +32,8 @@ class BookRouter extends Component {
           seat={this.props.seat}
         />
         <Switch>
-          <Route exact path={this.state.route} component={Initial} />
           <Route
-            path={this.state.route + "/dcm"}
+            path={this.state.route}
             component={() => (
               <DCM
                 time = {this.props.time}

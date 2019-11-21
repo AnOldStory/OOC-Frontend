@@ -7,11 +7,29 @@ class MenuContainer extends Component {
   render() {
     return (
       <div className="menu">
-        <Link to="/">HOME</Link>
-        <Link to="/people">인사</Link>
-        <Link to="/profit">재무</Link>
-        <Link to="/stock">재고</Link>
-        <Link to="/ticket">티켓</Link>
+        <ul>
+          <li>
+          <Link className="link" to="/">
+            <div className="menuItem">Home</div>
+            </Link></li>
+            <li>
+          <Link className="link" to="/people">
+            <div className="menuItem">인사</div>
+            </Link></li>
+            <li>
+          <Link className="link" to="/profit">
+            <div className="menuItem">재무</div>
+            </Link></li>
+            <li>
+          <Link className="link" to="/stock">
+            <div className="menuItem">재고</div>
+            </Link></li>
+            <li>
+          <Link className="link" to="/ticket">
+            <div className="menuItem">티켓</div>
+            </Link></li>
+
+        </ul>
       </div>
     );
   }

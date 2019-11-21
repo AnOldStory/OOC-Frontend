@@ -33,14 +33,16 @@ class BookRouter extends Component {
         />
         <Switch>
           <Route
-            path={this.state.route}
+            exact path={this.state.route}
             component={() => (
               <DCM
                 time = {this.props.time}
                 setCinema={this.props.cinemaHandler}
                 setDate={this.props.dateHandler}
+                setMovieId={this.props.movieIdHandler}
                 setMovie={this.props.movieHandler}
                 cinema={this.props.cinema}
+                movieId={this.props.movieId}
                 movie={this.props.movie}
                 date={this.props.date}
               />
@@ -49,10 +51,13 @@ class BookRouter extends Component {
           <Route
             path={this.state.route + "/time"}
             component={() => <Time setTime={this.props.timeHandler}
+                                    setScreen={this.props.screenHandler}
                                     cinema={this.props.cinema}
                                     date={this.props.date}
                                     movie={this.props.movie}
+                                    movieId={this.props.movieId}
                                     time={this.props.time}
+                                    screen={this.props.screen}
                                      />}
           />
           <Route
@@ -67,24 +72,29 @@ class BookRouter extends Component {
           ?<Login
           
           time={this.props.time} 
+          screen={this.props.screen} 
           settoken={this.props.tokenHandler}
           token={this.props.token} 
           id={this.props.id}/>
 
           :<Payment 
           cinema={this.props.cinema}
+          movieId={this.props.movieId}
           movie={this.props.movie}
           date={this.props.date}
           time={this.props.time}
+          screen={this.props.screen}
           seat={this.props.seat} />)} />
 
           <Route path={this.state.route + "/result"} 
           component={() => (<Result 
               result={this.state.result}
               cinema={this.props.cinema}
+              movieId={this.props.movieId}
               movie={this.props.movie}
               date={this.props.date}
               time={this.props.time}
+              screen={this.props.screen}
               seat={this.props.seat}
               initialize={this.props.initializeState}/>)
           } />

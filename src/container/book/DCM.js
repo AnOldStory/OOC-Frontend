@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import "container/book/BookContainer.scss";
 
+const aws = "http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000";
+
 export default class DCM extends Component {
   constructor(props) {
     super(props);
@@ -12,14 +14,12 @@ export default class DCM extends Component {
       movies: [],
       date : "",
       cinema : "",
+      movieId : -1,
       movie : ""
     };
-  }
-
-  componentDidMount() {
+    
     this.getDates();
   }
-
   dateClick(date) {
     this.setState({
       date : date,
@@ -37,69 +37,70 @@ export default class DCM extends Component {
     this.getMovies(this.state.date ,cinema)
   }
 
-  movieClick(movie) {
+  movieClick(moviedata) {
     this.setState({
-      movie : movie
+      movieId : moviedata.movieId,
+      movie : moviedata.movie
     })
   }
 
   nextClick() {
     this.props.setDate(this.state.date)
     this.props.setCinema(this.state.cinema)
+    this.props.setMovieId(this.state.movieId)
     this.props.setMovie(this.state.movie)
   }
 
   getDates() {
     //examplecode
-    this.setState({
-          dates: ["2019/11/08", "2019/11/09", "2019/11/10", "2019/11/11", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09", "2019/11/09"],
-        }); //
-    fetch("/book/getDate")
+    fetch(aws + "/book")
       .then(res => res.json(res))
       .then(res => {
-        this.setState({
-          dates: this.state.dates
+        res.map((data, index) => {
+          this.setState({
+          dates: this.state.dates.includes(data.screeningDate) ? this.state.dates : [...this.state.dates, data.screeningDate],
+          cinemas : [],
+          movies : []
         });
+        })
+        this.setState({
+          dates : this.state.dates.sort()
+        })
       })
       .catch(err => console.log(err));
   }
 
   getCinemas(date) {
     //examplecode
-    if(date === "2019/11/08") {
-    
-      this.setState({
-            cinemas: ["안산", "서울", "평양", "뉴욕"],
-            movies : []
-          }); 
-    }
-    else{
-      this.setState({
-            cinemas: ["서울", "평양", "뉴욕"],
-            movies : []
-          }); 
-    } //
-    fetch("book/getCinema?date="+date)
+    fetch(aws + "/book/?date="+date)
       .then(res => res.json(res))
       .then(res => {
-        this.setState({
-          cinemas: res
+        res.map((data, index) => {
+          this.setState({
+            cinemas : []
+          })
+          this.setState({
+          cinemas : this.state.cinemas.includes(data.cinemaId) ? this.state.cinemas : [...this.state.cinemas, data.cinemaId],
+          movies : []
         });
+        })
       })
       .catch(err => console.log(err));
   }
 
   getMovies(date, cinema) {
     //examplecode
-    this.setState({
-          movies: ["어벤져스", "82년생김지영"]
-        }); //
-    fetch("book/getMovies?date="+date+"&cinema="+cinema)
+    fetch(aws + "/book/?date="+date+"&cinema="+cinema)
       .then(res => res.json(res))
       .then(res => {
-        this.setState({
-          movies: res
+        res.map((data, index) => {
+          this.setState({
+            movies : []
+          })
+          this.setState({
+          movies : this.state.movies.includes(data.movieIdSchedule.movieName) ? this.state.movies : [...this.state.movies, {movie :data.movieIdSchedule.movieName, movieId: data.movieId}],
         });
+        })
       })
       .catch(err => console.log(err));
   }
@@ -144,13 +145,13 @@ export default class DCM extends Component {
         </div>
         <div className="movie content">
           <div className="title">영화</div>
-          {this.state.movies.map((movie, index) => (
+          {this.state.movies.map((moviedata, index) => (
             <div
-              className={this.state.movie===movie? "selected":"select"}
+              className={this.state.movie===moviedata.movie? "selected":"select"}
               key={index}
-              onClick={() => this.movieClick(movie)}
+              onClick={() => this.movieClick(moviedata)}
             >
-              {movie}
+              {moviedata.movie}
             </div>
           ))}
         </div>

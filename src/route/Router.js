@@ -49,7 +49,7 @@ class Router extends Component {
     this.setState({ movie: e });
   };
   timeHandler = e => {
-    this.setState({ time: e });
+    this.setState({ time: e.time , screen: e.screen});
   };
   screenHandler = e => {
     this.setState({ screen: e });

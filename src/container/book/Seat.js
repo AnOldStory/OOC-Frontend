@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+const aws = "http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000";
+
 export default class Seat extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,23 @@ export default class Seat extends Component {
     this.state = {
       seats: table
     };
+    this.getSeat();
   }
+
+  getSeat(){
+    fetch(aws + "/book/tickets/?date=" +this.props.date+"&cinema="+this.props.cinema+"&movie="+this.props.movieId+"&time="+this.props.time)
+      .then(res => res.json(res))
+      .then(res => {
+        console.log(res)
+        // res.map((data, index) => {
+        //   this.setState({
+        //   times: this.state.times.includes(data.screeningTime) ? this.state.times : [...this.state.times, {time : data.screeningTime, screen : data.screeningId}],
+        // });
+        // })
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="seats">

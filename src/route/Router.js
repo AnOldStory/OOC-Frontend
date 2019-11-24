@@ -13,7 +13,7 @@ class Router extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLogined : true,
+      isLogined : false,
       id : '',
     }
     this.LoginHandler = this.LoginHandler.bind(this);

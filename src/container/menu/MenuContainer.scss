@@ -1,7 +1,8 @@
 .menu{
-  margin-top: 100px;
+  background-color: white;
   float: left;
-  width: 20%;
+  width: 13%;
+  height: 95vh;
   ul{
     list-style: none;
   }
@@ -12,7 +13,13 @@
     }
   }
   .menuItem{
-    margin-top: 50px;
+    padding-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: yellowgreen;
+    height: 15.9vh;
+    border-bottom: 2.5px solid black;
+    border-right: 3px solid black;
     font-size: 30pt;
     :hover{
       cursor: grab;

@@ -7,54 +7,54 @@
 
     .nextButton{
       font-weight: bold;
-      font-size: 23pt;
+      font-size: 20pt;
       text-decoration: none;
       &:visited{
         text-decoration: none;
         color: white;
       }
       span{
-        padding:10px;
-      background-color: #4edd4e;
-      &:hover{
-        background-color: yellowgreen;
-      }
+      padding:7px;
+      background-color: #333333;
+      
       }
     }
   }
 .container{
   display: grid;
   .state{
-    background-color: white;
+    background-color: rgb(218,210,180);
     padding-top: 3px;
     padding-bottom: 3px;
     font-size: 13pt;
     margin-left: 3%;
-    margin-right: 3%;
+    margin-right: 5%;
     column-count: 5;
+    font-family: Tahoma,sans-serif;
 
     .eachstate{
       padding-left: 10px;
-      border-left: 3px #4edd4e solid;
     }
     .eachstateafter{
       padding-left: 10px;
-      border-left: 3px #ec7f40 solid;
     }
   }
 }
 .title{
   width: 30%;
   position: fixed;
-  padding-left: 20px;
+  padding-left: 15px;
   padding-top: 8px;
   padding-bottom : 8px;
   text-align: left;
-  font-size: 18pt;
+  font-size: 12pt;
   font-weight: bold;
-  background-color: #4edd4e;
-  color: white;
+  background-color: #333333;
+  color: rgb(197,197,197);
+  text-align: center;
 }
+
+
 
 .DCMContent{
   padding: 3%;
@@ -94,11 +94,12 @@
   .selected{
     padding-top: 3px;
     padding-bottom: 3px;
-    background-color: green;
+    background-color: #333333;
     padding-left: 10px;
     padding-bottom: 10px;
     border-bottom: 1px rgb(168, 168, 168) solid;
     font-size: 12pt;
+    color:white;
     cursor: pointer; 
   }
 }
@@ -170,7 +171,7 @@
 .timeContent{
   padding: 3%;
   .title{
-    width: 60%;
+    width: 92.7%;
   }
   .times{
     padding: 1%;
@@ -178,7 +179,7 @@
     display: grid;
     grid-template-rows: repeat(4, 50px);
     grid-template-columns: repeat(13, 1fr);
-    font-size: 30pt;
+    font-size: 20pt;
     background-color:  rgb(221, 221, 181);
     .selectedtime{
       background-color: #3e8e41;

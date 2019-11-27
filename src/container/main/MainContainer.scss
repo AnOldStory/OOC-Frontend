@@ -7,10 +7,16 @@
   
   .content {
     padding-top: 1%;
+    img
+    {
+      display: block;
+      margin:0px auto;
+
+    }
     .List_title
     {
       color:white;
-      margin: 50px 50px 30px 200px;
+      margin: 30px 50px 30px 200px;
       border: 2px solid black;
       padding: 20px 30px 20px 30px;
       width:150px;
@@ -43,9 +49,7 @@
     }
     .Carousel
     {
-      position: absolute;
-      left:600px;
-      top:40px;      
+           
     }
   }
 }

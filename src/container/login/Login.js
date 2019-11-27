@@ -58,13 +58,15 @@ export default class Login extends Component {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인 {this.props.time}</div>
+          <div>회원 로그인</div>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
+            <br />
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
+            <br />
             <button onClick={()=>{this.props.settoken()}}>login</button>
         </div>
         <div className="noMember content">
@@ -74,9 +76,11 @@ export default class Login extends Component {
             Name
             <input type="text" name="name" value={this.state.name} 
             onChange={this.handleNameChange} />
+            <br/>
             PhoneNumber
             <input type="text" name="phone" value={this.state.phone}
             onChange={this.handlePhoneChange} />
+            <br />
             <input type="submit" value="비회원" onClick={()=>this.props.tokenHandler("ass")}/>
           </form>
         </div>

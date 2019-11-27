@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './Login.scss';
 
+const RSA = require('node-rsa');
+
+const rsa = new RSA();
+
 export default class Login extends Component {
   constructor(props){
     super(props);
@@ -10,12 +14,22 @@ export default class Login extends Component {
       name : '',
       phone : '',
       isMemberLogin : false,
+      rsa : [],
     }
     this.handleIDChange = this.handleIDChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
-
+    
+    this.getRSA();
+    console.log("AFTER RSA()");
+  }
+  getRSA(){
+    fetch("http://localhost:4000/login")
+    .then(res =>res.text())
+    .then(res=>{
+      this.setState({rsa:res})
+    })
   }
   handleIDChange(e){
     this.setState({id:e.target.value})
@@ -30,28 +44,36 @@ export default class Login extends Component {
     this.setState({phone:e.target.value})
   }
   loginSubmit =(event)=>{
+    console.log("login submit")
     event.preventDefault();
-    fetch('/login', {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: {
-        "id": this.state.id,
-        "pw" : this.state.pw,
+    rsa.importKey(this.state.rsa, "public");
+    var encId = rsa.encrypt(this.state.id, "base64", "utf-8");
+    var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
+    console.log(encId);
+    fetch("http://localhost:4000/login",{
+      method:'post',
+      headers:{'Content-Type':'application/json'},
+      body:{
+        "idEnc" : encId,
+        "pwEnc" : encPw,
       }
-    }).then(res => res.json(res))
-    .then(res=>this.props.tokenHandler(res));
+    }).then(res=>res.json())
+    .then(res=>console.log(res))
   }; 
   noLoginSubmit=(event)=>{
     event.preventDefault();
-    fetch('/login', {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: {
-        "name": this.state.name,
-        "phone" : this.state.phone,
+    rsa.importKey(this.state.rsa, "public");
+    var encName = rsa.encrypt(this.state.name, "base64", "utf-8");
+    var encPhone = rsa.encrypt(this.state.phone, "base64", "utf-8");
+    fetch("http://localhost:4000/login",{
+      method:'post',
+      headers:{'Content-Type':'application/json'},
+      body:{
+        "idEnc" : encName,
+        "pwEnc" : encPhone,
       }
-    }).then(res => res.json(res))
-    .then(res=>this.props.tokenHandler(res));
+    }).then(res=>res.json())
+    .then(res=>console.log(res))
 }; 
 
   render() {
@@ -66,8 +88,12 @@ export default class Login extends Component {
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
+
             <br />
             <button onClick={()=>{this.props.settoken()}}>login</button>
+
+            <button onClick={this.loginSubmit}>login</button>
+
         </div>
         <div className="noMember content">
           <div>비회원 로그인</div>

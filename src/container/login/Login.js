@@ -24,10 +24,10 @@ export default class Login extends Component {
     this.getRSA();
   }
   getRSA(){
-    fetch("http://localhost:4000/login")
+    fetch("http://192.168.43.225:3000/login")
     .then(res =>res.text())
     .then(res=>{
-      console.log(res)
+      this.setState({rsa:res})
     })
   }
   handleIDChange(e){
@@ -49,13 +49,13 @@ export default class Login extends Component {
 
     rsa.importKey(this.state.rsa, "public");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
+    console.log(encPw)
     fetch("http://192.168.43.225:3000/login",{
-      method:'post',
-      headers:{'Content-Type':'application/json'},
-      body:{
+      method:'POST',
+      body:JSON.stringify({
         "id" : this.state.id,
-        "pwEnc" : encPw,
-      }
+        "pwEnc" : this.state.pw,
+      })
     }).then(res=>res.text())
     .then(res=>console.log(res))
   }; 
@@ -79,20 +79,14 @@ export default class Login extends Component {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인</div>
+          <div>회원 로그인 {this.props.time}</div>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
-            <br />
             PW
             <input type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-
-            <br />
-            <button onClick={()=>{this.props.settoken()}}>login</button>
-
             <button onClick={this.loginSubmit}>login</button>
-
         </div>
         <div className="noMember content">
           <div>비회원 로그인</div>
@@ -101,11 +95,9 @@ export default class Login extends Component {
             Name
             <input type="text" name="name" value={this.state.name} 
             onChange={this.handleNameChange} />
-            <br/>
             PhoneNumber
             <input type="text" name="phone" value={this.state.phone}
             onChange={this.handlePhoneChange} />
-            <br />
             <input type="submit" value="비회원" onClick={()=>this.props.tokenHandler("ass")}/>
           </form>
         </div>

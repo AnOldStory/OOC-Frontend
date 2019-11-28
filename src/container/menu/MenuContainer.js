@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./MenuContainer.scss";
+import MainLogin from "container/login/MainLogin";
 
 import Logo from "image/Logo.png";
 
 class MenuContainer extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <div className="menu">
@@ -15,6 +19,13 @@ class MenuContainer extends Component {
           </li>
           <li><Link to="/book" className="menuLink">
             <div className="menu_item">BOOK</div></Link>
+          </li>
+          <li><Link to="/login/MainLogin" className="menuLink">
+            <div className="menu_item">Login</div></Link>
+          </li>
+          <li>
+            {(this.props.token === "") && 
+            <MainLogin tokenHandler={this.props.tokenHandler}/>}
           </li>
         </ul>
       </div>

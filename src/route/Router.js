@@ -5,10 +5,6 @@ import MenuContainer from "container/menu/MenuContainer";
 import MainContainer from "container/main/MainContainer";
 import BookRouter from "route/BookRouter";
 import Ticket from "container/ticket/Ticket";
-
-import MainLogin from "container/login/MainLogin";
-
-
 class Router extends Component {
   constructor(props){
     super(props);
@@ -80,10 +76,7 @@ class Router extends Component {
     return (
       <BrowserRouter basename="/">
         <>
-          <MenuContainer />
-          {(this.state.token == "") && 
-          <MainLogin tokenHandler={this.tokenHandler}/>}
-          token = {this.state.token}
+          <MenuContainer token = {this.state.token} tokenHandler={this.tokenHandler}/>
           <Switch>
             <Route exact path="/" component={MainContainer} />
             <Route path="/book" component={

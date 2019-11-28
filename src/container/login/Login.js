@@ -22,13 +22,12 @@ export default class Login extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     
     this.getRSA();
-    console.log("AFTER RSA()");
   }
   getRSA(){
     fetch("http://localhost:4000/login")
     .then(res =>res.text())
     .then(res=>{
-      this.setState({rsa:res})
+      console.log(res)
     })
   }
   handleIDChange(e){
@@ -46,18 +45,18 @@ export default class Login extends Component {
   loginSubmit =(event)=>{
     console.log("login submit")
     event.preventDefault();
+    console.log(this.state.rsa);
+
     rsa.importKey(this.state.rsa, "public");
-    var encId = rsa.encrypt(this.state.id, "base64", "utf-8");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
-    console.log(encId);
-    fetch("http://localhost:4000/login",{
+    fetch("http://192.168.43.225:3000/login",{
       method:'post',
       headers:{'Content-Type':'application/json'},
       body:{
-        "idEnc" : encId,
+        "id" : this.state.id,
         "pwEnc" : encPw,
       }
-    }).then(res=>res.json())
+    }).then(res=>res.text())
     .then(res=>console.log(res))
   }; 
   noLoginSubmit=(event)=>{

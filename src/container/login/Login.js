@@ -82,26 +82,34 @@ export default class Login extends Component {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인</div>
-            ID
-            <input type="text" name="id" value={this.state.id} 
+          <div className = "title001">Member Login{this.state.time}</div>
+            <span className="txt">ID</span>
+            <br />
+            <input className = "input001" type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
-            PW
-            <input type="password" name="pw" value={this.state.pw}
+            <br />
+            <span className="txt">PW</span>
+            <br />
+            <input className = "input001" type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            <button onClick={this.loginSubmit}>login</button>
+            <br />
+            <button className = "button001" onClick={this.loginSubmit}>login</button>
         </div>
         <div className="noMember content">
-          <div>비회원 로그인</div>
+          <div className = "title001">Nonmember Login</div>
 
           <form action={this.noLoginSubmit}>
-            Name
-            <input type="text" name="name" value={this.state.name} 
+            <span className="txt">Name</span>
+            <br />
+            <input className = "input001" type="text" name="name" value={this.state.name} 
             onChange={this.handleNameChange} />
-            PhoneNumber
-            <input type="text" name="phone" value={this.state.phone}
+            <br />
+            <span className = "txt">PhoneNumber</span>
+            <br />
+            <input className = "input001" type="text" name="phone" value={this.state.phone}
             onChange={this.handlePhoneChange} />
-            <input type="submit" value="비회원" onClick={()=>this.props.tokenHandler("ass")}/>
+            <br />
+            <input className = "button001" type="submit" value="비회원" onClick={()=>this.props.tokenHandler("ass")}/>
           </form>
         </div>
         

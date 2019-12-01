@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
+import "./BookContainer.scss";
 
 const aws = "http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000";
 

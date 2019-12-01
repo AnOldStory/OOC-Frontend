@@ -1,11 +1,7 @@
 .menu{
   background-color: white;
-  float: left;
-  width: 13%;
-  height: 95vh;
-  ul{
-    list-style: none;
-  }
+  height: 13vh;
+
   .link{
     text-decoration: none;
     &:visited,&:hover{
@@ -13,10 +9,12 @@
     }
   }
   .menuItem{
+    width: 19.78%;
+    float: left;
     padding-top: 30px;
     text-align: center;
     vertical-align: middle;
-    background-color: yellowgreen;
+    background-color: gray;
     height: 15.9vh;
     border-bottom: 2.5px solid black;
     border-right: 3px solid black;

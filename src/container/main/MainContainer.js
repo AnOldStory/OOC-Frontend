@@ -11,7 +11,7 @@ class MainContainer extends Component {
         LoginHandler={this.props.LoginHandler}/>}
 
         {this.props.isLogined &&
-        <div>로그인됨</div>}
+        <div className="login">{this.props.id}님 안녕하세요!</div>}
       </div>
     );
   }

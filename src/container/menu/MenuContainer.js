@@ -20,8 +20,8 @@ class MenuContainer extends Component {
           <li><Link to="/book" className="menuLink">
             <div className="menu_item">BOOK</div></Link>
           </li>
-          <li><Link to="/login/MainLogin" className="menuLink">
-            <div className="menu_item">Login</div></Link>
+          <li><Link to="/signin" className="menuLink">
+            <div className="menu_item">SignIn</div></Link>
           </li>
           <li>
             {(this.props.token === "") && 

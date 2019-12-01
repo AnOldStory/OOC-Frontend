@@ -22,9 +22,10 @@ export default class Login extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     
     this.getRSA();
+    console.log(this.state.rsa);
   }
   getRSA(){
-    fetch("http://192.168.43.225:3000/login")
+    fetch("http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000/login")
     .then(res =>res.text())
     .then(res=>{
       this.setState({rsa:res})
@@ -50,36 +51,38 @@ export default class Login extends Component {
     rsa.importKey(this.state.rsa, "public");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
     console.log(encPw)
-    fetch("http://192.168.43.225:3000/login",{
+    fetch("http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000/login",{
       method:'POST',
       body:JSON.stringify({
+        "member":true,
         "id" : this.state.id,
         "pwEnc" : this.state.pw,
       })
     }).then(res=>res.text())
-    .then(res=>console.log(res))
+    .then(res=>this.props.tokenHandler(res))
   }; 
   noLoginSubmit=(event)=>{
     event.preventDefault();
+    console.log(this.state.rsa);
+
     rsa.importKey(this.state.rsa, "public");
-    var encName = rsa.encrypt(this.state.name, "base64", "utf-8");
     var encPhone = rsa.encrypt(this.state.phone, "base64", "utf-8");
-    fetch("http://localhost:4000/login",{
-      method:'post',
-      headers:{'Content-Type':'application/json'},
-      body:{
-        "idEnc" : encName,
-        "pwEnc" : encPhone,
-      }
-    }).then(res=>res.json())
-    .then(res=>console.log(res))
-}; 
+    fetch("http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000/login",{
+      method:'POST',
+      body:JSON.stringify({
+        "member":false,
+        "name" : this.state.id,
+        "phEnc" : encPhone,
+      })
+    }).then(res=>res.text())
+    .then(res=>this.props.tokenHandler(res))
+  }; 
 
   render() {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인 {this.props.time}</div>
+          <div>회원 로그인</div>
             ID
             <input type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />

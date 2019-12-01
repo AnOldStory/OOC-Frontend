@@ -5,6 +5,7 @@ import MenuContainer from "container/menu/MenuContainer";
 import MainContainer from "container/main/MainContainer";
 import BookRouter from "route/BookRouter";
 import Ticket from "container/ticket/Ticket";
+import Signin from "container/signin/Signin";
 class Router extends Component {
   constructor(props){
     super(props);
@@ -29,8 +30,8 @@ class Router extends Component {
     this.seatHandler = this.seatHandler.bind(this);
     this.initializeState = this.initializeState.bind(this);
   }
-  tokenHandler(){
-    this.setState({token:"asdf"});
+  tokenHandler=(e)=>{
+    this.setState({token:e});
   }
   dateHandler = e => {
     this.setState({ date: e });
@@ -100,6 +101,9 @@ class Router extends Component {
               initializeState={this.initializeState}
               />} />
             <Route path="/ticket" component={()=><Ticket token={this.state.token}/>}/>
+
+            <Route path="/signin" component={()=><Signin token={this.state.token}/>}/>
+
           </Switch>
         </>
       </BrowserRouter>

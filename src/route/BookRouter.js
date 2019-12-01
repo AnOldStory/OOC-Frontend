@@ -70,7 +70,7 @@ class BookRouter extends Component {
           <Route path={this.state.route + "/payment"} component={()=>(this.props.token ===""
           
           ?<Login
-          
+          tokenHandler={this.props.tokenHandler}
           time={this.props.time} 
           screen={this.props.screen} 
           settoken={this.props.tokenHandler}
@@ -84,7 +84,8 @@ class BookRouter extends Component {
           date={this.props.date}
           time={this.props.time}
           screen={this.props.screen}
-          seat={this.props.seat} />)} />
+          seat={this.props.seat}
+          token={this.props.token} />)} />
 
           <Route path={this.state.route + "/result"} 
           component={() => (<Result 

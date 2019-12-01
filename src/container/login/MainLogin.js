@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+const RSA = require('node-rsa');
+
+const rsa = new RSA();
 
 export default class MainLogin extends Component {
   constructor(props){
@@ -8,10 +11,20 @@ export default class MainLogin extends Component {
       id : '',
       pw : '',
       isMemberLogin : false,
+      rsa : [],
+
     }
     this.handleIDChange = this.handleIDChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
+    this.getRSA();
 
+  }
+  getRSA(){
+    fetch("http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000/login")
+    .then(res =>res.text())
+    .then(res=>{
+      this.setState({rsa:res})
+    })
   }
   handleIDChange(e){
     this.setState({id:e.target.value})
@@ -19,12 +32,25 @@ export default class MainLogin extends Component {
   handlePWChange(e){
     this.setState({pw:e.target.value})
   }
-  loginSubmit(){
-    this.props.LoginHandler()
-  }
-  noLoginSubmit(){
 
-  }
+  loginSubmit =(event)=>{
+    console.log("login submit")
+    event.preventDefault();
+    console.log(this.state.rsa);
+
+    rsa.importKey(this.state.rsa, "public");
+    var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
+    console.log(encPw)
+    fetch("http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000/login",{
+      method:'POST',
+      body:JSON.stringify({
+        "member":true,
+        "id" : this.state.id,
+        "pwEnc" : this.state.pw,
+      })
+    }).then(res=>res.text())
+    .then(res=>this.props.tokenHandler(res))
+  }; 
 
   render() {
     return (

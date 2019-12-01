@@ -20,7 +20,7 @@ class MenuContainer extends Component {
           <li><Link to="/book" className="menuLink">
             <div className="menu_item">BOOK</div></Link>
           </li>
-          <li><Link to="/login/MainLogin" className="menuLink">
+          <li><Link to="/login" className="menuLink">
             <div className="menu_item">Login</div></Link>
           </li>
           <li>

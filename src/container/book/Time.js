@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
+import "./BookContainer.scss";
 
 import CONFIG from "_variables";
 

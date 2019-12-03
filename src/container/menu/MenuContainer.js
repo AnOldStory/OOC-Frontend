@@ -24,8 +24,8 @@ class MenuContainer extends Component {
             </Link>
           </li>
           <li>
-            <Link to="/login/MainLogin" className="menuLink">
-              <div className="menu_item">Login</div>
+            <Link to="/signin" className="menuLink">
+              <div className="menu_item">SignIn</div>
             </Link>
           </li>
           <li>

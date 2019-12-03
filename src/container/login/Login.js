@@ -23,7 +23,7 @@ export default class Login extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
 
     this.getRSA();
-    console.log("AFTER RSA()");
+    console.log(this.state.rsa);
   }
   getRSA() {
     fetch(CONFIG.HOMEPAGE + "/login")
@@ -47,82 +47,87 @@ export default class Login extends Component {
   loginSubmit = event => {
     console.log("login submit");
     event.preventDefault();
+    console.log(this.state.rsa);
+
     rsa.importKey(this.state.rsa, "public");
-    var encId = rsa.encrypt(this.state.id, "base64", "utf-8");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
-    console.log(encId);
+    console.log(encPw);
     fetch(CONFIG.HOMEPAGE + "/login", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: {
-        idEnc: encId,
-        pwEnc: encPw
-      }
+      method: "POST",
+      body: JSON.stringify({
+        member: true,
+        id: this.state.id,
+        pwEnc: this.state.pw
+      })
     })
-      .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => res.text())
+      .then(res => this.props.tokenHandler(res));
   };
   noLoginSubmit = event => {
     event.preventDefault();
+    console.log(this.state.rsa);
+
     rsa.importKey(this.state.rsa, "public");
-    var encName = rsa.encrypt(this.state.name, "base64", "utf-8");
     var encPhone = rsa.encrypt(this.state.phone, "base64", "utf-8");
     fetch(CONFIG.HOMEPAGE + "/login", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: {
-        idEnc: encName,
-        pwEnc: encPhone
-      }
+      method: "POST",
+      body: JSON.stringify({
+        member: false,
+        name: this.state.id,
+        phEnc: encPhone
+      })
     })
-      .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => res.text())
+      .then(res => this.props.tokenHandler(res));
   };
 
   render() {
     return (
       <div className="loginContent">
         <div className="login content">
-          <div>회원 로그인</div>
-          ID
+          <div className="title001">Member Login{this.state.time}</div>
+          <span className="txt">ID</span>
+          <br />
           <input
+            className="input001"
             type="text"
             name="id"
             value={this.state.id}
             onChange={this.handleIDChange}
           />
           <br />
-          PW
+          <span className="txt">PW</span>
+          <br />
           <input
+            className="input001"
             type="password"
             name="pw"
             value={this.state.pw}
             onChange={this.handlePWChange}
           />
           <br />
-          <button
-            onClick={() => {
-              this.props.settoken();
-            }}
-          >
+          <button className="button001" onClick={this.loginSubmit}>
             login
           </button>
-          <button onClick={this.loginSubmit}>login</button>
         </div>
         <div className="noMember content">
-          <div>비회원 로그인</div>
+          <div className="title001">Nonmember Login</div>
 
           <form action={this.noLoginSubmit}>
-            Name
+            <span className="txt">Name</span>
+            <br />
             <input
+              className="input001"
               type="text"
               name="name"
               value={this.state.name}
               onChange={this.handleNameChange}
             />
             <br />
-            PhoneNumber
+            <span className="txt">PhoneNumber</span>
+            <br />
             <input
+              className="input001"
               type="text"
               name="phone"
               value={this.state.phone}
@@ -130,6 +135,7 @@ export default class Login extends Component {
             />
             <br />
             <input
+              className="button001"
               type="submit"
               value="비회원"
               onClick={() => this.props.tokenHandler("ass")}

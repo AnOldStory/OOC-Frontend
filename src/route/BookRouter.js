@@ -80,6 +80,7 @@ class BookRouter extends Component {
             component={() =>
               this.props.token === "" ? (
                 <Login
+                  tokenHandler={this.props.tokenHandler}
                   time={this.props.time}
                   screen={this.props.screen}
                   settoken={this.props.tokenHandler}
@@ -95,6 +96,7 @@ class BookRouter extends Component {
                   time={this.props.time}
                   screen={this.props.screen}
                   seat={this.props.seat}
+                  token={this.props.token}
                 />
               )
             }

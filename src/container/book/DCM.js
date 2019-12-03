@@ -133,7 +133,7 @@ export default class DCM extends Component {
     return (
       <div className="DCMContent">
         <div className="date content">
-          <div className="temp title">날짜</div>
+          <div className=" title">날짜</div>
           {this.state.dates.map((date, index) => (
             <div
               className={this.state.date === date ? "selected" : "select"}

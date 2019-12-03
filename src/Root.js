@@ -5,10 +5,7 @@ import Router from "./route/Router";
 import "./index.scss";
 
 const Root = () => {
-  return (
-    <Router>
-    </Router>
-  );
+  return <Router></Router>;
 };
 
 export default Root;

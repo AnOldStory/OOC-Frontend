@@ -16,8 +16,8 @@ class BookRouter extends Component {
     this.state = {
       route: "/book",
       result: true,
-      token : "",
-      id : this.props.id
+      token: "",
+      id: this.props.id
     };
   }
 
@@ -33,10 +33,11 @@ class BookRouter extends Component {
         />
         <Switch>
           <Route
-            exact path={this.state.route}
+            exact
+            path={this.state.route}
             component={() => (
               <DCM
-                time = {this.props.time}
+                time={this.props.time}
                 setCinema={this.props.cinemaHandler}
                 setDate={this.props.dateHandler}
                 setMovieId={this.props.movieIdHandler}
@@ -50,54 +51,71 @@ class BookRouter extends Component {
           />
           <Route
             path={this.state.route + "/time"}
-            component={() => <Time setTime={this.props.timeHandler}
-                                    setScreen={this.props.screenHandler}
-                                    cinema={this.props.cinema}
-                                    date={this.props.date}
-                                    movie={this.props.movie}
-                                    movieId={this.props.movieId}
-                                    time={this.props.time}
-                                    screen={this.props.screen}
-                                     />}
+            component={() => (
+              <Time
+                setTime={this.props.timeHandler}
+                setScreen={this.props.screenHandler}
+                cinema={this.props.cinema}
+                date={this.props.date}
+                movie={this.props.movie}
+                movieId={this.props.movieId}
+                time={this.props.time}
+                screen={this.props.screen}
+              />
+            )}
           />
           <Route
             path={this.state.route + "/seat"}
             component={() => (
-              <Seat setSeat={this.props.seatHandler} seat={this.props.seat} token={this.props.token} />
+              <Seat
+                setSeat={this.props.seatHandler}
+                seat={this.props.seat}
+                token={this.props.token}
+              />
             )}
           />
-          
-          <Route path={this.state.route + "/payment"} component={()=>(this.props.token ===""
-          
-          ?<Login
-          
-          time={this.props.time} 
-          screen={this.props.screen} 
-          settoken={this.props.tokenHandler}
-          token={this.props.token} 
-          id={this.props.id}/>
 
-          :<Payment 
-          cinema={this.props.cinema}
-          movieId={this.props.movieId}
-          movie={this.props.movie}
-          date={this.props.date}
-          time={this.props.time}
-          screen={this.props.screen}
-          seat={this.props.seat} />)} />
+          <Route
+            path={this.state.route + "/payment"}
+            component={() =>
+              this.props.token === "" ? (
+                <Login
+                  time={this.props.time}
+                  screen={this.props.screen}
+                  settoken={this.props.tokenHandler}
+                  token={this.props.token}
+                  id={this.props.id}
+                />
+              ) : (
+                <Payment
+                  cinema={this.props.cinema}
+                  movieId={this.props.movieId}
+                  movie={this.props.movie}
+                  date={this.props.date}
+                  time={this.props.time}
+                  screen={this.props.screen}
+                  seat={this.props.seat}
+                />
+              )
+            }
+          />
 
-          <Route path={this.state.route + "/result"} 
-          component={() => (<Result 
-              result={this.state.result}
-              cinema={this.props.cinema}
-              movieId={this.props.movieId}
-              movie={this.props.movie}
-              date={this.props.date}
-              time={this.props.time}
-              screen={this.props.screen}
-              seat={this.props.seat}
-              initialize={this.props.initializeState}/>)
-          } />
+          <Route
+            path={this.state.route + "/result"}
+            component={() => (
+              <Result
+                result={this.state.result}
+                cinema={this.props.cinema}
+                movieId={this.props.movieId}
+                movie={this.props.movie}
+                date={this.props.date}
+                time={this.props.time}
+                screen={this.props.screen}
+                seat={this.props.seat}
+                initialize={this.props.initializeState}
+              />
+            )}
+          />
         </Switch>
       </>
     );

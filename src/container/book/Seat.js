@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-const aws = "http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000";
+import CONFIG from "_variables";
 
 export default class Seat extends Component {
   constructor(props) {
@@ -16,11 +16,21 @@ export default class Seat extends Component {
     this.getSeat();
   }
 
-  getSeat(){
-    fetch(aws + "/book/tickets/?date=" +this.props.date+"&cinema="+this.props.cinema+"&movie="+this.props.movieId+"&time="+this.props.time)
+  getSeat() {
+    fetch(
+      CONFIG.HOMEPAGE +
+        "/book/tickets/?date=" +
+        this.props.date +
+        "&cinema=" +
+        this.props.cinema +
+        "&movie=" +
+        this.props.movieId +
+        "&time=" +
+        this.props.time
+    )
       .then(res => res.json(res))
       .then(res => {
-        console.log(res)
+        console.log(res);
         // res.map((data, index) => {
         //   this.setState({
         //   times: this.state.times.includes(data.screeningTime) ? this.state.times : [...this.state.times, {time : data.screeningTime, screen : data.screeningId}],
@@ -53,12 +63,12 @@ export default class Seat extends Component {
             </div>
           ))}
         </div>
-          <div className="next">
-            <Link className="nextButton" to="/book/payment">
-              <span>NEXT</span>
-              </Link>
-          </div>      
+        <div className="next">
+          <Link className="nextButton" to="/book/payment">
+            <span>NEXT</span>
+          </Link>
         </div>
+      </div>
     );
   }
 }

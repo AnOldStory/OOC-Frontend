@@ -4,6 +4,5 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "javascript.format.enable": false,
-  "prettier.eslintIntegration": false,
   "diffEditor.ignoreTrimWhitespace": true
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import './Signin.scss';
+import CONFIG from "_variables";
+
 
 const RSA = require('node-rsa');
 
@@ -27,7 +29,7 @@ export default class Signin extends Component {
     this.getRSA();
   }
   getRSA(){
-    fetch("http://localhost:4000/signin")
+    fetch(CONFIG.HOMEPAGE + "/signin")
     .then(res =>res.text())
     .then(res=>{
       this.setState({rsa:res})
@@ -56,7 +58,7 @@ export default class Signin extends Component {
     rsa.importKey(this.state.rsa, "public");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
     console.log(encPw)
-    fetch("http://localhost:4000/signin",{
+    fetch(CONFIG.HOMEPAGE + "/signin",{
       method:'POST',
       body:JSON.stringify({
         "id" : this.state.id,

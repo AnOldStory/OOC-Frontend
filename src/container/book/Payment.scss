@@ -7,9 +7,28 @@
     margin-top: 50px;
     .selected_dis{
       background-color: green;
+      width: 100px;
     }
     .unselected_dis{
-
+      cursor: pointer;
+      width: 100px;
+    }
+    
+    .dcContent{
+      background-color: white;
+      padding-top: 30px;
+      margin-top: 30px;
+      margin-left: 10px;
+      text-align: center;
+      float: left;
+      width: 22%;
+      height: 100%;
+      img{
+        width:4vw;
+      }
+    }
+    .selected{
+      background-color: yellow;
     }
   }
   .content{
@@ -39,17 +58,42 @@
     }
     grid-row: 1/5;
     grid-column: 3/4;
+    .paySubcontent{
+      padding: 0px 0px 5px 0px;
+      background-color: #bbe0bf;
+      margin: 30px;
+      .subTitle{
+        padding: 5px;
+        color: rgb(197,197,197);
+        background-color: #333333;
+
+      }
+    }
+    .price{
+      margin-top: 70px;
+    }
+    .discount{
+
+    }
+    .finalPrice{
+
+    }
     .paybutton{
       cursor: pointer;
-      margin-right: 5px;
+      margin-right: auto;
+      margin-left: auto;
       font-size: 30pt;
       color: white;
       text-align: center;
-      width: 40%;
-      height: 20%;
+      width: 90%;
       margin-top: 10%;
       background-color: yellowgreen;
-      float: right;
+      .link{
+        text-decoration: none;
+        &:visited,&:link{
+          text-decoration: none;
+        }
+      }
     }
   }
 }

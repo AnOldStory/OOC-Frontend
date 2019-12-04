@@ -24,7 +24,7 @@ export default class Ticket extends Component {
     };
   }
   componentDidMount() {
-    fetch("book/show?id=" + this.props.id)
+    fetch("/ticekt?token="+this.props.token)
       .then(res => res.json(res))
       .then(res => this.setState({ tickets: res }));
   }

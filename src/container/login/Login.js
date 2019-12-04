@@ -57,11 +57,11 @@ export default class Login extends Component {
       body: JSON.stringify({
         member: true,
         id: this.state.id,
-        pwEnc: this.state.pw
+        pwEnc: encPw
       })
     })
       .then(res => res.text())
-      .then(res => this.props.tokenHandler(res));
+      .then(res=>this.props.tokenHandler(res));
   };
   noLoginSubmit = event => {
     event.preventDefault();

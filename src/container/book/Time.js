@@ -15,7 +15,7 @@ export default class Time extends Component {
   }
   getTime() {
     fetch(
-      CONFIG.HOMEPAGE +
+      CONFIG.HOMEPAGE 
         +"/book/?date=" +
         this.props.date +
         "&cinema=" +

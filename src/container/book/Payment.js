@@ -11,7 +11,8 @@ export default class Payment extends Component {
       price: 0,
       disrate: 0,
       discount: 0,
-      disname: ""
+      disname: "",
+      method:""
     };
   }
 
@@ -27,6 +28,11 @@ export default class Payment extends Component {
       disname: name
     });
   };
+  applyMethod = (name) => {
+    this.setState({
+      method:name,
+    })
+  }
   paySubmit = () => {
     fetch(
       CONFIG.HOMEPAGE +
@@ -40,65 +46,90 @@ export default class Payment extends Component {
         this.props.time +
         "&seat=" +
         this.props.seat +
-        "&price=" +
-        (this.state.price * (1 - this.state.disrate)).toFixed(0)
+        "&token=" +
+        this.props.token
     )
       .then(res => res.json(res))
       .then();
   };
   render() {
-    var discounts = [
-      { name: "생일", rate: 0.15 },
-      { name: "흑우", rate: 0.8 },
-      { name: "솔로", rate: 0.8 },
-      { name: "커플", rate: -0.9 }
-    ];
+
     return (
       <div className="paymentcontent">
         <div className="dc content">
           <div className="title">할인</div>
           <div className="paycontent">
-            {discounts.map((index, name, rate) => (
-              <div
-                className={
-                  index.name == this.state.disname
-                    ? "selected_dis"
-                    : "unselected_dis"
-                }
-                key={index}
-                onClick={() => this.applyDiscount(index.rate, index.name)}
-              >
-                {index.name}
-              </div>
-            ))}
+            <div className=
+            {this.state.disname==="birth"?"dcContent selected":"dcContent"}
+            onClick={()=>this.applyDiscount(0.15,"birth")}>
+              <img alt="birth" 
+              src={require('container/book/img/birth.png')}
+              /><br/>
+              생일</div>
+            <div className=
+            {this.state.disname==="couple"?"dcContent selected":"dcContent"}
+            onClick={()=>this.applyDiscount(0.01,"couple")}>
+              <img alt="couple"
+              src={require('container/book/img/couple.png')}
+              /><br/>
+              커플</div>
+             <div className=
+            {this.state.disname==="solo"?"selected dcContent":"dcContent"}
+            onClick={()=>this.applyDiscount(0.8,"solo")}>
+              <img alt="solo"
+              src={require('container/book/img/solo.png')}
+              /><br/>
+              솔로</div>
+             <div className=
+            {this.state.disname==="bird"?"dcContent selected":"dcContent"}
+            onClick={()=>this.applyDiscount(0.3,"bird")}>
+              <img alt="bird"
+              src={require('container/book/img/bird.png')}
+              /><br/>
+              얼리버드</div>
           </div>
         </div>
         <div className="payment content">
           <div className="title">결제수단</div>
-          <div className="paycontent">결제수단내용</div>
+          <div className="paycontent">
+            <div className=
+            {this.state.method==="card"?"dcContent selected":"dcContent"}
+            onClick={()=>this.applyMethod("card")}>
+              <img alt="card"
+              src={require('container/book/img/card.png')}
+              /><br/>
+              카드결제</div>
+
+            <div className=
+            {this.state.method==="bank"?"dcContent selected":"dcContent"}
+            onClick={()=>this.applyMethod("bank")}>
+              <img alt="bank"
+              src={require('container/book/img/bank.png')}
+              /><br/>
+              카드결제</div>
+          </div>
         </div>
         <div className="ticketinfo content">
-          <div className="title">티켓정보</div>
+          <div className="title">결제정보</div>
           <div className="paycontent">
-            <ul>
-              <li>{this.props.cinema}</li>
-              <br />
-              <li>{this.props.date}</li>
-              <br />
-              <li>{this.props.movie}</li>
-              <br />
-              <li>{this.props.seat}</li>
-              <br />
-              <li>{this.props.time}</li>
-              <br />
-              <li>
+            <div className="price paySubcontent">
+                <div className="subTitle">금액</div>
+                {this.state.price}
+            </div>
+            
+            <div className="discount paySubcontent">
+                <div className="subTitle">할인내용</div>
+                {this.state.disname}  : {this.state.disrate * 100}%
+                할인금액 : {this.state.price * (this.state.disrate)}원
+            </div>
+            
+            <div className="finalPrice paySubcontent">
+                <div className="subTitle">최종금액</div>
                 {(this.state.price * (1 - this.state.disrate)).toFixed(0)}
-              </li>
-              <li>할인율 : {this.state.disrate * 100}%</li>
-            </ul>
+            </div>
           </div>
           <div className="paybutton" onClick={this.paySubmit}>
-            <Link to="/book/result">결제하기!</Link>
+            <Link className="link" to="/book/result">결제하기!</Link>
           </div>
         </div>
       </div>

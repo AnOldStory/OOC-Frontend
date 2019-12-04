@@ -1,3 +1,3 @@
 module.exports = {
-  HOMEPAGE: "http://192.168.43.225:3000"
+  HOMEPAGE: "http://ec2-54-180-119-225.ap-northeast-2.compute.amazonaws.com:3000"
 };

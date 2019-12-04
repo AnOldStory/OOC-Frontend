@@ -68,6 +68,10 @@ class BookRouter extends Component {
             path={this.state.route + "/seat"}
             component={() => (
               <Seat
+                cinema={this.props.cinema}
+                date={this.props.date}
+                movieId={this.props.movieId}
+                time={this.props.time}
                 setSeat={this.props.seatHandler}
                 seat={this.props.seat}
                 token={this.props.token}

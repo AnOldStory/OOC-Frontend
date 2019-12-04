@@ -11,33 +11,42 @@ export default class Seat extends Component {
       table.push(1);
     }
     this.state = {
-      seats: table
+      seats: table,
+      //test
+      reserved_seat : [1, 4, 6, 40]
     };
     this.getSeat();
   }
 
+
+  setReserved(data) {
+    this.setState({
+      reserved_seat : data
+    })
+  }
+
   getSeat() {
-    fetch(
-      CONFIG.HOMEPAGE +
-        "/book/tickets/?date=" +
-        this.props.date +
-        "&cinema=" +
-        this.props.cinema +
-        "&movie=" +
-        this.props.movieId +
-        "&time=" +
-        this.props.time
-    )
-      .then(res => res.json(res))
-      .then(res => {
-        console.log(res);
-        // res.map((data, index) => {
-        //   this.setState({
-        //   times: this.state.times.includes(data.screeningTime) ? this.state.times : [...this.state.times, {time : data.screeningTime, screen : data.screeningId}],
-        // });
-        // })
-      })
-      .catch(err => console.log(err));
+    // fetch(
+    //   CONFIG.HOMEPAGE +
+    //     "/book/tickets/?date=" +
+    //     this.props.date +
+    //     "&cinema=" +
+    //     this.props.cinema +
+    //     "&movie=" +
+    //     this.props.movieId +
+    //     "&time=" +
+    //     this.props.time
+    // )
+    //   .then(res => res.json(res))
+    //   .then(res => {
+    //     console.log(res);
+    //     // let reserveds = [];
+    //     // res.map((data, index) => {
+    //     //   reserveds.push(data);
+    //     // })
+    //     // setReserved(reserveds)
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   render() {
@@ -45,6 +54,10 @@ export default class Seat extends Component {
       <div className="seats">
         <div className="seatList">
           {this.state.seats.map((seat, index) => (
+            this.state.reserved_seat.includes(index+1)?(<div 
+              className={"reservedseat"}>
+                {index + 1}
+              </div>):(
             <div
               className={
                 this.props.seat.includes(index + 1) ? "selectedseat" : "seat"
@@ -60,7 +73,7 @@ export default class Seat extends Component {
               }}
             >
               {index + 1}
-            </div>
+            </div>)
           ))}
         </div>
         <div className="next">

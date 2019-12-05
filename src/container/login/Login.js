@@ -51,7 +51,6 @@ export default class Login extends Component {
 
     rsa.importKey(this.state.rsa, "public");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
-    console.log(encPw);
     fetch(CONFIG.HOMEPAGE + "/login", {
       method: "POST",
       body: JSON.stringify({
@@ -61,7 +60,7 @@ export default class Login extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res));
+      .then(res=>this.props.tokenHandler(res))
   };
   noLoginSubmit = event => {
     event.preventDefault();

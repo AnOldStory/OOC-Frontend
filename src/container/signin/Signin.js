@@ -62,7 +62,7 @@ export default class Signin extends Component {
       method:'POST',
       body:JSON.stringify({
         "id" : this.state.id,
-        "passEnc" : this.state.pw,
+        "passEnc" : encPw,
         "name" : this.state.name,
         "phone" : this.state.phone,
         "mail" :this.state.mail,

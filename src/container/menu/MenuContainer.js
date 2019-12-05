@@ -29,9 +29,10 @@ class MenuContainer extends Component {
             </Link>
           </li>
           <li>
-            {this.props.token === "" && (
+            {this.props.token === "" ? 
               <MainLogin tokenHandler={this.props.tokenHandler} />
-            )}
+              :<div>{this.props.token}</div>
+            }
           </li>
         </ul>
       </div>

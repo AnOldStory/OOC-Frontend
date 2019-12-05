@@ -36,7 +36,7 @@ export default class Payment extends Component {
   paySubmit = () => {
     fetch(
       CONFIG.HOMEPAGE +
-        "book/pay?date=" +
+        "/book?date=" +
         this.props.date +
         "&cinema=" +
         this.props.cinema +
@@ -44,13 +44,21 @@ export default class Payment extends Component {
         this.props.movie +
         "&time=" +
         this.props.time +
-        "&seat=" +
-        this.props.seat +
+        "&seats=" +
+        this.props.seat+
         "&token=" +
-        this.props.token
+        this.props.token +
+        "&payment=" +
+        this.state.method +
+        "&price=" +
+        (this.state.price * (1 - this.state.disrate)).toFixed(0) +
+        "&event=" +
+        this.state.disname 
+        + "&showroom="+ 
+        this.props.screen
+
     )
-      .then(res => res.json(res))
-      .then();
+      .then(res => console.log(res));
   };
   render() {
 
@@ -61,28 +69,28 @@ export default class Payment extends Component {
           <div className="paycontent">
             <div className=
             {this.state.disname==="birth"?"dcContent selected":"dcContent"}
-            onClick={()=>this.applyDiscount(0.15,"birth")}>
+            onClick={()=>this.applyDiscount(0.15,1)}>
               <img alt="birth" 
               src={require('container/book/img/birth.png')}
               /><br/>
               생일</div>
             <div className=
             {this.state.disname==="couple"?"dcContent selected":"dcContent"}
-            onClick={()=>this.applyDiscount(0.01,"couple")}>
+            onClick={()=>this.applyDiscount(0.01,2)}>
               <img alt="couple"
               src={require('container/book/img/couple.png')}
               /><br/>
               커플</div>
              <div className=
             {this.state.disname==="solo"?"selected dcContent":"dcContent"}
-            onClick={()=>this.applyDiscount(0.8,"solo")}>
+            onClick={()=>this.applyDiscount(0.8,3)}>
               <img alt="solo"
               src={require('container/book/img/solo.png')}
               /><br/>
               솔로</div>
              <div className=
             {this.state.disname==="bird"?"dcContent selected":"dcContent"}
-            onClick={()=>this.applyDiscount(0.3,"bird")}>
+            onClick={()=>this.applyDiscount(0.3,4)}>
               <img alt="bird"
               src={require('container/book/img/bird.png')}
               /><br/>
@@ -129,7 +137,8 @@ export default class Payment extends Component {
             </div>
           </div>
           <div className="paybutton" onClick={this.paySubmit}>
-            <Link className="link" to="/book/result">결제하기!</Link>
+            <Link className="link" to="/book/result">결제하기!
+            </Link>
           </div>
         </div>
       </div>

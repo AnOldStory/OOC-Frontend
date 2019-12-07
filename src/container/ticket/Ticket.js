@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Login from "container/login/Login";
+import CONFIG from "_variables";
+
 import "./Ticket.scss";
 
 export default class Ticket extends Component {
@@ -22,11 +25,12 @@ export default class Ticket extends Component {
         }
       ]
     };
+    this.showTickets = this.showTickets.bind(this);
   }
-  componentDidMount() {
-    fetch("/ticekt?token="+this.props.token)
+  showTickets() {
+    fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
       .then(res => res.json(res))
-      .then(res => this.setState({ tickets: res }));
+      .then(res=>this.setState({tickets:res}));
   }
 
   cancleEvent = (time, movie, cinema, date, seat) => {
@@ -49,25 +53,25 @@ export default class Ticket extends Component {
     return (
       <div className="ticketcontainer">
         {this.props.token === "" ? (
-          <div className="notLogined">로그인하십쇼</div>
+          <Login token={this.props.token}
+                tokenHandler={this.props.tokenHandler}/>
         ) : (
           <div className="tickets">
+            <button onClick={this.showTickets}>조회</button>
             {this.state.tickets.map(
-              (index, movie, time, seat, cinema, date) => (
+              (index) => (
                 <div className="ticket" key={index}>
                   this is ticket
                   <hr />
-                  날짜 : {index.date}
+                  날짜 : {index.screeningIdTicket.screeningDate}
                   <br />
-                  시간 : {index.time} <br />
-                  영화 : {index.movie} <br />
-                  영화관 : {index.cinema}관 <br />
-                  좌석 : {index.seat.join()}
+                  시간 : {index.screeningIdTicket.screeningTime} <br />
+                  영화 : {index.screeningIdTicket.movieId} <br />
+                  영화관 : {index.showRoomId}관 <br />
+                  좌석 : {index.seatNumber}
                   <div
                     className="cancleButton"
-                    onClick={() =>
-                      this.cancleEvent(time, movie, seat, cinema, date)
-                    }
+                 
                   >
                     예매취소
                   </div>

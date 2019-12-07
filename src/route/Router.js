@@ -109,7 +109,8 @@ class Router extends Component {
             />
             <Route
               path="/ticket"
-              component={() => <Ticket token={this.state.token} />}
+              component={() => <Ticket token={this.state.token}
+                                      tokenHandler={this.tokenHandler} />}
             />
 
             <Route

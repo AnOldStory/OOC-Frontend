@@ -19,7 +19,7 @@
     list-style-type: none;
     margin-right:200px;
     margin-top:5px;
-    padding: 5px;
+    padding: 3px;
     li {
     float: right;
     display: inline;
@@ -33,6 +33,10 @@
         text-align: center;
         font-family: Rubik;
         width: 100%;
+        &:hover
+        {
+          border-bottom:1px solid #9BE3DE;
+        }
       }
     }
   }

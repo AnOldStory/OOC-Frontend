@@ -63,21 +63,7 @@ export default class Login extends Component {
       .then(res=>this.props.tokenHandler(res))
   };
   noLoginSubmit = event => {
-    event.preventDefault();
-    console.log(this.state.rsa);
-
-    rsa.importKey(this.state.rsa, "public");
-    var encPhone = rsa.encrypt(this.state.phone, "base64", "utf-8");
-    fetch(CONFIG.HOMEPAGE + "/login", {
-      method: "POST",
-      body: JSON.stringify({
-        member: false,
-        name: this.state.id,
-        phEnc: encPhone
-      })
-    })
-      .then(res => res.text())
-      .then(res => this.props.tokenHandler(res));
+    this.props.tokenHandler(0)
   };
 
   render() {
@@ -112,35 +98,14 @@ export default class Login extends Component {
         <div className="noMember content">
           <div className="title001">Nonmember Login</div>
 
-          <form action={this.noLoginSubmit}>
-            <span className="txt">Name</span>
-            <br />
-            <input
-              className="input001"
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleNameChange}
-            />
-            <br />
-            <span className="txt">PhoneNumber</span>
-            <br />
-            <input
-              className="input001"
-              type="text"
-              name="phone"
-              value={this.state.phone}
-              onChange={this.handlePhoneChange}
-            />
-            <br />
-            <input
+            
+            <div
+            onClick={this.noLoginSubmit}
               className="button001"
               type="submit"
               value="비회원"
-              onClick={() => this.props.tokenHandler("ass")}
-            />
-          </form>
-        </div>
+            >비회원으로 진행</div>
+            </div>
       </div>
     );
   }

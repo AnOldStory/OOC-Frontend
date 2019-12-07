@@ -12,10 +12,19 @@ export default class Payment extends Component {
       disrate: 0,
       discount: 0,
       disname: "",
-      method:""
+      method:"",
+      email:'',
+      phone:'',
     };
+    this.handleMailChange = this.handleMailChange.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
   }
-
+  handleMailChange(e) {
+    this.setState({ email: e.target.value });
+  }
+  handlePhoneChange(e) {
+    this.setState({ phone: e.target.value });
+  }
   componentDidMount() {
     var hour = this.props.time.substring(0, 2);
     var ticket =
@@ -33,7 +42,46 @@ export default class Payment extends Component {
       method:name,
     })
   }
-  paySubmit = () => {
+  paySubmit=()=>{
+    if(this.props.token === 0){
+      this.noMemberpaySubmit();
+    }
+    else{
+      this.MemberpaySubmit();
+    }
+  }
+  noMemberpaySubmit = () => {
+    fetch(
+      CONFIG.HOMEPAGE +
+        "/book?date=" +
+        this.props.date +
+        "&cinema=" +
+        this.props.cinema +
+        "&movie=" +
+        this.props.movie +
+        "&time=" +
+        this.props.time +
+        "&seats=" +
+        this.props.seat+
+        "&token=" +
+        0 +
+        "&payment=" +
+        this.state.method +
+        "&price=" +
+        (this.state.price * (1 - this.state.disrate)).toFixed(0) +
+        "&event=" +
+        this.state.disname 
+        + "&showroom="+ 
+        this.props.screen
+        + "&mail=" +
+        this.state.mail
+        + "&phone=" +
+        this.state.phone
+
+    )
+      .then(res => console.log(res));
+  }
+  MemberpaySubmit = () => {
     fetch(
       CONFIG.HOMEPAGE +
         "/book?date=" +
@@ -136,11 +184,23 @@ export default class Payment extends Component {
                 {(this.state.price * (1 - this.state.disrate)).toFixed(0)}
             </div>
           </div>
+          {this.props.token === 0 && 
+        <div className="noMember">
+          <input type="text" 
+          value={this.state.email}
+          onChange={this.handleMailChange}
+          placeholder="E-MAIL" />
+          <input type="text" 
+          value={this.state.phone}
+          onChange={this.handlePhoneChange}
+          placeholder="PHONE" />
+          </div>}
           <div className="paybutton" onClick={this.paySubmit}>
             <Link className="link" to="/book/result">결제하기!
             </Link>
           </div>
         </div>
+        
       </div>
     );
   }

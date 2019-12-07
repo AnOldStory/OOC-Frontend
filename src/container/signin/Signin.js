@@ -4,6 +4,7 @@ import './Signin.scss';
 import CONFIG from "_variables";
 
 
+
 const RSA = require('node-rsa');
 
 const rsa = new RSA();
@@ -73,23 +74,35 @@ export default class Signin extends Component {
   render() {
     return (
       <div className = "signIn">
-        <div>회원 로그인</div>
-            ID
-            <input type="text" name="id" value={this.state.id} 
+        
+        <div className="SignIn001">Sign In</div>
+        <br/>
+            <span className = "txt">ID</span>
+            <br/>
+            <input className = "input002" type="text" name="id" value={this.state.id} 
             onChange={this.handleIDChange} />
-            PW
-            <input type="password" name="pw" value={this.state.pw}
+            <br />
+            <span className = "txt">PW</span>
+            <br />
+            <input className = "input002" type="password" name="pw" value={this.state.pw}
             onChange={this.handlePWChange} />
-            이름
-            <input type="text" name="name" value={this.state.name} 
+            <br />
+            <span className = "txt"> Name</span>
+            <br />
+            <input className = "input002" type="text" name="name" value={this.state.name} 
             onChange={this.handleNameChange} />
-            전화번호
-            <input type="text" name="phone" value={this.state.phone} 
+            <br />
+            <span className = "txt">PhoneNumber</span>
+            <br />
+            <input className = "input002" type="text" name="phone" value={this.state.phone} 
             onChange={this.handlePhoneChange} />
-            이메일
-            <input type="text" name="mail" value={this.state.mail} 
+            <br />
+            <span className = "txt">Email</span>
+            <br />
+            <input className = "input002" type="text" name="mail" value={this.state.mail} 
             onChange={this.handleMailChange} />
-            <button onClick={this.signInSubmit}>제출</button>
+            <br />
+            <button onClick={this.signInSubmit}>Submit</button>
       </div>
     )
   }

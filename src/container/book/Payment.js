@@ -19,6 +19,8 @@ export default class Payment extends Component {
     };
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.MemberpaySubmit = this.MemberpaySubmit.bind(this);
+    this.noMemberpaySubmit = this.noMemberpaySubmit.bind(this);
   }
   handleMailChange(e) {
     this.setState({ email: e.target.value });
@@ -50,17 +52,18 @@ export default class Payment extends Component {
       this.MemberpaySubmit();
     }
   };
-  noMemberpaySubmit = () => {
+  noMemberpaySubmit = (event) => {
+    event.preventDefault();
+
     fetch(
       CONFIG.HOMEPAGE +
-        "/book?date=" +
-        this.props.date +
-        "&cinema=" +
+        "/book?"+
+        "cinema=" +
         this.props.cinema +
         "&movie=" +
         this.props.movie +
-        "&time=" +
-        this.props.time +
+        "&showroom=" +
+        this.props.showroom +
         "&seats=" +
         this.props.seat +
         "&token=" +
@@ -71,25 +74,25 @@ export default class Payment extends Component {
         (this.state.price * (1 - this.state.disrate)).toFixed(0) +
         "&event=" +
         this.state.disname +
-        "&showroom=" +
+        "&screen=" +
         this.props.screen +
-        "&mail=" +
-        this.state.mail +
-        "&phone=" +
+        "&email="+
+        this.state.email +
+        "&phone="+
         this.state.phone
     ).then(res => console.log(res));
   };
-  MemberpaySubmit = () => {
+  MemberpaySubmit = event => {
+    event.preventDefault();
     fetch(
       CONFIG.HOMEPAGE +
-        "/book?date=" +
-        this.props.date +
-        "&cinema=" +
+        "/book?"+
+        "cinema=" +
         this.props.cinema +
         "&movie=" +
         this.props.movie +
-        "&time=" +
-        this.props.time +
+        "&showroom=" +
+        this.props.showroom +
         "&seats=" +
         this.props.seat +
         "&token=" +
@@ -100,7 +103,7 @@ export default class Payment extends Component {
         (this.state.price * (1 - this.state.disrate)).toFixed(0) +
         "&event=" +
         this.state.disname +
-        "&showroom=" +
+        "&screen=" +
         this.props.screen
     ).then(res => console.log(res));
   };
@@ -229,7 +232,7 @@ export default class Payment extends Component {
             </div>
           )}
           <div className="paybutton" onClick={this.paySubmit}>
-            <Pay
+              <Pay
               result={this.state.result}
               cinema={this.props.cinema}
               movieId={this.props.movieId}
@@ -240,7 +243,7 @@ export default class Payment extends Component {
               seat={this.props.seat}
               initialize={this.props.initializeState}
             />
-          </div>
+            </div>
         </div>
       </div>
     );

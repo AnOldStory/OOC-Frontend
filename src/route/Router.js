@@ -21,7 +21,8 @@ class Router extends Component {
       date: "선택 전",
       time: "선택 전",
       screen: 0,
-      seat: []
+      seat: [],
+      showroom:'',
     };
     this.tokenHandler = this.tokenHandler.bind(this);
     this.dateHandler = this.dateHandler.bind(this);
@@ -32,9 +33,13 @@ class Router extends Component {
     this.screenHandler = this.screenHandler.bind(this);
     this.seatHandler = this.seatHandler.bind(this);
     this.initializeState = this.initializeState.bind(this);
+    this.showroomHandler = this.showroomHandler.bind(this);
   }
   tokenHandler = e => {
     this.setState({ token: e });
+  };
+  showroomHandler = e => {
+    this.setState({ showroom: e });
   };
   dateHandler = e => {
     this.setState({ date: e });
@@ -49,7 +54,7 @@ class Router extends Component {
     this.setState({ movie: e });
   };
   timeHandler = e => {
-    this.setState({ time: e.time, screen: e.screen });
+    this.setState({ time: e.time, screen: e.screen,showroom:e.showRoomId });
   };
   screenHandler = e => {
     this.setState({ screen: e });
@@ -98,6 +103,7 @@ class Router extends Component {
                   timeHandler={this.timeHandler}
                   screenHandler={this.screenHandler}
                   seatHandler={this.seatHandler}
+                  showroomHandler={this.showroomHandler}
                   token={this.state.token}
                   cinema={this.state.cinema}
                   movieId={this.state.movieId}
@@ -107,6 +113,7 @@ class Router extends Component {
                   time={this.state.time}
                   screen={this.state.screen}
                   initializeState={this.initializeState}
+                  showroom={this.state.showroom}
                 />
               )}
             />

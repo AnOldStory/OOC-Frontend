@@ -55,6 +55,7 @@ class BookRouter extends Component {
               <Time
                 setTime={this.props.timeHandler}
                 setScreen={this.props.screenHandler}
+                showroomHandler={this.props.showroomHandler}
                 cinema={this.props.cinema}
                 date={this.props.date}
                 movie={this.props.movie}
@@ -100,6 +101,7 @@ class BookRouter extends Component {
                   time={this.props.time}
                   screen={this.props.screen}
                   seat={this.props.seat}
+                  showroom={this.props.showroom}
                   token={this.props.token}
                 />
               )

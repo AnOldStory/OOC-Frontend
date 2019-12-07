@@ -32,7 +32,9 @@ export default class Time extends Component {
               ? this.state.times
               : [
                   ...this.state.times,
-                  { time: data.screeningTime, screen: data.screeningId }
+                  { time: data.screeningTime, 
+                    screen: data.screeningId,
+                    showRoomId:data.showRoomId }
                 ]
           });
           return "";

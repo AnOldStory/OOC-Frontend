@@ -9,45 +9,21 @@ export default class Ticket extends Component {
     super(props);
     this.state = {
       tickets: [
-        {
-          movie: "83년생",
-          time: "15:30",
-          seat: [1, 2],
-          cinema: "평양",
-          date: "2019/11/19"
-        },
-        {
-          movie: "83년생",
-          time: "15:30",
-          seat: [1, 2],
-          cinema: "평양",
-          date: "2019/11/19"
-        }
-      ]
+
+      ],
+      cancle : [],
     };
     this.showTickets = this.showTickets.bind(this);
   }
   showTickets() {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
-      .then(res => res.json(res))
-      .then(res=>this.setState({tickets:res}));
+      .then(res =>res.json())
+      .then(res=>console.log(res))
   }
 
-  cancleEvent = (time, movie, cinema, date, seat) => {
-    fetch(
-      "book/cancle?time=" +
-        time +
-        "&movie=" +
-        movie +
-        "&cinema=" +
-        cinema +
-        "&date=" +
-        date +
-        "&seat=" +
-        seat
-    )
-      .then(res => res.json(res))
-      .then(alert("취소 성공"));
+  cancleEvent = () => {
+    fetch(CONFIG.HOME+"/ticket?token="+this.props.token
+          +"&tickets="+this.state.cancle)
   };
   render() {
     return (
@@ -60,9 +36,10 @@ export default class Ticket extends Component {
             <button onClick={this.showTickets}>조회</button>
             {this.state.tickets.map(
               (index) => (
-                <div className="ticket" key={index}>
+                <div className="ticket" key={index}
+                onClick={this.setState({cancle:[index.id,"dum"]})}>
                   this is ticket
-                  <hr />
+                  <br/>
                   날짜 : {index.screeningIdTicket.screeningDate}
                   <br />
                   시간 : {index.screeningIdTicket.screeningTime} <br />

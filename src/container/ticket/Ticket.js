@@ -31,7 +31,6 @@ export default class Ticket extends Component {
     this.seatHandler = this.seatHandler.bind(this);
 
     this.filterRows = this.filterRows.bind(this);
-    console.log(rows)
   }
   dateHandler(e){
     this.setState({date: e.target.value});

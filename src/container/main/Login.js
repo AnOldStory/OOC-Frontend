@@ -9,43 +9,46 @@ export default class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
-      id : '',
+      name : '',
       pw : '',
+      pos : '',
       rsa : '',
     };
-    this.handleIDChange = this.handleIDChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
+    this.handlePosChange = this.handlePosChange.bind(this);
     this.getRSA();
   }
   getRSA(){
-    fetch("http://localhost:4000/login")
+    fetch(CONFIG.HOMEPAGE + "/admin/login")
     .then(res =>res.text())
     .then(res=> this.setState({rsa:res}))
   }
-  handleIDChange(event){
-    this.setState({id:event.target.value})
+  handleNameChange(event){
+    this.setState({name:event.target.value})
   }
   handlePWChange(event){
     this.setState({pw:event.target.value})
   }
-  loginSubmit=(event)=>{
+  handlePosChange(event){
+    this.setState({pos:event.target.value})
+  }
+  loginSubmit = event => {
+    console.log("login submit");
     event.preventDefault();
-    console.log("aaasdfasdfasdfasd");
     rsa.importKey(this.state.rsa, "public");
-    var encId = rsa.encrypt(this.state.id, "base64", "utf-8");
     var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
-
-    fetch("http://localhost:4000/admin/personel",{
-      method:'post',
-      headers:{'Content-Type':'application/json'},
-      body:{
-        "idEnc" : encId,
-        "pwEnc" : encPw,
-      }
-    }).then(res=>res.json())
-    .then(res=>console.log(res))
-    this.props.tokenHandler(this.state.token);
-}; 
+    fetch(CONFIG.HOMEPAGE + "/admin/login", {
+      method: "POST",
+      body: JSON.stringify({
+        name: this.state.name,
+        pwEnc: encPw,
+        pos: this.state.pos,
+      })
+    })
+      .then(res => res.text())
+      .then(res=>console.log(res))
+  };
   render() {
     return (
       <div className="loginContent">
@@ -57,8 +60,8 @@ export default class Login extends Component {
             type="text"
             name="id"
             placeholder="ID"
-            value={this.state.id}
-            onChange={this.handleIDChange}
+            value={this.state.name}
+            onChange={this.handleNameChange}
           />
           <br />
           <br />
@@ -69,6 +72,15 @@ export default class Login extends Component {
             placeholder="PASSWORD"
             value={this.state.pw}
             onChange={this.handlePWChange}
+          />
+          <br />
+          <input
+            className="input001"
+            type="text"
+            name="pos"
+            placeholder="POSITION"
+            value={this.state.pos}
+            onChange={this.handlePosChange}
           />
           <br />
           <button className="button001" onClick={this.loginSubmit}>

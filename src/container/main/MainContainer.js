@@ -14,6 +14,7 @@ class MainContainer extends Component {
         tokenHandler={this.props.tokenHandler}/>
       :
       <div className="login">
+        <div className="logined">
           <Link className="link" to='/people'>
             <div className="menuLink">
               <img src={require('./img/people.png')} alt="people"/><br/>
@@ -34,7 +35,7 @@ class MainContainer extends Component {
               <img src={require('./img/ticket.png')} alt="ticket"/><br/>
               티켓</div>
             </Link>
-
+          </div>
         </div>
       }
 

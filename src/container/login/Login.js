@@ -99,12 +99,12 @@ export default class Login extends Component {
           <div className="title001">Nonmember Login</div>
 
             
-            <div
+            <button
             onClick={this.noLoginSubmit}
               className="button001"
               type="submit"
               value="비회원"
-            >비회원으로 진행</div>
+            >비회원으로 진행</button>
             </div>
       </div>
     );

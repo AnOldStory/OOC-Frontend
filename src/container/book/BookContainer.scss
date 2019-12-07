@@ -2,7 +2,7 @@
 
 .next{
     
-    margin-top:160%;
+    margin-top:130%;
     text-decoration: none;
 
     .nextButton{
@@ -32,11 +32,14 @@
   display: grid;
   .state{
     background-color: rgb(218,210,180);
+    width:1200px;
     padding-top: 3px;
     padding-bottom: 3px;
+    padding-left:10px;
     font-size: 13pt;
     margin-left: 3%;
     margin-right: 5%;
+    margin-top:50px;
     column-count: 5;
     font-family: Tahoma,sans-serif;
 
@@ -49,8 +52,7 @@
   }
 }
 .title{
-  width: 28.6%;
-  position: fixed;
+  width: 100%;
   padding-left: 15px;
   padding-top: 8px;
   padding-bottom : 8px;
@@ -83,9 +85,10 @@
     overflow: scroll;
     float: left;
     background-color: rgb(221, 221, 181);
-    height: 400px;
+    height: 300px;
+    margin-top:3px;
     :nth-child(2){
-      margin-top: 50px;
+      margin-top: 10px;
     }
   }
   
@@ -185,7 +188,7 @@
 .timeContent{
   padding: 3%;
   .title{
-    width: 92.7%;
+    width: 100%;
   }
   .times{
     padding: 1%;
@@ -197,9 +200,10 @@
     background-color:  rgb(221, 221, 181);
     .selectedtime{
       background-color: #3e8e41;
-
+      font-size:15pt;
     }
     .unselectedtime{
+      font-size: 15pt;
     }
   }
   .select{

@@ -1,27 +1,40 @@
 .menu{
+  background-color: rgb(235, 235, 235);
   background-color: white;
-  height: 13vh;
 
   .link{
     text-decoration: none;
+    color: white;
     &:visited,&:hover{
       text-decoration: none;
     }
   }
   .menuItem{
-    width: 19.78%;
+    padding: 10px 0 10px 0;
+    background-color: rgb(70, 70, 70);
+    width: 20%;
     float: left;
-    padding-top: 30px;
     text-align: center;
     vertical-align: middle;
-    background-color: gray;
-    height: 15.9vh;
-    border-bottom: 2.5px solid black;
-    border-right: 3px solid black;
-    font-size: 30pt;
+    text-decoration: none;
+    font-size: 20pt;
     :hover{
       cursor: grab;
     }
+    
   }
+  .selected{
+      padding: 10px 0 10px 0;
+    background-color: green;
+    width: 20%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 20pt;
+    :hover{
+      cursor: grab;
+    }
+    }
 }
 

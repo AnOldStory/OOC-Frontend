@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import ReactDataGrid from 'react-data-grid';
+import Login from 'container/main/Login';
 import './Ticket.scss';
+
+import CONFIG from "_variables";
 
 const columns = [{ key: 'date', name: 'DATE' }, 
   { key: 'time', name: 'TIME' },
@@ -54,8 +57,9 @@ export default class Ticket extends Component {
   render() {
     return (
       <div>
-        {!this.props.isLogined && <div>Access denied</div>}
-        {this.props.isLogined && 
+        {this.props.token ==='' ?
+        <Login tokenHandler={this.props.tokenHandler}/>
+        :
         <div>
           <div>
             Date
@@ -80,6 +84,8 @@ export default class Ticket extends Component {
         minHeight={800} />
         </div>
         }
+        
+        
       </div>
     )
   }

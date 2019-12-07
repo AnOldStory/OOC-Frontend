@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-
+import Login from 'container/main/Login';
 import ReactDataGrid from 'react-data-grid';
+import CONFIG from "_variables";
 
 const columns = [{ key: 'date', name: 'DATE' }, 
 { key: 'time', name: 'TIME' },
@@ -16,8 +17,9 @@ export default class Profit extends Component {
   render() {
     return (
       <div>
-        {!this.props.isLogined && <div>Access denied</div>}
-        {this.props.isLogined && 
+        {this.props.token ==='' ? 
+        <Login tokenHandler={this.props.tokenHandler}/>
+        :
         <div>
           <ReactDataGrid
         columns={columns}
@@ -25,7 +27,10 @@ export default class Profit extends Component {
         rowsCount={rows.length}
         minHeight={800}
          />  
-        </div>}
+        </div>
+        }
+
+        
       </div>
     )
   }

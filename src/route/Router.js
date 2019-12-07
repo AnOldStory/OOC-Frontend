@@ -8,63 +8,63 @@ import Profit from 'container/profit/Profit';
 import Stock from 'container/stock/Stock';
 import Ticket from 'container/ticket/Ticket';
 
+import '../index.scss';
 
 class Router extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLogined : true,
-      id : 'sejin',
+      token : '',
     }
-    this.LoginHandler = this.LoginHandler.bind(this);
-    this.LogoutHandler = this.LogoutHandler.bind(this);
+    this.tokenHandler = this.tokenHandler.bind(this);
   }
 
-  LoginHandler(e){
-    this.setState({isLogined : true,id:e});
+  tokenHandler(e){
+    this.setState({token:e})
   }
-  LogoutHandler(){
-    this.setState({isLogined:false});
-  }
+
   render() {
     return (
       <BrowserRouter basename="/">
         <>
           <div className="top">
+            <div><img src={require('../../src/image/logo2.png')} alt="logo"/>
+            ADMINISTRATOR
+            {this.state.token != '' && <div className="logout"
+            onClick={()=>this.tokenHandler('')}>로그아웃</div>}
+             </div>
             <MenuContainer/>
           </div>
           <div className="mainContent">
             <Switch>
               <Route exact path="/"
                 component={()=>(<MainContainer
-                id={this.state.id}
-                isLogined={this.state.isLogined}
-                LoginHandler={this.LoginHandler}
-                LogoutHandler={this.LogoutHandler}/>)}
+                token={this.state.token}
+                tokenHandler={this.tokenHandler}/>)}
               />
                 <Route path="/people"
                 component={()=>(<People
-                isLogined={this.state.isLogined}/>)}
+                token={this.state.token}/>)}
                 />
                 <Route
                 
                 path="/profit"
                 component={()=>(<Profit
-                isLogined={this.state.isLogined}              
+                token={this.state.token}            
                 />)}
                 />
                 <Route
                 
                 path="/stock"
                 component={()=>(<Stock
-                isLogined={this.state.isLogined}              
+                token={this.state.token}
                 />)}
                 />
                 <Route
                 path="/ticket"
                 component={()=>(<Ticket
-                isLogined={this.state.isLogined}
-                />)}
+                token={this.state.token}
+                  />)}
                 />
             </Switch>
           </div>

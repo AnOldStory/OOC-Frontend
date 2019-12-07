@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CONFIG from "_variables";
 
 const RSA = require('node-rsa');
 
@@ -43,18 +44,37 @@ export default class Login extends Component {
       }
     }).then(res=>res.json())
     .then(res=>console.log(res))
-    this.props.LoginHandler(this.state.id);
+    this.props.tokenHandler(this.state.token);
 }; 
   render() {
     return (
       <div className="loginContent">
-        {!this.props.isLogined &&
-          <div className="loginComponent">
-          <input type="text" name="id" value={this.state.id} onChange={this.handleIDChange} />
-          <br/>
-          <input type="password" name="id" value={this.state.pw} onChange={this.handlePWChange} />
-          <div className="loginButton" onClick={this.loginSubmit}>Login</div>
-        </div>}
+          <div className="login content">
+          <div className="title001">로그인{this.state.time}</div>
+          <br />
+          <input
+            className="input001"
+            type="text"
+            name="id"
+            placeholder="ID"
+            value={this.state.id}
+            onChange={this.handleIDChange}
+          />
+          <br />
+          <br />
+          <input
+            className="input001"
+            type="password"
+            name="pw"
+            placeholder="PASSWORD"
+            value={this.state.pw}
+            onChange={this.handlePWChange}
+          />
+          <br />
+          <button className="button001" onClick={this.loginSubmit}>
+            login
+          </button>
+        </div>
       </div>
     )
   }

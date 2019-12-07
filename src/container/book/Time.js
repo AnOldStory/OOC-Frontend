@@ -70,7 +70,7 @@ export default class Time extends Component {
         </div>
         <div className="next">
           <Link className="nextButton" to="/book/seat">
-            <span>NEXT</span>
+            <span className = "Time_next">NEXT</span>
           </Link>
         </div>
       </div>

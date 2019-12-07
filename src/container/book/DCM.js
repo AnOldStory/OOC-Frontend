@@ -172,7 +172,7 @@ export default class DCM extends Component {
         </div>
         <div className="next" onClick={() => this.nextClick()}>
           <Link className="nextButton" to="/book/time">
-            <span>NEXT</span>
+            <span className = "movie_next">NEXT</span>
           </Link>
         </div>
       </div>

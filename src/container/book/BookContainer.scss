@@ -16,8 +16,16 @@
       span{
       padding:7px;
       background-color: #333333;
-      
       }
+      .movie_next
+      {
+        margin-left:570%;
+      }
+      .Time_next
+      {
+        margin-left:93%;
+      }
+
     }
   }
 .container{
@@ -112,7 +120,7 @@
     padding: 5px;
     background-color: #9c9c9c;
     display: inline-grid;
-    grid-template-rows: repeat(4, 120px);
+    grid-template-rows: repeat(4, 100px);
     grid-template-columns: repeat(13, 1fr);
     .seat{
       margin-right: 5px;
@@ -139,7 +147,7 @@
   .next{
     float: right;
     margin-top:25%;
-    margin-right: 30px;
+    margin-right:70px;
   }
 }
 
@@ -200,7 +208,7 @@
     cursor: pointer;
   }
   .next{
-    margin-top: 0;
+    margin-top: 20px;
   }
 }
 

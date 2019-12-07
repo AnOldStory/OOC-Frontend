@@ -6,6 +6,9 @@ import MainContainer from "container/main/MainContainer";
 import BookRouter from "route/BookRouter";
 import Ticket from "container/ticket/Ticket";
 import Signin from "container/signin/Signin";
+
+import "antd/dist/antd.css";
+
 class Router extends Component {
   constructor(props) {
     super(props);
@@ -109,8 +112,12 @@ class Router extends Component {
             />
             <Route
               path="/ticket"
-              component={() => <Ticket token={this.state.token}
-                                      tokenHandler={this.tokenHandler} />}
+              component={() => (
+                <Ticket
+                  token={this.state.token}
+                  tokenHandler={this.tokenHandler}
+                />
+              )}
             />
 
             <Route

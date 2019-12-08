@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NoMemLogin from "container/login/NoMemLogin";
 import CONFIG from "_variables";
+import { Button } from 'antd';
 
 import "./Ticket.scss";
 
@@ -21,7 +22,7 @@ export default class Ticket extends Component {
       .then(res=>this.setState({tickets:res}))
   }
 
-  cancleEvent = (e) => {
+  cancelEvent = (e) => {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token
           +"&tickets="+e)
           .then(res=>console.log(res))
@@ -42,21 +43,28 @@ export default class Ticket extends Component {
             {this.state.tickets.map(
               (index) => (
                 <div className="ticket" key={index}
-                onClick={()=>this.setState({cancle:[index.id,"dum"]})}>
-                  this is ticket
-                  <br/>
-                  날짜 : {index.screeningIdTicket.screeningDate}
-                  <br />
-                  시간 : {index.screeningIdTicket.screeningTime} <br />
-                  영화 : {index.screeningIdTicket.movieIdSchedule.movieName} <br />
-                  영화관 : {index.showRoomId}관 <br />
-                  좌석 : {index.seatNumber}
-                  <div
-                    className="cancleButton"
-                    onClick={()=>this.cancleEvent([index.id,"dum"])}
+                onClick={()=>this.setState({cancel:[index.id,"dum"]})}>
+                  <div className = "Ticket_Content">
+                    <Button
+                    className="cancelButton"
+                    type = "Cancel"
+                    onClick={()=>this.cancelEvent([index.id,"dum"])}
                   >
-                    예매취소
+                    취소하기
+                  </Button>
+                  <h3 className = "Detail_Content">상세내용</h3>
+                  
+                  <span className = "Date_Content">날짜 : {index.screeningIdTicket.screeningDate}</span>
+                  <br />
+                  <span className = "Time_Content">시간 : {index.screeningIdTicket.screeningTime} </span>
+                  <br />
+                  <span className = "Movie_title_Content">영화 : {index.screeningIdTicket.movieIdSchedule.movieName} </span>
+                  <br />
+                  <span className = "Theater_title_Content">영화관 : {index.showRoomId}관</span> 
+                  <br />
+                  <span className = "Seat_title_Content">좌석 : {index.seatNumber}</span>
                   </div>
+                  
                 </div>
               )
             )}

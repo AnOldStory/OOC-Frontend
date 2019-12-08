@@ -4,18 +4,60 @@
   }
   .tickets{
     height: 555px;
+
+
     overflow: scroll;
     .ticket{
-      border-bottom: 1px black solid;
-      padding: 30px;
+      border: 1px black solid;
+      padding: 10px;
       text-align: center;
+      
+      font-weight:bold;
       background-image: url('./영화티켓.png');
-      margin-left: auto;
-      margin-right: auto;
       width: 300px;
-      height: 500px;
-      .cancleButton{
-        background-color: rebeccapurple;
+      height: 475px;
+      .Detail_Content
+      {
+        font-size:17pt;
+        border-bottom:1px solid gray;
+        margin-bottom:20px;
+      }
+      .Ticket_Content
+      {
+        font-size:13pt;
+        
+      }
+      .Date_Content
+      {
+        
+        padding-right:10px;
+      }
+      .Time_Content
+      {
+        padding-right : 10px;
+        
+        
+      }
+      .Movie_title_Content
+      {
+        padding-right:9.5px;
+        
+      }
+      .Theater_title_Content
+      {
+        
+        padding-right:7.5px;
+        
+      }
+      
+      .cancelButton{
+        background-color:red;
+        color:white;
+        text-align:center;
+
+        width:100px;
+        margin-left:180px;
+        margin-bottom:10px;
       }
     }
   }

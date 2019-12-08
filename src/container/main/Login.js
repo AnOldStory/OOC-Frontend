@@ -83,9 +83,9 @@ export default class Login extends Component {
             onChange={this.handlePosChange}
           />
           <br />
-          <button className="button001" onClick={this.loginSubmit}>
-            login
-          </button>
+          <div className="button001" onClick={this.loginSubmit}>
+            LOGIN
+          </div>
         </div>
       </div>
     )

@@ -94,23 +94,23 @@ export default class Stock extends Component {
         <Login tokenHandler={this.props.tokenHandler}/>
         :
         <div>
-          
+           이름
+          <input name="name" value={this.state.name} 
+            onChange={this.nameHandler}/>
          
             수량
             <input name="count" value={this.state.count} 
             onChange={this.countHandler}/>
-            단가
-            <input name="price" value={this.state.price} 
-            onChange={this.priceHandler}
-            placeholder="새로운상품에만 입력"/>
+           
             지점
             <input name="price" value={this.state.cinema} 
             onChange={this.cinemaHandler}/>
             <button onClick={this.inItem}>입고</button>
             <button onClick={this.outItem}>출고</button>
-             이름
-          <input name="name" value={this.state.name} 
-            onChange={this.nameHandler}/>
+             단가
+            <input name="price" value={this.state.price} 
+            onChange={this.priceHandler}
+            placeholder="새로운상품에만 입력"/>
             <button onClick={this.addItem}>신제품</button>
             상품번호
             <input name="id" value={this.state.id} 

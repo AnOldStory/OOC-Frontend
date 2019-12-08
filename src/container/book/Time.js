@@ -59,7 +59,8 @@ export default class Time extends Component {
             >
               {timedata.time}
               <br />
-              {timedata.screen} 관<br />
+              {timedata.screen} 관
+              <br />
               {timedata.time.substring(0, 2) >= 22 ||
               timedata.time.substring(0, 2) < 6
                 ? "심야"

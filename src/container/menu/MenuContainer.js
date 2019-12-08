@@ -16,28 +16,28 @@ class MenuContainer extends Component {
         
           
           <Link className="link" to="/">
-            <div className={this.state.selected === 'home'?"selected":"menuItem"}
-            onClick={()=>this.setState({selected:'home'})}>Home</div>
+            <div className={this.props.menu === 'home'?"selected":"menuItem"}
+            onClick={()=>this.props.menuHandler('home')}>Home</div>
             </Link>
             
           <Link className="link" to="/people">
-            <div className={this.state.selected === 'people'?"selected":"menuItem"}
-            onClick={()=>this.setState({selected:'people'})}>인사</div>
+            <div className={this.props.menu === 'people'?"selected":"menuItem"}
+            onClick={()=>this.props.menuHandler('people')}>인사</div>
             </Link>
             
           <Link className="link" to="/profit">
-            <div className={this.state.selected === 'profit'?"selected":"menuItem"}
-            onClick={()=>this.setState({selected:'profit'})}>재무</div>
+            <div className={this.props.menu === 'profit'?"selected":"menuItem"}
+            onClick={()=>this.props.menuHandler('profit')}>재무</div>
             </Link>
             
           <Link className="link" to="/stock">
-            <div className={this.state.selected === 'stock'?"selected":"menuItem"}
-            onClick={()=>this.setState({selected:'stock'})}>재고</div>
+            <div className={this.props.menu === 'stock'?"selected":"menuItem"}
+            onClick={()=>this.props.menuHandler('stock')}>재고</div>
             </Link>
             
           <Link className="link" to="/ticket">
-            <div className={this.state.selected === 'ticket'?"selected":"menuItem"}
-            onClick={()=>this.setState({selected:'ticket'})}>티켓</div>
+            <div className={this.props.menu === 'ticket'?"selected":"menuItem"}
+            onClick={()=>this.props.menuHandler('ticket')}>티켓</div>
             </Link>
 
         

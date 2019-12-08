@@ -15,13 +15,18 @@ class Router extends Component {
   constructor(props){
     super(props);
     this.state = {
-      token : '',
+      menu:'home',
+      token : 'd',
       signinPopup:false,
     }
     this.tokenHandler = this.tokenHandler.bind(this);
     this.signinPopupHandler = this.signinPopupHandler.bind(this);
+    this.menuHandler = this.menuHandler.bind(this);
   }
 
+  menuHandler(e){
+    this.setState({menu:e})
+  }
   tokenHandler(e){
     this.setState({token:e})
   }
@@ -45,14 +50,18 @@ class Router extends Component {
           <div className="signin"
           onClick={()=>this.setState({signinPopup:true})}>회원가입</div>}
              </div>
-            <MenuContainer/>
+            <MenuContainer
+            menuHandler={this.menuHandler}
+            menu={this.state.menu}/>
           </div>
           <div className="mainContent">
             <Switch>
               <Route exact path="/"
                 component={()=>(<MainContainer
                 token={this.state.token}
-                tokenHandler={this.tokenHandler}/>)}
+                tokenHandler={this.tokenHandler}
+                menuHandler={this.menuHandler}
+                menu={this.state.menu}/>)}
               />
                 <Route path="/people"
                 component={()=>(<People

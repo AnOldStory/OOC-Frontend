@@ -45,13 +45,7 @@ export default class Payment extends Component {
       method: name
     });
   };
-  paySubmit = () => {
-    if (this.props.token === 0) {
-      this.noMemberpaySubmit();
-    } else {
-      this.MemberpaySubmit();
-    }
-  };
+
   noMemberpaySubmit = event => {
     event.preventDefault();
 
@@ -80,7 +74,8 @@ export default class Payment extends Component {
         this.state.email +
         "&phone=" +
         this.state.phone
-    ).then(res => console.log(res));
+    ).then(res => res.json())
+    .then(res=> alert(res.serial))
   };
   MemberpaySubmit () {
     fetch(
@@ -233,7 +228,9 @@ export default class Payment extends Component {
               />
             </div>
           )}
-          <div className="paybutton" onClick={this.paySubmit}>결제
+          <div className="paybutton" 
+          onClick={this.props.token === 0 ?this.noMemberpaySubmit
+                  :this.MemberpaySubmit}>결제
               {/* <Pay
           <div className="paybutton">
             <Pay

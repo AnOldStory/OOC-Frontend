@@ -224,6 +224,7 @@ export default class Payment extends Component {
                 onChange={this.handleMailChange}
                 placeholder="E-MAIL"
               />
+              <br />
               <input
                 className="Input003"
                 type="text"

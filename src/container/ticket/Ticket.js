@@ -89,7 +89,7 @@ export default class Ticket extends Component {
         <Login tokenHandler={this.props.tokenHandler}/>
         :
         <div>
-          <div>
+          <div className="filter">
             Date
             <select name="year" 
             onChange={this.yearHandler} 

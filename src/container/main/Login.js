@@ -47,7 +47,7 @@ export default class Login extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>console.log(res))
+      .then(res=>this.props.tokenHandler(res))
   };
   render() {
     return (

@@ -21,12 +21,6 @@ class MainContainer extends Component {
               <img src={require('./img/people.png')} alt="people"/><br/>
               인사관리</div>
             </Link>
-            <Link className="link" to='/profit'>
-            <div className="menuLink"
-            onClick={()=>this.props.menuHandler("profit")}>
-              <img src={require('./img/profit.png')} alt="profit"/><br/>
-              재무</div>
-            </Link>
             <Link className="link" to='/stock'>
               <div className="menuLink"
               onClick={()=>this.props.menuHandler("stock")}>              

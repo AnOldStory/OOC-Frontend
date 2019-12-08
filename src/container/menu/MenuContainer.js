@@ -25,10 +25,6 @@ class MenuContainer extends Component {
             onClick={()=>this.props.menuHandler('people')}>인사</div>
             </Link>
             
-          <Link className="link" to="/profit">
-            <div className={this.props.menu === 'profit'?"selected":"menuItem"}
-            onClick={()=>this.props.menuHandler('profit')}>재무</div>
-            </Link>
             
           <Link className="link" to="/stock">
             <div className={this.props.menu === 'stock'?"selected":"menuItem"}

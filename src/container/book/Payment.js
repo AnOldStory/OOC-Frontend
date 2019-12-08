@@ -215,12 +215,14 @@ export default class Payment extends Component {
           {this.props.token === 0 && (
             <div className="noMember">
               <input
+                className="Input003"
                 type="text"
                 value={this.state.email}
                 onChange={this.handleMailChange}
                 placeholder="E-MAIL"
               />
               <input
+                className = "Input003"
                 type="text"
                 value={this.state.phone}
                 onChange={this.handlePhoneChange}

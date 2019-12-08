@@ -24,6 +24,7 @@
       .Time_next
       {
         margin-left:93%;
+        background-color: #333333;
       }
 
     }
@@ -123,8 +124,9 @@
     padding: 5px;
     background-color: #9c9c9c;
     display: inline-grid;
-    grid-template-rows: repeat(4, 100px);
+    grid-template-rows: repeat(4, 90px);
     grid-template-columns: repeat(13, 1fr);
+    margin-left:100px;
     .seat{
       margin-right: 5px;
       width: 50px;
@@ -192,18 +194,21 @@
   }
   .times{
     padding: 1%;
-    margin-top: 70px;
+    margin-top: 30px;
     display: grid;
     grid-template-rows: repeat(4, 50px);
     grid-template-columns: repeat(13, 1fr);
     font-size: 20pt;
     background-color:  rgb(221, 221, 181);
     .selectedtime{
-      background-color: #3e8e41;
+      background-color: #CAB6DE;
+      height:88px;
       font-size:15pt;
+      text-align: center;
     }
     .unselectedtime{
       font-size: 15pt;
+      text-align:center;
     }
   }
   .select{

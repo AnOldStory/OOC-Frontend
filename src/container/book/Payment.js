@@ -61,11 +61,11 @@ export default class Payment extends Component {
         "cinema=" +
         this.props.cinema +
         "&movie=" +
-        this.props.movie +
+        this.props.movieId +
         "&showroom=" +
         this.props.showroom +
         "&seats=" +
-        this.props.seat +
+        this.props.seat.concat("_") +
         "&token=" +
         0 +
         "&payment=" +
@@ -82,21 +82,20 @@ export default class Payment extends Component {
         this.state.phone
     ).then(res => console.log(res));
   };
-  MemberpaySubmit = event => {
-    event.preventDefault();
+  MemberpaySubmit () {
     fetch(
       CONFIG.HOMEPAGE +
         "/book?"+
         "cinema=" +
         this.props.cinema +
         "&movie=" +
-        this.props.movie +
+        this.props.movieId +
         "&showroom=" +
         this.props.showroom +
         "&seats=" +
-        this.props.seat +
+        this.props.seat.concat("_") +
         "&token=" +
-        this.props.token +
+        this.props.token+
         "&payment=" +
         this.state.method +
         "&price=" +
@@ -233,8 +232,8 @@ export default class Payment extends Component {
               />
             </div>
           )}
-          <div className="paybutton" onClick={this.paySubmit}>
-              <Pay
+          <div className="paybutton" onClick={this.noMemberpaySubmit}>결제
+              {/* <Pay
               result={this.state.result}
               cinema={this.props.cinema}
               movieId={this.props.movieId}
@@ -244,7 +243,7 @@ export default class Payment extends Component {
               screen={this.props.screen}
               seat={this.props.seat}
               initialize={this.props.initializeState}
-            />
+            /> */}
             </div>
         </div>
       </div>

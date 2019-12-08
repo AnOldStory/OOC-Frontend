@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "container/login/Login";
+import NoMemLogin from "container/login/NoMemLogin";
 import CONFIG from "_variables";
 
 import "./Ticket.scss";
@@ -18,18 +18,23 @@ export default class Ticket extends Component {
   showTickets() {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
       .then(res =>res.json())
-      .then(res=>console.log(res))
+      .then(res=>this.setState({tickets:res}))
   }
 
-  cancleEvent = () => {
-    fetch(CONFIG.HOME+"/ticket?token="+this.props.token
-          +"&tickets="+this.state.cancle)
+  cancleEvent = (e) => {
+    fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token
+          +"&tickets="+e)
+          .then(res=>console.log(res))
+
+    fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
+      .then(res =>res.json())
+      .then(res=>this.setState({tickets:res}))
   };
   render() {
     return (
       <div className="ticketcontainer">
         {this.props.token === "" ? (
-          <Login token={this.props.token}
+          <NoMemLogin token={this.props.token}
                 tokenHandler={this.props.tokenHandler}/>
         ) : (
           <div className="tickets">
@@ -37,18 +42,18 @@ export default class Ticket extends Component {
             {this.state.tickets.map(
               (index) => (
                 <div className="ticket" key={index}
-                onClick={this.setState({cancle:[index.id,"dum"]})}>
+                onClick={()=>this.setState({cancle:[index.id,"dum"]})}>
                   this is ticket
                   <br/>
                   날짜 : {index.screeningIdTicket.screeningDate}
                   <br />
                   시간 : {index.screeningIdTicket.screeningTime} <br />
-                  영화 : {index.screeningIdTicket.movieId} <br />
+                  영화 : {index.screeningIdTicket.movieIdSchedule.movieName} <br />
                   영화관 : {index.showRoomId}관 <br />
                   좌석 : {index.seatNumber}
                   <div
                     className="cancleButton"
-                 
+                    onClick={()=>this.cancleEvent([index.id,"dum"])}
                   >
                     예매취소
                   </div>

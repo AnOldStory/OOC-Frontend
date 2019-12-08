@@ -21,29 +21,30 @@ const seats = ["",1,2,3,4,5,6,7,8,9,10,11,12,13,
               27,28,29,30,31,32,33,34,35,36,37,38,39,
               40,41,42,43,44,45,46,47,48,49,50,51,52]
 
-const columns = [{ key: 'date', name: 'DATE' }, 
-  { key: 'time', name: 'TIME' },
-  { key: 'movie', name: 'MOVIE' },
-  { key:'seat',name:'SEAT'}];
-const rows = [
+const columns = [{ key: 'id', name: '고유번호' }, 
+  { key: 'customerId', name: '고객번호' },
+  { key: 'screeningId', name: '상영관' },
+  {key:'ticketPrice',name:'결제금액'},
+  { key:'ticketPaymentType',name:'결제타입'},
+{key:'seatNumber',name:'좌석'}];
+
+var rows = [
   {date:'2019/10/10',time:'11:00',movie:'avengers',seat:'15'},
-  {date:'2019/10/10',time:'10:00',movie:'avengers',seat:'16'},
-  {date:'2019/10/10',time:'10:00',movie:'avengers',seat:'17'},
-  {date:'2019/10/10',time:'11:00',movie:'avengers',seat:'15'},
-  {date:'2019/10/10',time:'10:00',movie:'avengers',seat:'16'},
-  {date:'2019/10/10',time:'10:00',movie:'avengers',seat:'17'},];
-var rowGetter = rowNumber => rows[rowNumber];
+  ];
+
 
 export default class Ticket extends Component {
   constructor(props){
     super(props);
     this.state = {
+      tickets :[],
       year : '', month: '', day : '',
       time : '',
       movie: '',
       movies:[],
       seat:'',
       filterdRows:[],
+      tickets : [],
     }
     this.timeHandler = this.timeHandler.bind(this);
     this.movieHandler = this.movieHandler.bind(this);
@@ -53,6 +54,8 @@ export default class Ticket extends Component {
     this.dayHandler = this.dayHandler.bind(this);
 
     this.filterRows = this.filterRows.bind(this);
+
+    this.getTickets();
   }
   yearHandler(e){
     this.setState({year:e.target.value})
@@ -73,14 +76,19 @@ export default class Ticket extends Component {
     this.setState({seat: e.target.value});
   }
   filterRows(){
-    var row =  rows.filter((index)=>{return index.time.includes(this.state.time)})
+    var row =  this.state.tickets.filter((index)=>{
+      return index.seat.includes(this.state.seat)})
     .filter((index)=>index.movie.includes(this.state.movie))
-    .filter((index)=>index.seat.includes(this.state.seat))
-    .filter((index)=>index.date.includes(
-      this.state.year+"/"+this.state.month+"/"+this.state.day))
+
     console.log(row)
-    rowGetter = rowNumber => row[rowNumber];
+    this.rowGetter = rowNumber => row[rowNumber];
     this.setState({filterRows:row})
+  }
+  rowGetter = rowNumber => this.state.tickets[rowNumber];
+  getTickets=()=>{
+    fetch(CONFIG.HOMEPAGE + "/admin/ticket?token="+this.props.token)
+    .then(res=>res.json())
+    .then(res=>this.setState({tickets:res}));
   }
   render() {
     return (
@@ -127,8 +135,8 @@ export default class Ticket extends Component {
           <ReactDataGrid
         
         columns={columns}
-        rowGetter={rowGetter}
-        rowsCount={rows.length}
+        rowGetter={this.rowGetter}
+        rowsCount={this.state.tickets.length}
         minHeight={800} />
         </div>
         }

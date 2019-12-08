@@ -4,49 +4,89 @@ import ReactDataGrid from 'react-data-grid';
 import CONFIG from "_variables";
 
 
-const columns = [{ key: 'name', name: '종류' }, 
-{ key: 'quantity', name: '재고' },
+const columns = [{ key: 'id', name: '상품번호' },
+{ key:'cinemaId', name: '지점'},
+{ key: 'goodsName', name: '상품명' },
+{ key: 'goodsPrice', name : '단가'},
+{ key: 'goodsCount', name: '재고'},
+
 ];
-const rows = [
-{name:'콜라',quantity:300},
-{name:'사이다',quantity:200},];
-const rowGetter = rowNumber => rows[rowNumber];
 
 export default class Stock extends Component {
   constructor(props){
     super(props);
     this.state = {
+      id:'',
       name : '',
-      quantity : 0,
-      rows : []
+      count:0,
+      cinema:'',
+      price:0,
+      rows : [],
+      goods:[]
     }
     this.nameHandler = this.nameHandler.bind(this);
-    this.quantityHandler = this.quantityHandler.bind(this);
+    this.countHandler = this.countHandler.bind(this)
+    this.cinemaHandler = this.cinemaHandler.bind(this)
+    this.priceHandler = this.priceHandler.bind(this)
+    this.idHandler = this.idHandler.bind(this)
+    this.rowGetter = this.rowGetter.bind(this);
 
-    this.getRows();
+    this.addItem = this.addItem.bind(this);
+    this.inItem = this.inItem.bind(this);
+    this.outItem= this.outItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.getStocks();
   }
-  getRows(){
-    fetch('/admin/stock/')
-    .then(res=>res.json)
-    .then(res => this.setState({rows : res}))
+  getStocks(){
+    fetch(CONFIG.HOMEPAGE + "/admin/stock?token="+this.props.token)
+    .then(res=>res.json())
+    .then(res=>this.setState({goods:res}))
     }
+
+
   nameHandler(e){
     this.setState({name:e.target.value})
   }
-  quantityHandler(e){
-    this.setState({quantity:e.target.value})
+  countHandler(e){
+    this.setState({count:e.target.value})
   }
-  input(){
-    fetch('/admin/stock/input?kind='+this.state.name+'&quantity='+this.state.quantity)
-    .then(res=>res.json)
-    .then(res=>this.setState({rows:res}))
+  cinemaHandler(e){
+    this.setState({cinema:e.target.value})
   }
-  output(){
-    fetch('/admin/stock/output?kind='+this.state.name+'&quantity='+this.state.quantity)
-    .then(res=>res.json)
-    .then(res=>this.setState({rows:res}))
+  priceHandler(e){
+    this.setState({price:e.target.value})
   }
-
+  idHandler(e){
+    this.setState({id:e.target.value})
+  }
+  addItem(){
+    fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
+          +"&name="+this.state.name
+          +"&count="+this.state.count
+          +"&cinema="+this.state.cinema
+          +"&price="+this.state.price)
+    this.getStocks();
+  }
+  inItem(){
+    fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
+          +"&name="+this.state.name
+          +"&count="+this.state.count
+          +"&cinema="+this.state.cinema)
+    this.getStocks();
+  }
+  outItem(){
+    fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
+          +"&name="+this.state.name
+          +"&count="+((-1)*this.state.count)
+          +"&cinema="+this.state.cinema)
+    this.getStocks();
+  }
+  removeItem(){
+    fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
+          +"&goods="+[this.state.id].concat("dummy"))
+    this.getStocks();
+  }
+  rowGetter = rowNumber => this.state.goods[rowNumber];
   render() {
     return (
       <div>
@@ -54,19 +94,34 @@ export default class Stock extends Component {
         <Login tokenHandler={this.props.tokenHandler}/>
         :
         <div>
-          종류
+          
+         
+            수량
+            <input name="count" value={this.state.count} 
+            onChange={this.countHandler}/>
+            단가
+            <input name="price" value={this.state.price} 
+            onChange={this.priceHandler}
+            placeholder="새로운상품에만 입력"/>
+            지점
+            <input name="price" value={this.state.cinema} 
+            onChange={this.cinemaHandler}/>
+            <button onClick={this.inItem}>입고</button>
+            <button onClick={this.outItem}>출고</button>
+             이름
           <input name="name" value={this.state.name} 
             onChange={this.nameHandler}/>
-            수량
-            <input name="quantity" value={this.state.quantity} 
-            onChange={this.quantityHandler}/>
-            <button onClick={()=>this.input}>입고</button>
-            <button onClick={()=>this.output}>출고</button>
+            <button onClick={this.addItem}>신제품</button>
+            상품번호
+            <input name="id" value={this.state.id} 
+              onChange={this.idHandler}
+              placeholder="제거할때만 입력"/>
+            <button onClick={this.removeItem}>제거</button>
           <ReactDataGrid
         columns={columns}
-        rowGetter={rowGetter}
-        rowsCount={rows.length}
-         />
+        rowGetter={this.rowGetter}
+        rowsCount={this.state.goods.length}
+        minHeight={800} />
         </div>
         }
 

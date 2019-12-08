@@ -16,7 +16,7 @@ class Router extends Component {
     super(props);
     this.state = {
       menu:'home',
-      token : 'd',
+      token : '',
       signinPopup:false,
     }
     this.tokenHandler = this.tokenHandler.bind(this);

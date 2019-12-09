@@ -13,7 +13,7 @@ export default class Seat extends Component {
     this.state = {
       seats: table,
       //test
-      reserved_seat : [1, 4, 6, 40]
+      reserved_seat : []
     };
     this.getSeat();
   }

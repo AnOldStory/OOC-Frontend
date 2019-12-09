@@ -22,6 +22,7 @@ export default class Payment extends Component {
     };
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.MemberpaySubmit = this.MemberpaySubmit.bind(this);
     this.noMemberpaySubmit = this.noMemberpaySubmit.bind(this);
     this.getInformation();
@@ -31,13 +32,16 @@ export default class Payment extends Component {
     fetch(CONFIG.HOMEPAGE+"/book?token="+this.props.token)
     .then(res=>res.json())
     .then(res=>this.setState({name:res[0].customerName,
-                              email:res.customerEmail,
-                              phone:res.customerPhone}))
+                              email:res[0].customerEmail,
+                              phone:res[0].customerPhone}))
   }
     // .then(res=>this.setState({email:res.mail,phone:res.phone,name:res.name}))
   
   handleMailChange(e) {
     this.setState({ email: e.target.value });
+  }
+  handleNameChange(e){
+    this.setState({name:e.target.value});
   }
   handlePhoneChange(e) {
     this.setState({ phone: e.target.value });
@@ -239,6 +243,14 @@ export default class Payment extends Component {
                 value={this.state.phone}
                 onChange={this.handlePhoneChange}
                 placeholder="PHONE"
+              />
+              <br />
+              <input
+                className="Input003"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+                placeholder="NAME"
               />
             </div>
           )}

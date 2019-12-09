@@ -9,10 +9,8 @@ class MenuContainer extends Component {
   render() {
     return (
       <div className="menu">
-        <Link to="/">
-          <img src={Logo} alt="logo" />
-        </Link>
-        <ul>
+        <div className = "small_bar">
+          <ul>
           <li>
             <Link to="/ticket" className="menuLink">
               <div className="menu_item">TICKET</div>
@@ -28,13 +26,14 @@ class MenuContainer extends Component {
               <div className="menu_item">SignIn</div>
             </Link>
           </li>
-          <li>
-            {this.props.token === "" ? 
-              <MainLogin tokenHandler={this.props.tokenHandler} />
-              :<div>{this.props.token}</div>
-            }
-          </li>
+          
         </ul>
+        </div>
+        <div className="big_bar">
+        <Link to="/">
+          <img src={Logo} alt="logo" />
+        </Link>
+        </div>
       </div>
     );
   }

@@ -5,6 +5,8 @@ import Pay from "container/book/Pay";
 
 import CONFIG from "_variables";
 
+const discount = ["생일", "커플", "솔로", "얼리버드"];
+
 export default class Payment extends Component {
   constructor(props) {
     super(props);
@@ -15,15 +17,36 @@ export default class Payment extends Component {
       disname: "",
       method: "",
       email: "",
-      phone: ""
+      phone: "",
+      name: ""
     };
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.MemberpaySubmit = this.MemberpaySubmit.bind(this);
     this.noMemberpaySubmit = this.noMemberpaySubmit.bind(this);
+    this.getInformation();
   }
+  getInformation() {
+    if (this.props.token != 0) {
+    }
+    fetch(CONFIG.HOMEPAGE + "/book?token=" + this.props.token)
+      .then(res => res.json())
+      .then(res =>
+        this.setState({
+          name: res[0].customerName,
+          email: res[0].customerEmail,
+          phone: res[0].customerPhone
+        })
+      );
+  }
+  // .then(res=>this.setState({email:res.mail,phone:res.phone,name:res.name}))
+
   handleMailChange(e) {
     this.setState({ email: e.target.value });
+  }
+  handleNameChange(e) {
+    this.setState({ name: e.target.value });
   }
   handlePhoneChange(e) {
     this.setState({ phone: e.target.value });
@@ -99,7 +122,7 @@ export default class Payment extends Component {
         "&seats=" +
         this.props.seat.concat("_") +
         "&token=" +
-        this.props.token+
+        this.props.token +
         "&payment=" +
         this.state.method +
         "&price=" +
@@ -119,9 +142,7 @@ export default class Payment extends Component {
           <div className="paycontent">
             <div
               className={
-                this.state.disname === "birth"
-                  ? "dcContent selected"
-                  : "dcContent"
+                this.state.disname === 1 ? "dcContent selected" : "dcContent"
               }
               onClick={() => this.applyDiscount(0.15, 1)}
             >
@@ -131,9 +152,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "couple"
-                  ? "dcContent selected"
-                  : "dcContent"
+                this.state.disname === 2 ? "dcContent selected" : "dcContent"
               }
               onClick={() => this.applyDiscount(0.01, 2)}
             >
@@ -146,9 +165,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "solo"
-                  ? "selected dcContent"
-                  : "dcContent"
+                this.state.disname === 3 ? "selected dcContent" : "dcContent"
               }
               onClick={() => this.applyDiscount(0.8, 3)}
             >
@@ -158,9 +175,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "bird"
-                  ? "dcContent selected"
-                  : "dcContent"
+                this.state.disname === 4 ? "dcContent selected" : "dcContent"
               }
               onClick={() => this.applyDiscount(0.3, 4)}
             >
@@ -210,8 +225,8 @@ export default class Payment extends Component {
 
             <div className="discount paySubcontent">
               <div className="subTitle">할인내용</div>
-              {this.state.disname} : {this.state.disrate * 100}% 할인금액 :{" "}
-              {this.state.price * this.state.disrate}원
+              {discount[this.state.disname]} : {this.state.disrate * 100}%
+              할인금액 : {this.state.price * this.state.disrate}원
             </div>
 
             <div className="finalPrice paySubcontent">
@@ -236,15 +251,24 @@ export default class Payment extends Component {
                 onChange={this.handlePhoneChange}
                 placeholder="PHONE"
               />
+              <br />
+              <input
+                className="Input003"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+                placeholder="NAME"
+              />
             </div>
           )}
-          <div className="paybutton" 
-          onClick={this.props.token === 0 ?this.noMemberpaySubmit
-                  :this.MemberpaySubmit}>결제
-              {/* <Pay
           <div className="paybutton">
             <Pay
-              onClick={this.paySubmit}
+              {...this.state}
+              onClick={
+                this.props.token === 0
+                  ? this.noMemberpaySubmit
+                  : this.MemberpaySubmit
+              }
               result={this.state.result}
               cinema={this.props.cinema}
               movieId={this.props.movieId}
@@ -254,9 +278,9 @@ export default class Payment extends Component {
               screen={this.props.screen}
               seat={this.props.seat}
               initialize={this.props.initializeState}
-            /> */}
-            </div>
+            />
           </div>
+        </div>
       </div>
     );
   }

@@ -59,22 +59,33 @@ export default class NoMemLogin extends Component {
       .then(res => res.text())
       .then(res=>this.props.tokenHandler(res))
   };
+
   nologinSubmit = event => {
     console.log("login submit");
     event.preventDefault();
     console.log(this.state.rsa);
-
-    rsa.importKey(this.state.rsa, "public");
-    var serialEnc = rsa.encrypt(this.state.serial, "base64", "utf-8");
-    fetch(CONFIG.HOMEPAGE + "/login", {
-      method: "POST",
-      body: JSON.stringify({
-        member: false,
-        serialEnc: serialEnc
+    let serialRule = /^\d{8}$/;
+    if(!serialRule.test(this.state.serial)) {
+      alert("Serial 형식이 올바르지 않습니다.")
+    }
+    else {
+      rsa.importKey(this.state.rsa, "public");
+    
+      var serialEnc = rsa.encrypt(this.state.serial, "base64", "utf-8");
+      fetch(CONFIG.HOMEPAGE + "/login", {
+        method: "POST",
+        body: JSON.stringify({
+          member: false,
+          serialEnc: serialEnc
+        })
       })
-    })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res))
+      .then(res=> {
+        this.props.tokenHandler(res)
+        console.log(res)
+      })
+    }
+    
   };
 
   render() {

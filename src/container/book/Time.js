@@ -32,9 +32,11 @@ export default class Time extends Component {
               ? this.state.times
               : [
                   ...this.state.times,
-                  { time: data.screeningTime, 
+                  {
+                    time: data.screeningTime,
                     screen: data.screeningId,
-                    showRoomId:data.showRoomId }
+                    showRoomId: data.showRoomId
+                  }
                 ]
           });
           return "";
@@ -73,7 +75,7 @@ export default class Time extends Component {
         </div>
         <div className="next">
           <Link className="nextButton" to="/book/seat">
-            <span className = "Time_next">NEXT</span>
+            <span className="Time_next">NEXT</span>
           </Link>
         </div>
       </div>

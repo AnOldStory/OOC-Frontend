@@ -76,7 +76,10 @@ export default class Payment extends Component {
     let phoneRule2 = /^\d{10,11}$/;
     if (!mailRule.test(this.state.email)) {
       alert("메일주소 형식이 올바르지 않습니다.");
-    } else if (!phoneRule1.test(this.state.phone) && !phoneRule2.test(this.state.phone)) {
+    } else if (
+      !phoneRule1.test(this.state.phone) &&
+      !phoneRule2.test(this.state.phone)
+    ) {
       alert("전화번호 형식이 올바르지 않습니다.");
     } else {
       fetch(
@@ -104,12 +107,13 @@ export default class Payment extends Component {
           this.state.email +
           "&phone=" +
           this.state.phone
-      ).then(res => res.json())
-      .then(res=> alert(res.serial))
+      )
+        .then(res => res.json())
+        .then(res => alert(res.serial));
     }
   };
 
-  MemberpaySubmit () {
+  MemberpaySubmit() {
     fetch(
       CONFIG.HOMEPAGE +
         "/book?" +
@@ -132,7 +136,7 @@ export default class Payment extends Component {
         "&screen=" +
         this.props.screen
     ).then(res => console.log(res));
-  };
+  }
 
   render() {
     return (

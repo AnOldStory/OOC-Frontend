@@ -48,7 +48,7 @@ export default class MainLogin extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res))
+      .then(res => this.props.tokenHandler(res));
   };
 
   render() {

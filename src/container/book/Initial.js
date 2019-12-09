@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './BookContainer.scss';
+import "./BookContainer.scss";
 
 export default class Initial extends Component {
   render() {
@@ -10,6 +10,6 @@ export default class Initial extends Component {
           <div className="booking">예매하기</div>
         </Link>
       </div>
-    )
+    );
   }
 }

@@ -60,10 +60,10 @@ export default class Login extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res))
+      .then(res => this.props.tokenHandler(res));
   };
   noLoginSubmit = event => {
-    this.props.tokenHandler(0)
+    this.props.tokenHandler(0);
   };
 
   render() {
@@ -98,14 +98,15 @@ export default class Login extends Component {
         <div className="noMember content">
           <div className="title001">Nonmember Login</div>
 
-            
-            <button
+          <button
             onClick={this.noLoginSubmit}
-              className="button001"
-              type="submit"
-              value="비회원"
-            >비회원으로 진행</button>
-            </div>
+            className="button001"
+            type="submit"
+            value="비회원"
+          >
+            비회원으로 진행
+          </button>
+        </div>
       </div>
     );
   }

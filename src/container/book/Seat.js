@@ -13,16 +13,15 @@ export default class Seat extends Component {
     this.state = {
       seats: table,
       //test
-      reserved_seat : []
+      reserved_seat: []
     };
     this.getSeat();
   }
 
-
   setReserved(data) {
     this.setState({
-      reserved_seat : data
-    })
+      reserved_seat: data
+    });
   }
 
   getSeat() {
@@ -40,13 +39,12 @@ export default class Seat extends Component {
       .then(res => res.json(res))
       .then(res => {
         console.log(res);
-        
+
         let reserveds = [];
         res.map((data, index) => {
           reserveds.push(data.seatNumber);
-        })
-        this.setReserved(reserveds)
-        
+        });
+        this.setReserved(reserveds);
       })
       .catch(err => console.log(err));
   }
@@ -55,28 +53,28 @@ export default class Seat extends Component {
     return (
       <div className="seats">
         <div className="seatList">
-          {this.state.seats.map((seat, index) => (
-            this.state.reserved_seat.includes(index+1)?(<div 
-              className={"reservedseat"}>
+          {this.state.seats.map((seat, index) =>
+            this.state.reserved_seat.includes(index + 1) ? (
+              <div className={"reservedseat"}>{index + 1}</div>
+            ) : (
+              <div
+                className={
+                  this.props.seat.includes(index + 1) ? "selectedseat" : "seat"
+                }
+                key={index}
+                onClick={() => {
+                  this.props.setSeat(index + 1);
+                  let newSeats = this.state.seats;
+                  newSeats[index] = !newSeats[index];
+                  this.setState({
+                    seats: newSeats
+                  });
+                }}
+              >
                 {index + 1}
-              </div>):(
-            <div
-              className={
-                this.props.seat.includes(index + 1) ? "selectedseat" : "seat"
-              }
-              key={index}
-              onClick={() => {
-                this.props.setSeat(index + 1);
-                let newSeats = this.state.seats;
-                newSeats[index] = !newSeats[index];
-                this.setState({
-                  seats: newSeats
-                });
-              }}
-            >
-              {index + 1}
-            </div>)
-          ))}
+              </div>
+            )
+          )}
         </div>
         <div className="next">
           <Link className="nextButton" to="/book/payment">

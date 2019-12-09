@@ -12,14 +12,13 @@ export default class NoMemLogin extends Component {
     this.state = {
       id: "",
       pw: "",
-      serial:"",
+      serial: "",
       isMemberLogin: false,
       rsa: []
     };
     this.handleIDChange = this.handleIDChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSerialChange = this.handleSerialChange.bind(this);
-
 
     this.getRSA();
     console.log(this.state.rsa);
@@ -31,8 +30,8 @@ export default class NoMemLogin extends Component {
         this.setState({ rsa: res });
       });
   }
-  handleSerialChange(e){
-    this.setState({serial:e.target.value})
+  handleSerialChange(e) {
+    this.setState({ serial: e.target.value });
   }
   handleIDChange(e) {
     this.setState({ id: e.target.value });
@@ -57,7 +56,7 @@ export default class NoMemLogin extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res))
+      .then(res => this.props.tokenHandler(res));
   };
 
   nologinSubmit = event => {
@@ -65,12 +64,11 @@ export default class NoMemLogin extends Component {
     event.preventDefault();
     console.log(this.state.rsa);
     let serialRule = /^\d{8}$/;
-    if(!serialRule.test(this.state.serial)) {
-      alert("Serial 형식이 올바르지 않습니다.")
-    }
-    else {
+    if (!serialRule.test(this.state.serial)) {
+      alert("Serial 형식이 올바르지 않습니다.");
+    } else {
       rsa.importKey(this.state.rsa, "public");
-    
+
       var serialEnc = rsa.encrypt(this.state.serial, "base64", "utf-8");
       fetch(CONFIG.HOMEPAGE + "/login", {
         method: "POST",
@@ -79,13 +77,12 @@ export default class NoMemLogin extends Component {
           serialEnc: serialEnc
         })
       })
-      .then(res => res.text())
-      .then(res=> {
-        this.props.tokenHandler(res)
-        console.log(res)
-      })
+        .then(res => res.text())
+        .then(res => {
+          this.props.tokenHandler(res);
+          console.log(res);
+        });
     }
-    
   };
 
   render() {
@@ -119,7 +116,7 @@ export default class NoMemLogin extends Component {
         </div>
         <div className="noMember content">
           <div className="title001">Nonmember Login</div>
-            <span className="txt">SERIAL</span>
+          <span className="txt">SERIAL</span>
           <br />
           <input
             className="input001"
@@ -128,14 +125,16 @@ export default class NoMemLogin extends Component {
             value={this.state.serial}
             onChange={this.handleSerialChange}
           />
-            
-            <button
-              onClick={this.nologinSubmit}
-              className="button001"
-              type="submit"
-              value="비회원"
-            >비회원으로 진행</button>
-            </div>
+
+          <button
+            onClick={this.nologinSubmit}
+            className="button001"
+            type="submit"
+            value="비회원"
+          >
+            비회원으로 진행
+          </button>
+        </div>
       </div>
     );
   }

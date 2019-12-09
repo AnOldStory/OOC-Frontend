@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import { withUserAgent } from "react-useragent";
 import queryString from "query-string";
 
+import CONFIG from "_variables";
+
 import {
   PGS,
   METHODS_FOR_INICIS,
@@ -31,7 +33,6 @@ function Payment({ history, form, ua, ...leftall }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(leftall);
     validateFieldsAndScroll((error, values) => {
       if (!error) {
         /* 가맹점 식별코드 */
@@ -52,13 +53,13 @@ function Payment({ history, form, ua, ...leftall }) {
           vbank_due,
           digital
         } = values;
-        console.log(leftall);
         const data = {
           pg: "html5_inicis",
           pay_method,
           merchant_uid,
           name: "OOC 영화관 티켓",
-          amount: (leftall.price * (1 - leftall.disrate)).toFixed(0),
+          amount: 100,
+          // amount: (leftall.price * (1 - leftall.disrate)).toFixed(0),
           buyer_name: leftall.name,
           buyer_tel: leftall.phone,
           buyer_email: leftall.email,
@@ -101,14 +102,84 @@ function Payment({ history, form, ua, ...leftall }) {
 
   function callback(response) {
     const { success, merchant_uid, error_msg } = response;
-
+    console.log(leftall);
+    console.log("hellio");
     if (success) {
-      alert("결제 성공");
+      if (leftall.token === 0) {
+        let mailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let phoneRule1 = /^\d{3}-\d{3,4}-\d{4}$/;
+        let phoneRule2 = /^\d{10,11}$/;
+        if (!mailRule.test(leftall.email)) {
+          alert("메일주소 형식이 올바르지 않습니다.");
+        } else if (
+          !phoneRule1.test(leftall.phone) &&
+          !phoneRule2.test(leftall.phone)
+        ) {
+          alert("전화번호 형식이 올바르지 않습니다.");
+        } else {
+          fetch(
+            CONFIG.HOMEPAGE +
+              "/book?" +
+              "cinema=" +
+              leftall.cinema +
+              "&movie=" +
+              leftall.movieId +
+              "&showroom=" +
+              leftall.showroom +
+              "&seats=" +
+              leftall.seat.concat("_") +
+              "&token=" +
+              0 +
+              "&payment=" +
+              leftall.method +
+              "&price=" +
+              (leftall.price * (1 - leftall.disrate)).toFixed(0) +
+              "&event=" +
+              leftall.disname +
+              "&screen=" +
+              leftall.screen +
+              "&email=" +
+              leftall.email +
+              "&phone=" +
+              leftall.phone
+          )
+            .then(res => res.json())
+            .then(res => {
+              alert(res.serial);
+              history.push(`/book/result`);
+            });
+        }
+      } else {
+        fetch(
+          CONFIG.HOMEPAGE +
+            "/book?" +
+            "cinema=" +
+            leftall.cinema +
+            "&movie=" +
+            leftall.movieId +
+            "&showroom=" +
+            leftall.showroom +
+            "&seats=" +
+            leftall.seat.concat("_") +
+            "&token=" +
+            leftall.token +
+            "&payment=" +
+            leftall.method +
+            "&price=" +
+            (leftall.price * (1 - leftall.disrate)).toFixed(0) +
+            "&event=" +
+            leftall.disname +
+            "&screen=" +
+            leftall.screen
+        ).then(res => {
+          console.log(res);
+
+          history.push(`/book/result`);
+        });
+      }
     } else {
       alert(`결제 실패: ${error_msg}`);
     }
-    // const query = queryString.stringify(response);
-    // history.push(`/payment/result?${query}`);
   }
 
   function onChangePg(value) {

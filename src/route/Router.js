@@ -22,7 +22,7 @@ class Router extends Component {
       time: "선택 전",
       screen: 0,
       seat: [],
-      showroom:'',
+      showroom: ""
     };
     this.tokenHandler = this.tokenHandler.bind(this);
     this.dateHandler = this.dateHandler.bind(this);
@@ -54,7 +54,7 @@ class Router extends Component {
     this.setState({ movie: e });
   };
   timeHandler = e => {
-    this.setState({ time: e.time, screen: e.screen,showroom:e.showRoomId });
+    this.setState({ time: e.time, screen: e.screen, showroom: e.showRoomId });
   };
   screenHandler = e => {
     this.setState({ screen: e });

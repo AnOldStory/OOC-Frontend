@@ -19,7 +19,7 @@
       }
       .movie_next
       {
-        margin-left:570%;
+        
       }
       .Time_next
       {
@@ -87,6 +87,9 @@
     background-color: rgb(221, 221, 181);
     height: 300px;
     margin-top:3px;
+    &::-webkit-scrollbar {
+    display: none;
+    }
     :nth-child(2){
       margin-top: 10px;
     }

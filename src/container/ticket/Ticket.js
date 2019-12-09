@@ -31,6 +31,7 @@ export default class Ticket extends Component {
       .then(res =>res.json())
       .then(res=>this.setState({tickets:res}))
   };
+  
   render() {
     return (
       <div className="ticketcontainer">
@@ -41,8 +42,8 @@ export default class Ticket extends Component {
           <div className="tickets">
             <button onClick={this.showTickets}>조회</button>
             {this.state.tickets.map(
-              (index) => (
-                <div className="ticket" key={index}
+              (index,i) => (
+                <div className="ticket" key={i}
                 onClick={()=>this.setState({cancel:[index.id,"dum"]})}>
                   <div className = "Ticket_Content">
                     <Button

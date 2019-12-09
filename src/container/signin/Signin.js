@@ -86,7 +86,7 @@ export default class Signin extends Component {
         })
       }).then(res=> console.log(res))
       .then(alert("회원가입완료!"))
-    //}
+    // }
   }; 
   render() {
     return (

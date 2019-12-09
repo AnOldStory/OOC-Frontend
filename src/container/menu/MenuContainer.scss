@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap');
 
 .menu{
-  height: 9vh;
+  height: 14vh;
   overflow: hidden;
   width:100%;
   background-color:#9be3de;
@@ -13,34 +13,47 @@
   width: 7%;
   float: left;
   margin-left:150px;
+  margin-top:3px;
   }
-  ul{
+  .small_bar
+  {
+    background-color: #BEEBe9;
+    height:4vh;
+    ul{
     text-align: right;
     list-style-type: none;
     margin-right:200px;
-    margin-top:5px;
-    padding: 3px;
+    
+    padding: 1px;
     li {
     float: right;
     display: inline;
       .menuLink{
         text-decoration: none;
+        cursor: pointer;
       }
       .menu_item{
         margin-right:15px;
         margin-left:5px;
-        font-size: 22pt;
+        font-size: 11pt;
         text-align: center;
         font-family: Rubik;
         width: 100%;
-        color:#fffdf9;
+        color:#464159;
         &:hover
         {
-          border-bottom:1px solid #ffe3ed;
+          border-bottom:2px solid #FFE3ED;
         }
       }
     }
   }
+  }
+  .big_bar
+  {
+    height: 10vh;
+  }
+  
+  
 }
 
 

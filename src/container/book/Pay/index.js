@@ -15,7 +15,7 @@ import { getMethods, getQuotas } from "./utils";
 const { Item } = Form;
 const { Option } = Select;
 
-function Payment({ history, form, ua }) {
+function Payment({ history, form, ua, ...leftall }) {
   const [methods, setMethods] = useState(METHODS_FOR_INICIS);
   const [quotas, setQuotas] = useState(QUOTAS_FOR_INICIS_AND_KCP);
   const [isQuotaRequired, setIsQuotaRequired] = useState(true);
@@ -31,7 +31,7 @@ function Payment({ history, form, ua }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(leftall);
     validateFieldsAndScroll((error, values) => {
       if (!error) {
         /* 가맹점 식별코드 */
@@ -52,16 +52,16 @@ function Payment({ history, form, ua }) {
           vbank_due,
           digital
         } = values;
-
+        console.log(leftall);
         const data = {
-          pg,
+          pg: "html5_inicis",
           pay_method,
           merchant_uid,
           name: "OOC 영화관 티켓",
-          amount: 100,
-          buyer_name,
-          buyer_tel,
-          buyer_email,
+          amount: (leftall.price * (1 - leftall.disrate)).toFixed(0),
+          buyer_name: leftall.name,
+          buyer_tel: leftall.phone,
+          buyer_email: leftall.email,
           escrow
         };
 
@@ -189,27 +189,27 @@ function Payment({ history, form, ua }) {
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <Item label="PG사">
-        {getFieldDecorator("pg", {
-          initialValue: "html5_inicis"
-        })(
-          <Select
-            size="large"
-            onChange={onChangePg}
-            suffixIcon={<Icon type="caret-down" />}
-          >
-            {PGS.map(pg => {
-              const { value, label } = pg;
-              return (
-                <Option value={value} key={value}>
-                  {label}
-                </Option>
-              );
-            })}
-          </Select>
-        )}
-      </Item>
+    <FormContainer onSubmit={handleSubmit.bind(this)}>
+      {/* <Item label="PG사">
+      {getFieldDecorator("pg", {
+        initialValue: "html5_inicis"
+      })(
+        <Select
+          size="large"
+          onChange={onChangePg}
+          suffixIcon={<Icon type="caret-down" />}
+        >
+          {PGS.map(pg => {
+            const { value, label } = pg;
+            return (
+              <Option value={value} key={value}>
+                {label}
+              </Option>
+            );
+          })}
+        </Select>
+      )}
+      </Item> */}
       <Item label="결제수단">
         {getFieldDecorator("pay_method", {
           initialValue: "card"
@@ -287,27 +287,27 @@ function Payment({ history, form, ua }) {
           rules: [{ required: true, message: "주문명은 필수입력입니다" }]
         })(<Input size="large" addonBefore="주문명" />)}
       </Item> */}
-      <Item>
+      {/* <Item>
         {getFieldDecorator("amount", {
           initialValue: "39000",
           rules: [{ required: true, message: "결제금액은 필수입력입니다" }]
         })(<Input size="large" type="number" addonBefore="결제금액" />)}
-      </Item>
+      </Item> */}
       {/* <Item>
         {getFieldDecorator("merchant_uid", {
           initialValue: `min_${new Date().getTime()}`,
           rules: [{ required: true, message: "주문번호는 필수입력입니다" }]
         })(<Input size="large" addonBefore="주문번호" />)}
       </Item> */}
-      <Item>
+      {/* <Item>
         {getFieldDecorator("buyer_name", {
-          initialValue: "홍길동",
+          initialValue: leftall.name,
           rules: [{ required: true, message: "구매자 이름은 필수입력입니다" }]
         })(<Input size="large" addonBefore="이름" />)}
       </Item>
       <Item>
         {getFieldDecorator("buyer_tel", {
-          initialValue: "01012341234",
+          initialValue: leftall.phone,
           rules: [
             { required: true, message: "구매자 전화번호는 필수입력입니다" }
           ]
@@ -315,10 +315,10 @@ function Payment({ history, form, ua }) {
       </Item>
       <Item>
         {getFieldDecorator("buyer_email", {
-          initialValue: "example@example.com",
+          initialValue: leftall.email,
           rules: [{ required: true, message: "구매자 이메일은 필수입력입니다" }]
         })(<Input size="large" addonBefore="이메일" />)}
-      </Item>
+      </Item> */}
       <Button type="primary" htmlType="submit" size="large">
         결제하기
       </Button>

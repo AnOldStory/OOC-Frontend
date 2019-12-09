@@ -26,27 +26,29 @@ export default class Seat extends Component {
   }
 
   getSeat() {
-    // fetch(
-    //   CONFIG.HOMEPAGE +
-    //     "/book/tickets/?date=" +
-    //     this.props.date +
-    //     "&cinema=" +
-    //     this.props.cinema +
-    //     "&movie=" +
-    //     this.props.movieId +
-    //     "&time=" +
-    //     this.props.time
-    // )
-    //   .then(res => res.json(res))
-    //   .then(res => {
-    //     console.log(res);
-    //     // let reserveds = [];
-    //     // res.map((data, index) => {
-    //     //   reserveds.push(data);
-    //     // })
-    //     // setReserved(reserveds)
-    //   })
-    //   .catch(err => console.log(err));
+    fetch(
+      CONFIG.HOMEPAGE +
+        "/book/?date=" +
+        this.props.date +
+        "&cinema=" +
+        this.props.cinema +
+        "&movie=" +
+        this.props.movieId +
+        "&time=" +
+        this.props.time
+    )
+      .then(res => res.json(res))
+      .then(res => {
+        console.log(res);
+        
+        let reserveds = [];
+        res.map((data, index) => {
+          reserveds.push(data.seatNumber);
+        })
+        this.setReserved(reserveds)
+        
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

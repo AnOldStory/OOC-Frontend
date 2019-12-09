@@ -5,6 +5,8 @@ import Pay from "container/book/Pay";
 
 import CONFIG from "_variables";
 
+const discount = ["생일","커플","솔로","얼리버드"]
+
 export default class Payment extends Component {
   constructor(props) {
     super(props);
@@ -15,13 +17,25 @@ export default class Payment extends Component {
       disname: "",
       method: "",
       email: "",
-      phone: ""
+      phone: "",
+      name:"",
     };
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.MemberpaySubmit = this.MemberpaySubmit.bind(this);
     this.noMemberpaySubmit = this.noMemberpaySubmit.bind(this);
+    this.getInformation();
   }
+  getInformation(){
+    if(this.props.token != 0){}
+    fetch(CONFIG.HOMEPAGE+"/book?token="+this.props.token)
+    .then(res=>res.json())
+    .then(res=>this.setState({name:res[0].customerName,
+                              email:res.customerEmail,
+                              phone:res.customerPhone}))
+  }
+    // .then(res=>this.setState({email:res.mail,phone:res.phone,name:res.name}))
+  
   handleMailChange(e) {
     this.setState({ email: e.target.value });
   }
@@ -109,7 +123,7 @@ export default class Payment extends Component {
           <div className="paycontent">
             <div
               className={
-                this.state.disname === "birth"
+                this.state.disname === 1
                   ? "dcContent selected"
                   : "dcContent"
               }
@@ -121,7 +135,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "couple"
+                this.state.disname === 2
                   ? "dcContent selected"
                   : "dcContent"
               }
@@ -136,7 +150,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "solo"
+                this.state.disname === 3
                   ? "selected dcContent"
                   : "dcContent"
               }
@@ -148,7 +162,7 @@ export default class Payment extends Component {
             </div>
             <div
               className={
-                this.state.disname === "bird"
+                this.state.disname === 4
                   ? "dcContent selected"
                   : "dcContent"
               }
@@ -200,7 +214,7 @@ export default class Payment extends Component {
 
             <div className="discount paySubcontent">
               <div className="subTitle">할인내용</div>
-              {this.state.disname} : {this.state.disrate * 100}% 할인금액 :{" "}
+              {discount[this.state.disname]} : {this.state.disrate * 100}% 할인금액 :{" "}
               {this.state.price * this.state.disrate}원
             </div>
 

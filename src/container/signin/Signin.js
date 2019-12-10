@@ -100,11 +100,18 @@ export default class Signin extends Component {
                         placeholder="급여"
                         onChange={this.handleSalChange}/>
                         <br/>
-                        <input type = "text" 
+                        <select type = "text" 
                         name="pos"
                         value={this.state.pos} 
                         placeholder="직책"
-                        onChange={this.handlePosChange}/>
+                        onChange={this.handlePosChange}
+                        className="select">
+                          <option value="manager">manager</option>
+                          <option value="saler">saler</option>
+                          <option value="staff">card</option>
+                          <option value="parttime">parttime</option>
+
+                          </select>
                         <br/>
                         <div className="button-wrap">
                          <input type="submit" value="SignUp" />

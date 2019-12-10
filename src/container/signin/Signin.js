@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Button} from "antd";
 import "./Signin.scss";
 import CONFIG from "_variables";
 
@@ -89,8 +89,15 @@ export default class Signin extends Component {
   render() {
     return (
       <div className="signIn">
-        <div className="SignIn001">Sign In</div>
+        <div className = "sign_in">
+        <div className="SignIn001">
+          <h1>Sign In</h1>
+          
+          Please fill in this form to create an account.
+          </div>
         <br />
+        
+        <div className = "part_signin">
         <span className="txt">ID</span>
         <br />
         <input
@@ -100,7 +107,9 @@ export default class Signin extends Component {
           value={this.state.id}
           onChange={this.handleIDChange}
         />
+        </div>
         <br />
+        <div className = "part_signin">
         <span className="txt">PW</span>
         <br />
         <input
@@ -110,7 +119,9 @@ export default class Signin extends Component {
           value={this.state.pw}
           onChange={this.handlePWChange}
         />
+        </div>
         <br />
+        <div className = "part_signin">
         <span className="txt"> Name</span>
         <br />
         <input
@@ -120,7 +131,9 @@ export default class Signin extends Component {
           value={this.state.name}
           onChange={this.handleNameChange}
         />
+        </div>
         <br />
+        <div className = "part_signin">
         <span className="txt">PhoneNumber</span>
         <br />
         <input
@@ -130,7 +143,10 @@ export default class Signin extends Component {
           value={this.state.phone}
           onChange={this.handlePhoneChange}
         />
+        </div>
         <br />
+        
+        <div className = "part_signin">
         <span className="txt">Email</span>
         <br />
         <input
@@ -140,8 +156,12 @@ export default class Signin extends Component {
           value={this.state.mail}
           onChange={this.handleMailChange}
         />
+        </div>
+
         <br />
-        <button onClick={this.signInSubmit}>Submit</button>
+        
+        <Button onClick={this.signInSubmit}>Submit</Button>
+      </div>
       </div>
     );
   }

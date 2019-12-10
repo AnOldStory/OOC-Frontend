@@ -2,10 +2,11 @@
 
 .next{
     
-    margin-top:130%;
+    margin-top:82.3%;
     text-decoration: none;
 
     .nextButton{
+      
       font-weight: bold;
       font-size: 20pt;
       text-decoration: none;
@@ -20,10 +21,11 @@
       .movie_next
       {
         
+        margin-left:577%;
       }
       .Time_next
       {
-        margin-left:93%;
+        margin-left:94.7%;
       }
 
     }
@@ -33,9 +35,8 @@
   .state{
     background-color: rgb(218,210,180);
     width:94%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left:10px;
+    
+    
     font-size: 13pt;
     margin-left: 3%;
     margin-right: 5%;
@@ -44,10 +45,21 @@
     font-family: Tahoma,sans-serif;
 
     .eachstate{
-      padding-left: 10px;
+      
     }
     .eachstateafter{
-      padding-left: 10px;
+      
+    }
+    .bar_title
+    {
+      display: inline-block;
+      background-color:#eeeeee;
+      padding:10px;
+    }
+    .bar_content
+    {
+      display:inline-block;
+      padding-left:10px;
     }
   }
 }

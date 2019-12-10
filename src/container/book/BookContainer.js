@@ -15,8 +15,8 @@ class BookContainer extends Component {
               this.props.date === "선택 전" ? "eachstate" : "eachstateafter"
             }
           >
-            DATE
-            {this.props.date}
+            <span className = "bar_title">DATE</span>
+            <span className = "bar_content">{this.props.date}</span>
           </div>
 
           <div
@@ -24,8 +24,8 @@ class BookContainer extends Component {
               this.props.cinema === "선택 전" ? "eachstate" : "eachstateafter"
             }
           >
-            CINEMA
-            {this.props.cinema}
+            <span className = "bar_title">CINEMA</span>
+            <span className = "bar_content">{this.props.cinema}</span>
           </div>
 
           <div
@@ -33,8 +33,8 @@ class BookContainer extends Component {
               this.props.movie === "선택 전" ? "eachstate" : "eachstateafter"
             }
           >
-            MOVIE
-            {this.props.movie}
+            <span className = "bar_title">MOVIE</span>
+            <span className = "bar_content">{this.props.movie}</span>
           </div>
 
           <div
@@ -42,8 +42,8 @@ class BookContainer extends Component {
               this.props.time === "선택 전" ? "eachstate" : "eachstateafter"
             }
           >
-            TIME
-            {this.props.time}
+            <span className = "bar_title">TIME</span>
+            <span className = "bar_content">{this.props.time}</span>
           </div>
 
           <div
@@ -51,8 +51,8 @@ class BookContainer extends Component {
               this.props.seat.length === 0 ? "eachstate" : "eachstateafter"
             }
           >
-            SEAT
-            {this.props.seat.join()}
+            <span className = "bar_title">SEAT</span>
+            <span className = "bar_content">{this.props.seat.join()}</span>
           </div>
         </div>
       </div>

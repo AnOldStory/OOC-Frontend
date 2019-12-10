@@ -35,6 +35,10 @@ class Router extends Component {
     this.seatHandler = this.seatHandler.bind(this);
     this.initializeState = this.initializeState.bind(this);
     this.showroomHandler = this.showroomHandler.bind(this);
+    this.memberLogout = this.memberLogout.bind(this);
+  }
+  memberLogout=()=>{
+    this.setState({token:"",member:false})
   }
   tokenHandler = e => {
     this.setState({ token: e });
@@ -95,6 +99,7 @@ class Router extends Component {
             initializeState={this.initializeState}
             memberHandler={this.memberHandler}
             member={this.state.member}
+            memberLogout={this.memberLogout}
           />
           <Switch>
             <Route exact path="/" component={MainContainer} />

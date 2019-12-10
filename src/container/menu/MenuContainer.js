@@ -7,12 +7,14 @@ import Logo from "image/Logo.png";
 
 class MenuContainer extends Component {
   tokenReset() {
-    this.props.tokenHandler("");
+    if(this.props.member === false){
+      this.props.initializeState();
+      this.props.tokenHandler("");
+    }
   }
 
   bookClick() {
-    this.props.initializeState();
-    if(this.props.member === false){
+    {
       this.tokenReset();
     }
   }
@@ -36,6 +38,10 @@ class MenuContainer extends Component {
                 <div className="menu_item" onClick={()=>this.tokenReset()}>SignIn</div>
               </Link>
             </li>
+            {this.props.member ===true &&
+              <li>
+                <div className="menu_item" onClick={()=>this.props.memberLogout()}>LOGOUT</div>
+            </li>}
           </ul>
         </div>
         <div className="big_bar" onClick={()=>this.tokenReset()}>

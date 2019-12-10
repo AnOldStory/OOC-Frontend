@@ -106,6 +106,7 @@ export default class Signin extends Component {
           className="input002"
           type="text"
           name="id"
+          placeholder = "4 ~ 20 자리 영(대, 소), 숫자"
           value={this.state.id}
           onChange={this.handleIDChange}
         />
@@ -118,6 +119,7 @@ export default class Signin extends Component {
           className="input002"
           type="password"
           name="pw"
+          placeholder='숫자+영문자 10~15자리'
           value={this.state.pw}
           onChange={this.handlePWChange}
         />
@@ -130,6 +132,7 @@ export default class Signin extends Component {
           className="input002"
           type="text"
           name="name"
+          placeholder="홍길동"
           value={this.state.name}
           onChange={this.handleNameChange}
         />
@@ -142,6 +145,7 @@ export default class Signin extends Component {
           className="input002"
           type="text"
           name="phone"
+          placeholder = "01012345678"
           value={this.state.phone}
           onChange={this.handlePhoneChange}
         />
@@ -155,6 +159,7 @@ export default class Signin extends Component {
           className="input002"
           type="text"
           name="mail"
+          placeholder="asdf@example.com"
           value={this.state.mail}
           onChange={this.handleMailChange}
         />
@@ -162,7 +167,7 @@ export default class Signin extends Component {
 
         <br />
         
-        <Button onClick={this.signInSubmit}>Submit</Button>
+        <Button className = "Signin_button" onClick={this.signInSubmit}>Submit</Button>
       </div>
       </div>
     );

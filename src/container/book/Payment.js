@@ -23,12 +23,10 @@ export default class Payment extends Component {
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.MemberpaySubmit = this.MemberpaySubmit.bind(this);
-    this.noMemberpaySubmit = this.noMemberpaySubmit.bind(this);
     this.getInformation();
   }
   getInformation() {
-    if (this.props.token != 0) {
+    if (this.props.token !== 0) {
     }
     fetch(CONFIG.HOMEPAGE + "/book?token=" + this.props.token)
       .then(res => res.json())
@@ -68,75 +66,6 @@ export default class Payment extends Component {
       method: name
     });
   };
-
-  noMemberpaySubmit = event => {
-    event.preventDefault();
-    let mailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    let phoneRule1 = /^\d{3}-\d{3,4}-\d{4}$/;
-    let phoneRule2 = /^\d{10,11}$/;
-    if (!mailRule.test(this.state.email)) {
-      alert("메일주소 형식이 올바르지 않습니다.");
-    } else if (
-      !phoneRule1.test(this.state.phone) &&
-      !phoneRule2.test(this.state.phone)
-    ) {
-      alert("전화번호 형식이 올바르지 않습니다.");
-    } else {
-      fetch(
-        CONFIG.HOMEPAGE +
-          "/book?" +
-          "cinema=" +
-          this.props.cinema +
-          "&movie=" +
-          this.props.movieId +
-          "&showroom=" +
-          this.props.showroom +
-          "&seats=" +
-          this.props.seat.concat("_") +
-          "&token=" +
-          0 +
-          "&payment=" +
-          this.state.method +
-          "&price=" +
-          (this.state.price * (1 - this.state.disrate)).toFixed(0) +
-          "&event=" +
-          this.state.disname +
-          "&screen=" +
-          this.props.screen +
-          "&email=" +
-          this.state.email +
-          "&phone=" +
-          this.state.phone
-      )
-        .then(res => res.json())
-        .then(res => alert(res.serial));
-    }
-  };
-
-  MemberpaySubmit() {
-    fetch(
-      CONFIG.HOMEPAGE +
-        "/book?" +
-        "cinema=" +
-        this.props.cinema +
-        "&movie=" +
-        this.props.movieId +
-        "&showroom=" +
-        this.props.showroom +
-        "&seats=" +
-        this.props.seat.concat("_") +
-        "&token=" +
-        this.props.token +
-        "&payment=" +
-        this.state.method +
-        "&price=" +
-        (this.state.price * (1 - this.state.disrate)).toFixed(0) +
-        "&event=" +
-        this.state.disname +
-        "&screen=" +
-        this.props.screen
-    ).then(res => console.log(res));
-  }
 
   render() {
     return (
@@ -268,11 +197,7 @@ export default class Payment extends Component {
           <div className="paybutton">
             <Pay
               {...this.state}
-              onClick={
-                this.props.token === 0
-                  ? this.noMemberpaySubmit
-                  : this.MemberpaySubmit
-              }
+              {...this.props}
               result={this.state.result}
               cinema={this.props.cinema}
               movieId={this.props.movieId}

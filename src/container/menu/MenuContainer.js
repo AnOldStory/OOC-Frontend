@@ -7,14 +7,14 @@ import Logo from "image/Logo.png";
 
 class MenuContainer extends Component {
   tokenReset() {
-    this.props.tokenHandler("");
+    if(this.props.member === false){
+      this.props.tokenHandler("");
+    }
   }
 
   bookClick() {
     this.props.initializeState();
-    if(this.props.member === false){
-      this.tokenReset();
-    }
+    this.tokenReset();
   }
   render() {
     return (

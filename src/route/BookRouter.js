@@ -91,6 +91,7 @@ class BookRouter extends Component {
                   settoken={this.props.tokenHandler}
                   token={this.props.token}
                   id={this.props.id}
+                  memberHandler={this.props.memberHandler}
                 />
               ) : (
                 <Payment

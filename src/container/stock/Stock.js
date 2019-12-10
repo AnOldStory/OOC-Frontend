@@ -1,16 +1,31 @@
 import React, { Component } from 'react'
 import Login from 'container/main/Login';
 import ReactDataGrid from 'react-data-grid';
+import { Toolbar, Data } from "react-data-grid-addons";
+
 import CONFIG from "_variables";
 
 
+const defaultColumnProperties = {
+  filterable: true,
+};
+
+const handleFilterChange = filter => filters => {
+  const newFilters = { ...filters };
+  if (filter.filterTerm) {
+    newFilters[filter.column.key] = filter;
+  } else {
+    delete newFilters[filter.column.key];
+  }
+  return newFilters;
+};
 const columns = [{ key: 'id', name: '상품번호' },
 { key:'cinemaId', name: '지점'},
 { key: 'goodsName', name: '상품명' },
 { key: 'goodsPrice', name : '단가'},
 { key: 'goodsCount', name: '재고'},
 
-];
+].map(c => ({ ...c, ...defaultColumnProperties }));
 
 export default class Stock extends Component {
   constructor(props){
@@ -22,19 +37,29 @@ export default class Stock extends Component {
       cinema:'',
       price:0,
       rows : [],
-      goods:[]
+      goods:[],      
+      filter : [],  
+      
+      filterName:'',
+      filterGoodsNum:'',
+      filterCinema:'',
     }
     this.nameHandler = this.nameHandler.bind(this);
-    this.countHandler = this.countHandler.bind(this)
-    this.cinemaHandler = this.cinemaHandler.bind(this)
-    this.priceHandler = this.priceHandler.bind(this)
-    this.idHandler = this.idHandler.bind(this)
+    this.countHandler = this.countHandler.bind(this);
+    this.cinemaHandler = this.cinemaHandler.bind(this);
+    this.priceHandler = this.priceHandler.bind(this);
+    this.idHandler = this.idHandler.bind(this);
+    this.filterCinemaHandler = this.filterCinemaHandler.bind(this);
+    this.filterGoodsNumHandler = this.filterGoodsNumHandler.bind(this);
+    this.filterNameHandler = this.filterNameHandler.bind(this);
     this.rowGetter = this.rowGetter.bind(this);
+
 
     this.addItem = this.addItem.bind(this);
     this.inItem = this.inItem.bind(this);
     this.outItem= this.outItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.filterStocks = this.filterStocks.bind(this);
     this.getStocks();
   }
   getStocks(){
@@ -42,6 +67,16 @@ export default class Stock extends Component {
     .then(res=>res.json())
     .then(res=>this.setState({goods:res}))
     }
+  
+  filterNameHandler(e){
+    this.setState({filterName:e.target.value})
+  }
+  filterGoodsNumHandler(e){
+    this.setState({filterGoodsNum:e.target.value})
+  }
+  filterCinemaHandler(e){
+    this.setState({filterCinema:e.target.value})
+  }
 
 
   nameHandler(e){
@@ -87,6 +122,17 @@ export default class Stock extends Component {
     this.getStocks();
   }
   rowGetter = rowNumber => this.state.goods[rowNumber];
+  filterRowGetter = rowNumber => this.state.filter[rowNumber];
+
+  filterStocks(){
+    var rows = this.state.goods.filter((data)=>data.goodsName.includes(this.state.filterName))
+    .filter((data)=>data.id.toString().includes(this.state.filterGoodsNum.toString()))
+    .filter((data)=>data.cinemaId.toString().includes(this.state.filterCinema.toString()));
+    
+
+    this.setState({filter:rows});
+  }
+
   render() {
     return (
       <div>
@@ -94,6 +140,7 @@ export default class Stock extends Component {
         <Login tokenHandler={this.props.tokenHandler}/>
         :
         <div>
+          <div>
            이름
           <input name="name" value={this.state.name} 
             onChange={this.nameHandler}/>
@@ -117,11 +164,28 @@ export default class Stock extends Component {
               onChange={this.idHandler}
               placeholder="제거할때만 입력"/>
             <button onClick={this.removeItem}>제거</button>
+            </div>
+            <br/>
+            <div>
+              <strong>상품검색</strong> 상품명
+              <input name="name" value={this.state.filterName}
+              onChange={this.filterNameHandler}/>
+              상품번호
+              <input name="num" value={this.state.filterGoodsNum}
+              onChange={this.filterGoodsNumHandler}/>
+              지점
+              <input name="cinema" value={this.state.filterCinema}
+              onChange={this.filterCinemaHandler}/>
+              <button onClick={this.filterStocks}>검색</button>
+            </div>
           <ReactDataGrid
-        columns={columns}
-        rowGetter={this.rowGetter}
-        rowsCount={this.state.goods.length}
-        minHeight={800} />
+          columns={columns}
+          rowGetter={this.state.filter.length===0? this.rowGetter
+          :this.filterRowGetter}
+          rowsCount={this.state.filter.length ===0?this.state.goods.length
+          :this.state.filter.length}
+          minHeight={800}
+         />} />
         </div>
         }
 

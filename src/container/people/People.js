@@ -51,8 +51,8 @@ export default class People extends Component {
   }
   filterPeople(){
     var rows = this.state.people.filter((data)=>data.empName.includes(this.state.name))
-    // .filter((data)=>data.empPosition.includes(this.state.position))
-    // .filter((data)=>data.cinemaId===this.state.cinema)
+    .filter((data)=>data.empPosition.includes(this.state.position))
+    .filter((data)=>data.cinemaId.toString().includes(this.state.cinema.toString()))
 
     this.setState({filter:rows});
   }

@@ -24,12 +24,13 @@ export default class Ticket extends Component {
 
   cancelEvent = (e) => {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token
-          +"&tickets="+e)
-          .then(res=>console.log(res))
-
-    fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
+      +"&tickets="+e)
       .then(res =>res.json())
       .then(res=>this.setState({tickets:res}))
+
+    // fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
+    //   .then(res =>res.json())
+    //   .then(res=>this.setState({tickets:res}))
   };
   
   render() {

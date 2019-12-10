@@ -6,6 +6,9 @@ import MainLogin from "container/login/MainLogin";
 import Logo from "image/Logo.png";
 
 class MenuContainer extends Component {
+  bookClick() {
+    this.props.initializeState();
+  }
   render() {
     return (
       <div className="menu">
@@ -18,7 +21,7 @@ class MenuContainer extends Component {
             </li>
             <li>
               <Link to="/book" className="menuLink">
-                <div className="menu_item">BOOK</div>
+                <div className="menu_item" onClick={()=>this.bookClick()}>BOOK</div>
               </Link>
             </li>
             <li>

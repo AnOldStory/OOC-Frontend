@@ -14,7 +14,7 @@ class Router extends Component {
     super(props);
     this.state = {
       token: "",
-      isLoggedin: false,
+      member: false,
       cinema: "선택 전",
       movieId: -1,
       movie: "선택 전",
@@ -88,6 +88,7 @@ class Router extends Component {
           <MenuContainer
             token={this.state.token}
             tokenHandler={this.tokenHandler}
+            initializeState={this.initializeState}
           />
           <Switch>
             <Route exact path="/" component={MainContainer} />

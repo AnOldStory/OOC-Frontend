@@ -47,7 +47,14 @@ export default class Login extends Component {
       })
     })
       .then(res => res.text())
-      .then(res=>this.props.tokenHandler(res))
+      .then(res => {
+        if(res.includes("<!DOCTYPE html>")){
+          alert("INVALID ID/PASSWORD/POSITION")
+        }
+        else{
+          this.props.tokenHandler(res)
+        }
+      })
   };
   render() {
     return (

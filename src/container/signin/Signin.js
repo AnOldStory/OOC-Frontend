@@ -42,8 +42,20 @@ export default class Signin extends Component {
     }
     singUpSubmit(event){
       event.preventDefault();
-      console.log(this.state.rsa);
 
+      let idRule = /^[A-Za-z]{1}\w{3,19}$/;
+      let pwRule = /^[a-zA-Z0-9]{10,15}$/;
+
+      
+      console.log(this.state.rsa);
+      if(!idRule.test(this.state.name)) {
+        alert("4 ~ 20 자리 영(대, 소), 숫자");
+      } else if(!pwRule.test(this.state.pw)) {
+        alert('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+      } else if(typeof(this.state.sal * (1)) != "number"){
+        alert('1원에서 9999999999원까지 가능합니다')
+      } 
+      else {
       rsa.importKey(this.state.rsa, "public");
       var encPw = rsa.encrypt(this.state.pw, "base64", "utf-8");
       console.log(encPw)
@@ -57,7 +69,9 @@ export default class Signin extends Component {
         })
     }).then(res=>res.text())
     .then(alert("회원가입완료!"))
-    }
+  }
+  }
+
 
     render() {
         return (

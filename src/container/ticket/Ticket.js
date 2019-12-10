@@ -45,7 +45,7 @@ export default class Ticket extends Component {
           />
         ) : (
           <div className="tickets">
-            <button onClick={this.showTickets}>조회</button>
+            <button className = "ticket_button" onClick={this.showTickets}>조회</button>
             {this.state.tickets.map(
               (index,i) => (
                 <div className="ticket" key={i}

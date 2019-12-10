@@ -37,7 +37,7 @@ class MenuContainer extends Component {
               </Link>
             </li>
             {this.props.member ===true &&
-              <li>
+              <li className = "menuLink">
                 <div className="menu_item" onClick={()=>this.props.memberLogout()}>LOGOUT</div>
             </li>}
           </ul>

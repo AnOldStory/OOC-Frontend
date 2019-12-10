@@ -7,6 +7,12 @@
 
 
     overflow: scroll;
+    .ticket_button
+    {
+      float:left;
+      overflow: hidden;
+     
+    }
     .ticket{
       border: 1px black solid;
       padding: 10px;
@@ -16,6 +22,8 @@
       background-image: url('./영화티켓.png');
       width: 300px;
       height: 475px;
+      float:right;
+      margin-right:5px;
       .Detail_Content
       {
         font-size:17pt;

@@ -56,7 +56,14 @@ export default class NoMemLogin extends Component {
       })
     })
       .then(res => res.text())
-      .then(res => this.props.tokenHandler(res));
+      .then(res => {
+        if (res.includes("<!DOCTYPE html>")) {
+          alert("아이디 비밀번호를 확인하세요")
+        }
+        else {
+          this.props.tokenHandler(res)
+        }
+      });
   };
 
   nologinSubmit = event => {

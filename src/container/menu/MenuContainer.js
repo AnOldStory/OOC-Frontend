@@ -6,8 +6,15 @@ import MainLogin from "container/login/MainLogin";
 import Logo from "image/Logo.png";
 
 class MenuContainer extends Component {
+  tokenReset() {
+    this.props.tokenHandler("");
+  }
+
   bookClick() {
     this.props.initializeState();
+    if(this.props.member === false){
+      this.tokenReset();
+    }
   }
   render() {
     return (
@@ -16,7 +23,7 @@ class MenuContainer extends Component {
           <ul>
             <li>
               <Link to="/ticket" className="menuLink">
-                <div className="menu_item">TICKET</div>
+                <div className="menu_item" onClick={()=>this.tokenReset()}>TICKET</div>
               </Link>
             </li>
             <li>
@@ -26,12 +33,12 @@ class MenuContainer extends Component {
             </li>
             <li>
               <Link to="/signin" className="menuLink">
-                <div className="menu_item">SignIn</div>
+                <div className="menu_item" onClick={()=>this.tokenReset()}>SignIn</div>
               </Link>
             </li>
           </ul>
         </div>
-        <div className="big_bar">
+        <div className="big_bar" onClick={()=>this.tokenReset()}>
           <Link to="/">
             <img src={Logo} alt="logo" />
           </Link>

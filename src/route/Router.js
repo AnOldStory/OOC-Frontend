@@ -25,6 +25,7 @@ class Router extends Component {
       showroom: ""
     };
     this.tokenHandler = this.tokenHandler.bind(this);
+    this.memberHandler = this.memberHandler.bind(this);
     this.dateHandler = this.dateHandler.bind(this);
     this.cinemaHandler = this.cinemaHandler.bind(this);
     this.movieIdHandler = this.movieIdHandler.bind(this);
@@ -37,6 +38,9 @@ class Router extends Component {
   }
   tokenHandler = e => {
     this.setState({ token: e });
+  };
+  memberHandler = e => {
+    this.setState({ member: e });
   };
   showroomHandler = e => {
     this.setState({ showroom: e });
@@ -89,6 +93,8 @@ class Router extends Component {
             token={this.state.token}
             tokenHandler={this.tokenHandler}
             initializeState={this.initializeState}
+            memberHandler={this.memberHandler}
+            member={this.state.member}
           />
           <Switch>
             <Route exact path="/" component={MainContainer} />
@@ -97,6 +103,7 @@ class Router extends Component {
               component={() => (
                 <BookRouter
                   tokenHandler={this.tokenHandler}
+                  memberHandler={this.memberHandler}
                   dateHandler={this.dateHandler}
                   cinemaHandler={this.cinemaHandler}
                   movieIdHandler={this.movieIdHandler}
@@ -106,6 +113,7 @@ class Router extends Component {
                   seatHandler={this.seatHandler}
                   showroomHandler={this.showroomHandler}
                   token={this.state.token}
+                  member={this.state.member}
                   cinema={this.state.cinema}
                   movieId={this.state.movieId}
                   movie={this.state.movie}
@@ -123,7 +131,9 @@ class Router extends Component {
               component={() => (
                 <Ticket
                   token={this.state.token}
+                  member={this.state.member}
                   tokenHandler={this.tokenHandler}
+                  memberHandler={this.memberHandler}
                 />
               )}
             />

@@ -144,7 +144,7 @@ export default class Payment extends Component {
             >
               <img alt="bank" src={require("container/book/img/bank.png")} />
               <br />
-              카드결제
+              계좌이체
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default class Payment extends Component {
 
             <div className="discount paySubcontent">
               <div className="subTitle">할인내용</div>
-              {discount[this.state.disname]} : {this.state.disrate * 100}%
+              {discount[this.state.disname-1]} : {this.state.disrate * 100}%
               할인금액 : {this.state.price * this.state.disrate}원
             </div>
 
@@ -169,28 +169,33 @@ export default class Payment extends Component {
           </div>
           {this.props.token === 0 && (
             <div className="noMember">
+              <span className = "noMember_Form">E-mail</span>
               <input
                 className="Input003"
                 type="text"
                 value={this.state.email}
                 onChange={this.handleMailChange}
-                placeholder="E-MAIL"
+                placeholder="asdf@example.com"
               />
               <br />
+              <span className = "noMember_Form_2">PHONE</span>
               <input
                 className="Input003"
                 type="text"
+                placeholder="01012345678"
                 value={this.state.phone}
                 onChange={this.handlePhoneChange}
-                placeholder="PHONE"
+                
               />
               <br />
+              <span className = "noMember_Form">NAME</span>
               <input
                 className="Input003"
                 type="text"
+                placeholder="홍길동"
                 value={this.state.name}
                 onChange={this.handleNameChange}
-                placeholder="NAME"
+                
               />
             </div>
           )}

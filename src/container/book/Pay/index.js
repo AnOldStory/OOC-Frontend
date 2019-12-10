@@ -82,7 +82,7 @@ function Payment({ history, form, ua, ...leftall }) {
         }
 
         console.log(leftall);
-        let mailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let mailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
         let phoneRule1 = /^\d{3}-\d{3,4}-\d{4}$/;
         let phoneRule2 = /^\d{10,11}$/;
         if (!mailRule.test(leftall.email)) {

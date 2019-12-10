@@ -62,7 +62,7 @@ export default class NoMemLogin extends Component {
         }
         else {
           this.props.tokenHandler(res)
-          this.props.memberHandler(false)
+          this.props.memberHandler(true)
         }
       });
   };
@@ -87,7 +87,12 @@ export default class NoMemLogin extends Component {
       })
         .then(res => res.text())
         .then(res => {
-          this.props.tokenHandler(res);
+          if(res.includes("<!DOCTYPE html>")) {
+            alert("Serial 형식이 올바르지 않습니다.");
+          }
+          else {
+            this.props.tokenHandler(res);
+          }
           console.log(res);
         });
     }

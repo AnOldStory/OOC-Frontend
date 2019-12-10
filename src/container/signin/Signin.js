@@ -59,32 +59,34 @@ export default class Signin extends Component {
     let idRule = /^[A-Za-z]{1}\w{3,19}$/;
     let pwRule = /^[a-zA-Z0-9]{10,15}$/;
 
-    let mailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    let mailRule = /^[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_￦.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     let phoneRule1 = /^\d{3}-\d{3,4}-\d{4}$/;
     let phoneRule2 = /^\d{10,11}$/;
 
-    // if(!idRule.test(this.state.id)) {
-    //   alert("4 ~ 20 자리 영(대, 소), 숫자");
-    // } else if(!pwRule.test(this.state.pw)) {
-    //   alert('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
-    // } else if(!mailRule.test(this.state.email)) {
-    //   alert("메일주소 형식이 올바르지 않습니다.");
-    // } else if (!phoneRule1.test(this.state.phone) && !phoneRule2.test(this.state.phone)) {
-    //   alert("전화번호 형식이 올바르지 않습니다.");
-    // } else {
-    fetch(CONFIG.HOMEPAGE + "/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        id: this.state.id,
-        passEnc: encPw,
-        name: this.state.name,
-        phone: this.state.phone,
-        mail: this.state.mail
+    if(!idRule.test(this.state.id)) {
+      alert("4 ~ 20 자리 영(대, 소), 숫자");
+    } else if(!pwRule.test(this.state.pw)) {
+      alert('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+    } else if(!mailRule.test(this.state.mail)) {
+      alert("메일주소 형식이 올바르지 않습니다.");
+    } else if (!phoneRule1.test(this.state.phone) && !phoneRule2.test(this.state.phone)) {
+      alert("전화번호 형식이 올바르지 않습니다.");
+    } else {
+      fetch(CONFIG.HOMEPAGE + "/signin", {
+        method: "POST",
+        body: JSON.stringify({
+          id: this.state.id,
+          passEnc: encPw,
+          name: this.state.name,
+          phone: this.state.phone.split("-").join(),
+          mail: this.state.mail
+        })
       })
-    })
-      .then(res => console.log(res))
-      .then(alert("회원가입완료!"));
-    // }
+      .then(res => {
+        console.log(res);
+        alert("회원가입완료!");
+      })
+    }
   };
   render() {
     return (

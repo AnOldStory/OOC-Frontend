@@ -27,7 +27,7 @@ export default class Ticket extends Component {
       +"&tickets="+e)
       .then(res =>res.json())
       .then(res=>this.setState({tickets:res}))
-      // .catch(() => this.setStates({tickets: []}))
+      .catch(() => this.setState({tickets:[]}))
 
     // fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
     //   .then(res =>res.json())
@@ -38,8 +38,11 @@ export default class Ticket extends Component {
     return (
       <div className="ticketcontainer">
         {this.props.token === "" ? (
-          <NoMemLogin token={this.props.token}
-                tokenHandler={this.props.tokenHandler}/>
+          <NoMemLogin 
+            token={this.props.token}
+            tokenHandler={this.props.tokenHandler}
+            memberHandler={this.props.memberHandler}
+          />
         ) : (
           <div className="tickets">
             <button onClick={this.showTickets}>조회</button>

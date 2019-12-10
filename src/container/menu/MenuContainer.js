@@ -36,6 +36,10 @@ class MenuContainer extends Component {
                 <div className="menu_item" onClick={()=>this.tokenReset()}>SignIn</div>
               </Link>
             </li>
+            {this.props.member ===true &&
+              <li>
+                <div className="menu_item" onClick={()=>this.props.memberLogout()}>LOGOUT</div>
+            </li>}
           </ul>
         </div>
         <div className="big_bar" onClick={()=>this.tokenReset()}>

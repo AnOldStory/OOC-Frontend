@@ -62,7 +62,7 @@ export default class NoMemLogin extends Component {
         }
         else {
           this.props.tokenHandler(res)
-          this.props.memberHandler(false)
+          this.props.memberHandler(true)
         }
       });
   };

@@ -24,7 +24,8 @@ export default class DCM extends Component {
     this.setState({
       date: date,
       cinema: "",
-      movie: ""
+      movie: "",
+      movieId: -1,
     });
     this.getCinemas(date);
   }
@@ -32,7 +33,8 @@ export default class DCM extends Component {
   cinemaClick(cinema) {
     this.setState({
       cinema: cinema,
-      movie: ""
+      movie: "",
+      movieId: -1,
     });
     this.getMovies(this.state.date, cinema);
   }
@@ -45,10 +47,18 @@ export default class DCM extends Component {
   }
 
   nextClick() {
-    this.props.setDate(this.state.date);
-    this.props.setCinema(this.state.cinema);
-    this.props.setMovieId(this.state.movieId);
-    this.props.setMovie(this.state.movie);
+    if(this.state.movieId === -1){
+      this.props.setDate("선택 전");
+      this.props.setCinema("선택 전");
+      this.props.setMovieId(this.state.movieId);
+      this.props.setMovie("선택 전");
+    }
+    else{
+      this.props.setDate(this.state.date);
+      this.props.setCinema(this.state.cinema);
+      this.props.setMovieId(this.state.movieId);
+      this.props.setMovie(this.state.movie);
+    }
   }
 
   getDates() {
@@ -170,11 +180,13 @@ export default class DCM extends Component {
             </div>
           ))}
         </div>
+        {this.state.movieId === -1?"":
         <div className="next" onClick={() => this.nextClick()}>
-          <Link className="nextButton" to="/book/time">
+          <Link className="nextButton" to={this.state.movieId===-1?"/book":"/book/time"}>
             <span className="movie_next">NEXT</span>
           </Link>
         </div>
+        }
       </div>
     );
   }

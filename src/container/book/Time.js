@@ -73,11 +73,13 @@ export default class Time extends Component {
             </div>
           ))}
         </div>
+        {this.props.time === "선택 전"?"":
         <div className="next">
-          <Link className="nextButton" to="/book/seat">
+          <Link className="nextButton" to={this.props.time === "선택 전"?"/book/time":"/book/seat"}>
             <span className="Time_next">NEXT</span>
           </Link>
         </div>
+        }
       </div>
     );
   }

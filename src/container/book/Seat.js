@@ -16,6 +16,7 @@ export default class Seat extends Component {
       reserved_seat: []
     };
     this.getSeat();
+    console.log(this.props)
   }
 
   setReserved(data) {
@@ -63,12 +64,15 @@ export default class Seat extends Component {
                 }
                 key={index}
                 onClick={() => {
-                  this.props.setSeat(index + 1);
-                  let newSeats = this.state.seats;
-                  newSeats[index] = !newSeats[index];
-                  this.setState({
-                    seats: newSeats
-                  });
+                  if (this.props.time != "선택 전"){
+                    this.props.setSeat(index + 1);
+                    console.log(this.props.seat.length)
+                    let newSeats = this.state.seats;
+                    newSeats[index] = !newSeats[index];
+                    this.setState({
+                      seats: newSeats
+                    });
+                  }
                 }}
               >
                 {index + 1}
@@ -76,11 +80,13 @@ export default class Seat extends Component {
             )
           )}
         </div>
+        {(this.props.seat.length < 1 || this.props.time === "선택 전")?"":
         <div className="next">
           <Link className="nextButton" to="/book/payment">
             <span>NEXT</span>
           </Link>
         </div>
+        }
       </div>
     );
   }

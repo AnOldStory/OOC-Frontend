@@ -1,7 +1,13 @@
 import React from "react";
-import { Slide } from "react-slideshow-image";
+import { Fade } from "react-slideshow-image";
 import jiyoungkim from "./jiyoungkim.jpg";
+import jiyoung from "./jiyoung.jpg";
 import avengers from "./avengers.jpg";
+import avengers2 from "./avengers2.jpg";
+import last from "./last.jpg";
+import hello from "./hello.png";
+import inter from "./inter.jpg";
+import hamdo from "./hamdo.jpg";
 import "./Slide.css";
 
 const proprietes = {
@@ -14,18 +20,18 @@ const proprietes = {
 const Slideshow = () => {
   return (
     <div className="containerSlide">
-      <Slide {...proprietes}>
+      <Fade {...proprietes}>
         <div className="each-slide">
-          <div>
-            <img src={jiyoungkim} alt="img1" />
-          </div>
+          <div className="black" />
+          {/* <img src={hello} className="hello" alt="img1" /> */}
+          <img src={inter} alt="img2" />
         </div>
         <div className="each-slide">
-          <div>
-            <img src={avengers} alt="img2" />
-          </div>
+          <div className="black" />
+          {/* <img src={hello} className="hello" alt="img1" /> */}
+          <img src={hamdo} alt="img1 " />
         </div>
-      </Slide>
+      </Fade>
     </div>
   );
 };

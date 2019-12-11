@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import MenuContainer from "container/menu/MenuContainer";
+
 import MainContainer from "container/main/MainContainer";
 import BookRouter from "route/BookRouter";
 import Ticket from "container/ticket/Ticket";
 import Signin from "container/signin/Signin";
+
+import Footer from "container/footer/FooterContainer";
 
 import "antd/dist/antd.css";
 
@@ -37,9 +40,9 @@ class Router extends Component {
     this.showroomHandler = this.showroomHandler.bind(this);
     this.memberLogout = this.memberLogout.bind(this);
   }
-  memberLogout=()=>{
-    this.setState({token:"",member:false})
-  }
+  memberLogout = () => {
+    this.setState({ token: "", member: false });
+  };
   tokenHandler = e => {
     this.setState({ token: e });
   };
@@ -105,9 +108,9 @@ class Router extends Component {
             <Route exact path="/" component={MainContainer} />
             <Route
               path="/book"
-              render={(props) => (
+              render={props => (
                 <BookRouter
-                {...props}
+                  {...props}
                   tokenHandler={this.tokenHandler}
                   memberHandler={this.memberHandler}
                   dateHandler={this.dateHandler}
@@ -134,9 +137,9 @@ class Router extends Component {
             />
             <Route
               path="/ticket"
-              render={(props) => (
+              render={props => (
                 <Ticket
-                {...props}
+                  {...props}
                   token={this.state.token}
                   member={this.state.member}
                   tokenHandler={this.tokenHandler}
@@ -147,9 +150,10 @@ class Router extends Component {
 
             <Route
               path="/signin"
-              render={(props) => <Signin {...props} token={this.state.token} />}
+              render={props => <Signin {...props} token={this.state.token} />}
             />
           </Switch>
+          <Footer />
         </>
       </BrowserRouter>
     );

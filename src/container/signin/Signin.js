@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button } from "antd";
 import "./Signin.scss";
 import CONFIG from "_variables";
+import { Input, Button } from "antd";
 
 const RSA = require("node-rsa");
 
@@ -111,7 +111,7 @@ export default class Signin extends Component {
           <div className="part_signin">
             <span className="txt">ID</span>
             <br />
-            <input
+            <Input
               className="input002"
               type="text"
               name="id"
@@ -124,7 +124,7 @@ export default class Signin extends Component {
           <div className="part_signin">
             <span className="txt">PW</span>
             <br />
-            <input
+            <Input
               className="input002"
               type="password"
               name="pw"
@@ -137,7 +137,7 @@ export default class Signin extends Component {
           <div className="part_signin">
             <span className="txt"> Name</span>
             <br />
-            <input
+            <Input
               className="input002"
               type="text"
               name="name"
@@ -150,7 +150,7 @@ export default class Signin extends Component {
           <div className="part_signin">
             <span className="txt">PhoneNumber</span>
             <br />
-            <input
+            <Input
               className="input002"
               type="text"
               name="phone"
@@ -164,7 +164,7 @@ export default class Signin extends Component {
           <div className="part_signin">
             <span className="txt">Email</span>
             <br />
-            <input
+            <Input
               className="input002"
               type="text"
               name="mail"

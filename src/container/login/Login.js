@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Login.scss";
 import CONFIG from "_variables";
+import { Input, Button } from "antd";
 
 const RSA = require("node-rsa");
 
@@ -62,9 +63,8 @@ export default class Login extends Component {
       .then(res => res.text())
       .then(res => {
         if (res.includes("<!DOCTYPE html>")) {
-          alert("아이디 비밀번호를 확인하세요")
-        }
-        else {
+          alert("아이디 비밀번호를 확인하세요");
+        } else {
           this.props.tokenHandler(res);
           this.props.memberHandler(true);
         }
@@ -81,7 +81,7 @@ export default class Login extends Component {
           <div className="title001">Member Login{this.state.time}</div>
           <span className="txt">ID</span>
           <br />
-          <input
+          <Input
             className="input001"
             type="text"
             name="id"
@@ -91,7 +91,7 @@ export default class Login extends Component {
           <br />
           <span className="txt">PW</span>
           <br />
-          <input
+          <Input
             className="input001"
             type="password"
             name="pw"
@@ -99,21 +99,21 @@ export default class Login extends Component {
             onChange={this.handlePWChange}
           />
           <br />
-          <button className="button001" onClick={this.loginSubmit}>
+          <Button className="button001" onClick={this.loginSubmit}>
             login
-          </button>
+          </Button>
         </div>
         <div className="noMember content">
           <div className="title001">Nonmember Login</div>
-          
-          <button
+
+          <Button
             onClick={this.noLoginSubmit}
             className="button001"
             type="submit"
             value="비회원"
           >
             비회원으로 진행
-          </button>
+          </Button>
         </div>
       </div>
     );

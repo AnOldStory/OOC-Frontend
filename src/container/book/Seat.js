@@ -15,11 +15,11 @@ export default class Seat extends Component {
       //test
       reserved_seat: []
     };
-    if(this.props.movieId===-1) {
-      this.props.history.push("/book")
+    if (this.props.movieId === -1) {
+      this.props.history.push("/book");
     }
     this.getSeat();
-    console.log(this.props)
+    console.log(this.props);
   }
 
   setReserved(data) {
@@ -47,6 +47,7 @@ export default class Seat extends Component {
         let reserveds = [];
         res.map((data, index) => {
           reserveds.push(data.seatNumber);
+          return "a";
         });
         this.setReserved(reserveds);
       })
@@ -67,9 +68,9 @@ export default class Seat extends Component {
                 }
                 key={index}
                 onClick={() => {
-                  if (this.props.time != "선택 전"){
+                  if (this.props.time !== "선택 전") {
                     this.props.setSeat(index + 1);
-                    console.log(this.props.seat.length)
+                    console.log(this.props.seat.length);
                     let newSeats = this.state.seats;
                     newSeats[index] = !newSeats[index];
                     this.setState({
@@ -83,13 +84,15 @@ export default class Seat extends Component {
             )
           )}
         </div>
-        {(this.props.seat.length < 1 || this.props.time === "선택 전")?"":
-        <div className="next">
-          <Link className="nextButton" to="/book/payment">
-            <span>NEXT</span>
-          </Link>
-        </div>
-        }
+        {this.props.seat.length < 1 || this.props.time === "선택 전" ? (
+          ""
+        ) : (
+          <div className="next">
+            <Link className="nextButton" to="/book/payment">
+              <span>NEXT</span>
+            </Link>
+          </div>
+        )}
       </div>
     );
   }

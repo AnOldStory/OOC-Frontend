@@ -1,21 +1,24 @@
-.loginContent{
+@import "_variables.scss";
+
+.loginContent {
+  margin: 5%;
   display: grid;
   padding: 10px;
   column-gap: 10%;
-  .content{
+  .content {
+    @include box-shadow;
     margin-top: 10%;
     padding: 10%;
-    background-color:#FFFDF9;
+    background-color: rgb(221, 221, 181);
   }
-  .login{
+  .login {
     margin-top: 10%;
     margin-left: 10%;
-    border: black 1px solid;
+    // border: black 1px solid;
     grid-column: 1/3;
-    border-radius: 10px;
+    // border-radius: 10px;
   }
-  .txt
-  {
+  .txt {
     font-family: Raleway-SemiBold;
     font-size: 13px;
     color: #555555;
@@ -23,8 +26,7 @@
     text-transform: uppercase;
     padding-bottom: 11px;
   }
-  .input001
-  {
+  .input001 {
     font-family: Raleway-Medium;
     color: #555555;
     line-height: 1.2;
@@ -35,11 +37,10 @@
     padding: 0 25px 0 25px;
     outline: none;
     border: 1px solid #e6e6e6;
-    border-radius: 2px;
+    // border-radius: 2px;
   }
-  .title001
-  {
-    padding-bottom:15px;
+  .title001 {
+    padding-bottom: 15px;
     text-transform: uppercase;
     font-family: Raleway-Medium;
     font-size: 30px;
@@ -50,28 +51,28 @@
     width: 100%;
     display: block;
   }
-  .button001
-  {
+  .button001 {
+    width: 75%;
+    font-size: 1.6rem;
+    margin-top: 2rem;
     font-family: sans-serif;
     color: white;
     line-height: 1.2;
     font-size: 18px;
     display: block;
-    width: 300px;
     height: 50px;
     padding: 0 25px;
     outline: none;
-    background-color: red;
+    background-color: #1890ff;
     border: 1px solid #f3c47d;
     border-radius: 2px;
     cursor: pointer;
   }
 
-  
-  .noMember{
+  .noMember {
     margin-right: 10%;
-    border: black 1px solid;
+    // border: black 1px solid;
     grid-column: 3/5;
-    border-radius: 10px;
+    // border-radius: 10px;
   }
 }

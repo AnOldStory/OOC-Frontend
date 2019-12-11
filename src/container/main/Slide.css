@@ -1,12 +1,16 @@
-.containerSlide
-{
-  width:100%;
-  margin-left:auto;
-  margin-right:auto;
-  padding:0;
+.containerSlide {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
 }
 
-.containerSlide img{
-  width:1280px;
-  height:470px;
+.containerSlide img {
+  margin-left: auto;
+  margin-right: auto;
+  /* position: absolute; */
+  /* right: 0 */
+  /* float: right; */
+  height: 500px;
+  /* filter: blur(10px); */
 }

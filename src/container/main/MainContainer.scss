@@ -1,52 +1,106 @@
 @import "_variables.scss";
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,600,700&display=swap");
 
 .main {
-  background-color: black;
   padding-top: 1px;
-  
   .content {
+    background: black;
     padding-top: auto;
-    img
-    {
+    img {
       display: block;
-      margin:0px auto;
-
+      margin: 0px auto;
     }
-    .List_title
-    {
-      color:white;
+    .List_title {
+      color: white;
       margin: 30px 50px 30px 200px;
       border: 2px solid black;
       padding: 20px 30px 20px 30px;
-      width:150px;
-      text-align:center;
+      width: 150px;
+      text-align: center;
       font-size: 25px;
-      font-style:italic;
-      font-family:Oswald;
+      font-style: italic;
+      font-family: Oswald;
       background-color: black;
     }
-    .List_movie
-    {
-      margin:30px 50px 50px 165px;
-      height:500px;
-      width:180px;
-    ol
-    {
-      text-align:left;
-      list-style: none;
-      li
-      {
-        line-height: 1.2cm;
-        font-family: Oswald;
-        &:hover
-        {
-          width: 200px;
-          border : 2px solid gray;
+    .List_movie {
+      margin: 30px 50px 50px 165px;
+      height: 500px;
+      width: 180px;
+      ol {
+        text-align: left;
+        list-style: none;
+        li {
+          line-height: 1.2cm;
+          font-family: Oswald;
+          &:hover {
+            width: 200px;
+            border: 2px solid gray;
+          }
         }
       }
     }
-    }
-    
   }
+}
+.main :hover {
+  background-position-x: 100%;
+}
+
+.black {
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(220, 220, 221, 0) 40%,
+    rgba(220, 220, 221, 0) 60%,
+    rgba(0, 0, 0, 1) 100%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  z-index: 1000;
+}
+.each-slide {
+  height: 500px;
+}
+
+.rank {
+  height: calc(100% - 14vh - 500px);
+  background: #d8d8d8;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rank-movie-box {
+  min-height: 400px;
+  height: calc(100% - 14vh - 500px);
+  width: 920px;
+  background: #d8d8d8;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rank-movie {
+  border-radius: 2px;
+  background: white;
+  color: #363636;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  margin: 10px;
+  float: left;
+  text-align: center;
+  width: 200px;
+  img {
+    width: 100%;
+  }
+  .rank-mark {
+    margin-right: 8px;
+    width: 20px;
+  }
+}
+
+.rank-name {
+  padding: 5px;
 }

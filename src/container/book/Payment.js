@@ -97,7 +97,7 @@ export default class Payment extends Component {
               <br />
               커플
             </div>
-            
+
             <div
               className={
                 this.state.disname === 3 ? "selected dcContent" : "dcContent"
@@ -120,7 +120,7 @@ export default class Payment extends Component {
             </div>
           </div>
         </div>
-        
+
         <div className="ticketinfo content">
           <div className="title">결제정보</div>
           <div className="paycontent">
@@ -142,32 +142,36 @@ export default class Payment extends Component {
           </div>
           {this.props.token === 0 && (
             <div className="noMember">
-              <span className="noMember_Form">E-mail</span>
-              <Input
-                className="Input003"
-                type="text"
-                value={this.state.email}
-                onChange={this.handleMailChange}
-                placeholder="asdf@example.com"
-              />
-              <br />
-              <span className="noMember_Form_2">PHONE</span>
-              <Input
-                className="Input003"
-                type="text"
-                placeholder="01012345678"
-                value={this.state.phone}
-                onChange={this.handlePhoneChange}
-              />
-              <br />
-              <span className="noMember_Form">NAME</span>
-              <Input
-                className="Input003"
-                type="text"
-                placeholder="홍길동"
-                value={this.state.name}
-                onChange={this.handleNameChange}
-              />
+              <div className="newForm">
+                <label className="noMember_Form">E-mail</label>
+                <Input
+                  className="Input003"
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.handleMailChange}
+                  placeholder="asdf@example.com"
+                />
+              </div>
+              <div className="newForm">
+                <label className="noMember_Form">PHONE</label>
+                <Input
+                  className="Input003"
+                  type="text"
+                  placeholder="01012345678"
+                  value={this.state.phone}
+                  onChange={this.handlePhoneChange}
+                />
+              </div>
+              <div className="newForm">
+                <label className="noMember_Form">NAME</label>
+                <Input
+                  className="Input003"
+                  type="text"
+                  placeholder="홍길동"
+                  value={this.state.name}
+                  onChange={this.handleNameChange}
+                />
+              </div>
             </div>
           )}
           <div className="paybutton">

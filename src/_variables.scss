@@ -11,3 +11,11 @@ $menu-item: green;
 $container-top-border-bottom: green;
 $container-border: white;
 $container-seat: rgba(255, 255, 255, 100);
+
+$brand-color: #9be3de;
+$linear1: linear-gradient(135deg, $brand-color, darken($brand-color, 10));
+$linear2: linear-gradient(135deg, lighten($brand-color, 10), $brand-color);
+
+@mixin box-shadow() {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}

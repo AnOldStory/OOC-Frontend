@@ -52,7 +52,7 @@ export default class Login extends Component {
           alert("INVALID ID/PASSWORD/POSITION")
         }
         else{
-          this.props.tokenHandler(res)
+          this.props.tokenHandler(res);
         }
       })
   };

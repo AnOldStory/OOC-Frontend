@@ -19,12 +19,13 @@ const handleFilterChange = filter => filters => {
   }
   return newFilters;
 };
+
 const columns = [{ key: 'id', name: '상품번호' },
-{ key:'cinemaId', name: '지점'},
+{ key:'cineGoodsId', name: '지점'},
+{ key:'cinemaId',name:'지점ID'},
 { key: 'goodsName', name: '상품명' },
 { key: 'goodsPrice', name : '단가'},
 { key: 'goodsCount', name: '재고'},
-
 ].map(c => ({ ...c, ...defaultColumnProperties }));
 
 export default class Stock extends Component {
@@ -63,10 +64,25 @@ export default class Stock extends Component {
     this.getStocks();
   }
   getStocks(){
+    if(this.props.token != ""){
     fetch(CONFIG.HOMEPAGE + "/admin/stock?token="+this.props.token)
-    .then(res=>res.json())
-    .then(res=>this.setState({goods:res}))
-    }
+    .then(res=>
+      res.json()
+    )
+    .then(res=>{
+      if(res !={}){
+        res = Array.from(res).map(x=>{
+          let k = x;
+          k.cineGoodsId= x.cineGoodsId.cinemaName;
+          return k;
+        })
+      }
+      console.log(res)
+      this.setState({goods:res})
+  })
+  }
+
+  }
   
   filterNameHandler(e){
     this.setState({filterName:e.target.value})
@@ -127,7 +143,7 @@ export default class Stock extends Component {
   filterStocks(){
     var rows = this.state.goods.filter((data)=>data.goodsName.includes(this.state.filterName))
     .filter((data)=>data.id.toString().includes(this.state.filterGoodsNum.toString()))
-    .filter((data)=>data.cinemaId.toString().includes(this.state.filterCinema.toString()));
+    .filter((data)=>data.cineGoodsId.toString().includes(this.state.filterCinema.toString()));
     
 
     this.setState({filter:rows});

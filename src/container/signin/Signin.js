@@ -108,7 +108,7 @@ export default class Signin extends Component {
                         className="select">
                           <option value="manager">manager</option>
                           <option value="saler">saler</option>
-                          <option value="staff">card</option>
+                          <option value="staff">staff</option>
                           <option value="parttime">parttime</option>
 
                           </select>

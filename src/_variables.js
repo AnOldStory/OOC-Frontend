@@ -1,3 +1,3 @@
 module.exports = {
-  HOMEPAGE: "https://ec2-54-180-98-87.ap-northeast-2.compute.amazonaws.com"
+  HOMEPAGE: "http://erica.ml"
 };

@@ -26,7 +26,15 @@ export default class Ticket extends Component {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token
       +"&tickets="+e)
       .then(res =>res.json())
-      .then(res=>this.setState({tickets:res}))
+      .then(res=>{
+        console.log(res);
+        if(res.result == "OK"){
+          this.setState({tickets:[]})
+        }
+        else {
+          this.setState({tickets:res})
+        } 
+      })
       .catch(() => this.setState({tickets:[]}))
 
     // fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)

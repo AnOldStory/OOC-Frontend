@@ -1,3 +1,3 @@
 module.exports = {
-  HOMEPAGE: "/api"
+  HOMEPAGE: "http://erica.ml/api"
 };

@@ -148,9 +148,8 @@ function Payment({ history, form, ua, ...leftall }) {
         )
           .then(res => res.json())
           .then(res => {
-            alert(res.serial);
             console.log("비회원 결제완료");
-            history.push(`/book/result`);
+            history.push(`/book/result?serial=` + res.serial);
           });
       } else {
         console.log("회원 결제시작");

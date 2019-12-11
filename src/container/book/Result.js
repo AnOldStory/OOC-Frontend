@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class Result extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+  }
   render() {
     return (
       <div>
@@ -17,6 +21,13 @@ export default class Result extends Component {
                 <li>시간 : {this.props.time} </li>
                 <li>영화관 : {this.props.cinema}</li>
                 <li>좌석 : {this.props.seat.join()}</li>
+                {this.props.location.search !== "" ? (
+                  <li>
+                    시리얼 :{this.props.location.search.replace("?serial=", "")}
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
             </div>
             <div onClick={() => this.props.initialize()}>

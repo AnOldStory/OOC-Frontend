@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Payment.scss";
 import { Link } from "react-router-dom";
+import { Form, Select, Icon, Input, Switch, Button } from "antd";
 import Pay from "container/book/Pay";
 
 import CONFIG from "_variables";
@@ -158,7 +159,7 @@ export default class Payment extends Component {
 
             <div className="discount paySubcontent">
               <div className="subTitle">할인내용</div>
-              {discount[this.state.disname-1]} : {this.state.disrate * 100}%
+              {discount[this.state.disname - 1]} : {this.state.disrate * 100}%
               할인금액 : {this.state.price * this.state.disrate}원
             </div>
 
@@ -169,8 +170,8 @@ export default class Payment extends Component {
           </div>
           {this.props.token === 0 && (
             <div className="noMember">
-              <span className = "noMember_Form">E-mail</span>
-              <input
+              <span className="noMember_Form">E-mail</span>
+              <Input
                 className="Input003"
                 type="text"
                 value={this.state.email}
@@ -178,24 +179,22 @@ export default class Payment extends Component {
                 placeholder="asdf@example.com"
               />
               <br />
-              <span className = "noMember_Form_2">PHONE</span>
-              <input
+              <span className="noMember_Form_2">PHONE</span>
+              <Input
                 className="Input003"
                 type="text"
                 placeholder="01012345678"
                 value={this.state.phone}
                 onChange={this.handlePhoneChange}
-                
               />
               <br />
-              <span className = "noMember_Form">NAME</span>
-              <input
+              <span className="noMember_Form">NAME</span>
+              <Input
                 className="Input003"
                 type="text"
                 placeholder="홍길동"
                 value={this.state.name}
                 onChange={this.handleNameChange}
-                
               />
             </div>
           )}

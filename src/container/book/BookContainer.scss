@@ -221,6 +221,8 @@
       text-align: center;
     }
     .unselectedtime{
+      background-color: lightgoldenrodyellow;
+      height:88px;
       font-size: 15pt;
       text-align:center;
     }
@@ -238,8 +240,8 @@
 .ticket{
   border-bottom: 1px black solid;
   padding: 30px;
-  text-align: left;
   
+  background-image: url('../ticket/영화티켓.png');
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
@@ -247,6 +249,7 @@
   height: 400px;
   .ticketTitle{
     font-size: 20pt;
+    text-align:center;
   }
   ul{
     list-style: none;

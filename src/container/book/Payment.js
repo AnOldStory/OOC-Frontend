@@ -15,8 +15,8 @@ export default class Payment extends Component {
       price: 0,
       disrate: 0,
       discount: 0,
-      disname: "",
-      method: "",
+      disname: "default",
+      method: "card",
       email: "",
       phone: "",
       name: ""
@@ -97,6 +97,7 @@ export default class Payment extends Component {
               <br />
               커플
             </div>
+            
             <div
               className={
                 this.state.disname === 3 ? "selected dcContent" : "dcContent"
@@ -119,36 +120,7 @@ export default class Payment extends Component {
             </div>
           </div>
         </div>
-        <div className="payment content">
-          <div className="title">결제수단</div>
-          <div className="paycontent">
-            <div
-              className={
-                this.state.method === "card"
-                  ? "dcContent selected"
-                  : "dcContent"
-              }
-              onClick={() => this.applyMethod("card")}
-            >
-              <img alt="card" src={require("container/book/img/card.png")} />
-              <br />
-              카드결제
-            </div>
-
-            <div
-              className={
-                this.state.method === "bank"
-                  ? "dcContent selected"
-                  : "dcContent"
-              }
-              onClick={() => this.applyMethod("bank")}
-            >
-              <img alt="bank" src={require("container/book/img/bank.png")} />
-              <br />
-              계좌이체
-            </div>
-          </div>
-        </div>
+        
         <div className="ticketinfo content">
           <div className="title">결제정보</div>
           <div className="paycontent">

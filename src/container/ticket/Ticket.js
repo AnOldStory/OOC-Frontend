@@ -38,7 +38,7 @@ export default class Ticket extends Component {
           this.setState({tickets:[]})
         }
         else {
-          this.setState({tickets:res})
+          setTimeout(()=>{this.showTickets()},100)
         } 
       })
       .catch(() => this.setState({tickets:[]}))

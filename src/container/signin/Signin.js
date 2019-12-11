@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button} from "antd";
+import { Button } from "antd";
 import "./Signin.scss";
 import CONFIG from "_variables";
 
@@ -63,13 +63,16 @@ export default class Signin extends Component {
     let phoneRule1 = /^\d{3}-\d{3,4}-\d{4}$/;
     let phoneRule2 = /^\d{10,11}$/;
 
-    if(!idRule.test(this.state.id)) {
+    if (!idRule.test(this.state.id)) {
       alert("4 ~ 20 자리 영(대, 소), 숫자");
-    } else if(!pwRule.test(this.state.pw)) {
-      alert('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
-    } else if(!mailRule.test(this.state.mail)) {
+    } else if (!pwRule.test(this.state.pw)) {
+      alert("숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.");
+    } else if (!mailRule.test(this.state.mail)) {
       alert("메일주소 형식이 올바르지 않습니다.");
-    } else if (!phoneRule1.test(this.state.phone) && !phoneRule2.test(this.state.phone)) {
+    } else if (
+      !phoneRule1.test(this.state.phone) &&
+      !phoneRule2.test(this.state.phone)
+    ) {
       alert("전화번호 형식이 올바르지 않습니다.");
     } else {
       fetch(CONFIG.HOMEPAGE + "/signin", {
@@ -82,98 +85,100 @@ export default class Signin extends Component {
           mail: this.state.mail
         })
       })
-      .then(res => {
-        console.log(res.statusText);
-        if(res.statusText.includes("OK")){
-          alert("회원가입완료!");
-        }
-        else {
-          alert("중복된 아이디입니다.");
-        }
-      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          console.log(res.result);
+          if (res.result.includes("ok")) {
+            alert("회원가입완료!");
+          } else {
+            alert("중복된 아이디입니다.");
+          }
+        });
     }
   };
   render() {
     return (
       <div className="signIn">
-        <div className = "sign_in">
-        <div className="SignIn001">
-          <h1>Sign In</h1>
-          
-          Please fill in this form to create an account.
+        <div className="sign_in">
+          <div className="SignIn001">
+            <h1>Sign In</h1>
+            Please fill in this form to create an account.
           </div>
-        <br />
-        
-        <div className = "part_signin">
-        <span className="txt">ID</span>
-        <br />
-        <input
-          className="input002"
-          type="text"
-          name="id"
-          placeholder = "4 ~ 20 자리 영(대, 소), 숫자"
-          value={this.state.id}
-          onChange={this.handleIDChange}
-        />
-        </div>
-        <br />
-        <div className = "part_signin">
-        <span className="txt">PW</span>
-        <br />
-        <input
-          className="input002"
-          type="password"
-          name="pw"
-          placeholder='숫자+영문자 10~15자리'
-          value={this.state.pw}
-          onChange={this.handlePWChange}
-        />
-        </div>
-        <br />
-        <div className = "part_signin">
-        <span className="txt"> Name</span>
-        <br />
-        <input
-          className="input002"
-          type="text"
-          name="name"
-          placeholder="홍길동"
-          value={this.state.name}
-          onChange={this.handleNameChange}
-        />
-        </div>
-        <br />
-        <div className = "part_signin">
-        <span className="txt">PhoneNumber</span>
-        <br />
-        <input
-          className="input002"
-          type="text"
-          name="phone"
-          placeholder = "01012345678"
-          value={this.state.phone}
-          onChange={this.handlePhoneChange}
-        />
-        </div>
-        <br />
-        
-        <div className = "part_signin">
-        <span className="txt">Email</span>
-        <br />
-        <input
-          className="input002"
-          type="text"
-          name="mail"
-          placeholder="asdf@example.com"
-          value={this.state.mail}
-          onChange={this.handleMailChange}
-        />
-        </div>
+          <br />
 
-        <br />
-        
-        <Button className = "Signin_button" onClick={this.signInSubmit}>Submit</Button>
-      </div>
+          <div className="part_signin">
+            <span className="txt">ID</span>
+            <br />
+            <input
+              className="input002"
+              type="text"
+              name="id"
+              placeholder="4 ~ 20 자리 영(대, 소), 숫자"
+              value={this.state.id}
+              onChange={this.handleIDChange}
+            />
+          </div>
+          <br />
+          <div className="part_signin">
+            <span className="txt">PW</span>
+            <br />
+            <input
+              className="input002"
+              type="password"
+              name="pw"
+              placeholder="숫자+영문자 10~15자리"
+              value={this.state.pw}
+              onChange={this.handlePWChange}
+            />
+          </div>
+          <br />
+          <div className="part_signin">
+            <span className="txt"> Name</span>
+            <br />
+            <input
+              className="input002"
+              type="text"
+              name="name"
+              placeholder="홍길동"
+              value={this.state.name}
+              onChange={this.handleNameChange}
+            />
+          </div>
+          <br />
+          <div className="part_signin">
+            <span className="txt">PhoneNumber</span>
+            <br />
+            <input
+              className="input002"
+              type="text"
+              name="phone"
+              placeholder="01012345678"
+              value={this.state.phone}
+              onChange={this.handlePhoneChange}
+            />
+          </div>
+          <br />
+
+          <div className="part_signin">
+            <span className="txt">Email</span>
+            <br />
+            <input
+              className="input002"
+              type="text"
+              name="mail"
+              placeholder="asdf@example.com"
+              value={this.state.mail}
+              onChange={this.handleMailChange}
+            />
+          </div>
+
+          <br />
+
+          <Button className="Signin_button" onClick={this.signInSubmit}>
+            Submit
+          </Button>
+        </div>
       </div>
     );
   }

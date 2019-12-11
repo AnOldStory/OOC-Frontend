@@ -105,8 +105,9 @@ class Router extends Component {
             <Route exact path="/" component={MainContainer} />
             <Route
               path="/book"
-              component={() => (
+              render={(props) => (
                 <BookRouter
+                {...props}
                   tokenHandler={this.tokenHandler}
                   memberHandler={this.memberHandler}
                   dateHandler={this.dateHandler}
@@ -133,8 +134,9 @@ class Router extends Component {
             />
             <Route
               path="/ticket"
-              component={() => (
+              render={(props) => (
                 <Ticket
+                {...props}
                   token={this.state.token}
                   member={this.state.member}
                   tokenHandler={this.tokenHandler}
@@ -145,7 +147,7 @@ class Router extends Component {
 
             <Route
               path="/signin"
-              component={() => <Signin token={this.state.token} />}
+              render={(props) => <Signin {...props} token={this.state.token} />}
             />
           </Switch>
         </>

@@ -11,6 +11,9 @@ export default class Time extends Component {
     this.state = {
       times: []
     };
+    if(this.props.movieId===-1) {
+      this.props.history.push("/book")
+    }
     this.getTime();
   }
   getTime() {

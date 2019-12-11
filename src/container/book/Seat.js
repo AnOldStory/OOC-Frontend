@@ -15,6 +15,9 @@ export default class Seat extends Component {
       //test
       reserved_seat: []
     };
+    if(this.props.movieId===-1) {
+      this.props.history.push("/book")
+    }
     this.getSeat();
     console.log(this.props)
   }

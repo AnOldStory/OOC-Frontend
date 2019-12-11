@@ -19,6 +19,7 @@ class BookRouter extends Component {
       token: "",
       id: this.props.id
     };
+    console.log(this.props)
   }
 
   render() {
@@ -35,8 +36,9 @@ class BookRouter extends Component {
           <Route
             exact
             path={this.state.route}
-            component={() => (
+            render={(props) => (
               <DCM
+              {...props}
                 time={this.props.time}
                 setCinema={this.props.cinemaHandler}
                 setDate={this.props.dateHandler}
@@ -51,8 +53,9 @@ class BookRouter extends Component {
           />
           <Route
             path={this.state.route + "/time"}
-            component={() => (
+            render={(props) => (
               <Time
+              {...props}
                 setTime={this.props.timeHandler}
                 setScreen={this.props.screenHandler}
                 showroomHandler={this.props.showroomHandler}
@@ -67,8 +70,9 @@ class BookRouter extends Component {
           />
           <Route
             path={this.state.route + "/seat"}
-            component={() => (
+            render={(props) => (
               <Seat
+              {...props}
                 cinema={this.props.cinema}
                 date={this.props.date}
                 movieId={this.props.movieId}
@@ -82,9 +86,10 @@ class BookRouter extends Component {
 
           <Route
             path={this.state.route + "/payment"}
-            component={() =>
+            render={(props) =>
               this.props.token === "" ? (
                 <Login
+                {...props}
                   tokenHandler={this.props.tokenHandler}
                   time={this.props.time}
                   screen={this.props.screen}
@@ -95,6 +100,7 @@ class BookRouter extends Component {
                 />
               ) : (
                 <Payment
+                {...props}
                   cinema={this.props.cinema}
                   movieId={this.props.movieId}
                   movie={this.props.movie}
@@ -111,8 +117,9 @@ class BookRouter extends Component {
 
           <Route
             path={this.state.route + "/result"}
-            component={() => (
+            render={(props) => (
               <Result
+              {...props}
                 result={this.state.result}
                 cinema={this.props.cinema}
                 movieId={this.props.movieId}

@@ -116,26 +116,26 @@ export default class Stock extends Component {
           +"&count="+this.state.count
           +"&cinema="+this.state.cinema
           +"&price="+this.state.price)
-    this.getStocks();
+    setTimeout(()=>{this.getStocks()}, 100)
   }
   inItem(){
     fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
           +"&name="+this.state.name
           +"&count="+this.state.count
           +"&cinema="+this.state.cinema)
-    this.getStocks();
+    setTimeout(()=>{this.getStocks()}, 100)
   }
   outItem(){
     fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
           +"&name="+this.state.name
           +"&count="+((-1)*this.state.count)
           +"&cinema="+this.state.cinema)
-    this.getStocks();
+    setTimeout(()=>{this.getStocks()}, 100)
   }
   removeItem(){
     fetch(CONFIG.HOMEPAGE+"/admin/stock?token="+this.props.token
           +"&goods="+[this.state.id].concat("dummy"))
-    this.getStocks();
+    setTimeout(()=>{this.getStocks()}, 100)
   }
   rowGetter = rowNumber => this.state.goods[rowNumber];
   filterRowGetter = rowNumber => this.state.filter[rowNumber];

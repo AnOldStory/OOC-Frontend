@@ -81,14 +81,19 @@ export default class Login extends Component {
             onChange={this.handlePWChange}
           />
           <br />
-          <input
-            className="input001"
+          <select
+            className="input001 pos"
             type="text"
             name="pos"
             placeholder="POSITION"
             value={this.state.pos}
             onChange={this.handlePosChange}
-          />
+          >
+            <option value="manager">manager</option>
+            <option value="saler">saler</option>
+            <option value="staff">staff</option>
+            <option value="parttime">parttime</option>
+            </select>
           <br />
           <div className="button001" onClick={this.loginSubmit}>
             LOGIN

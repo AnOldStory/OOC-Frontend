@@ -6,7 +6,7 @@ import CONFIG from "_variables";
 const columns = [{ key: 'empName', name: '이름' }, 
 { key: 'empSalary', name: '급여' },
 { key: 'empPosition', name: '직책' },
-{key:'cinemaId',name:'근무지'}];
+{key:'cineWorkerId',name:'근무지'}];
 var rows = [
   {name:'sejin',salary:10000000000,position:'manager',cinema:"중앙"},
   {name:'junyoung',salary:100,position:'hoijang',cinema:"고잔"}
@@ -46,7 +46,19 @@ export default class People extends Component {
     if(this.props.token != ""){
     fetch(CONFIG.HOMEPAGE + "/admin/personel?token="+this.props.token)
     .then(res=>res.json())
-    .then(res=>(this.setState({people:res})));
+    .then(res=>{
+      if(res !={}){
+        res = Array.from(res).map(x=>{
+          let k = x;
+          k.cineWorkerId= x.cineWorkerId.cinemaName;
+          return k;
+        })
+      }
+      console.log(res)
+      this.setState({people:res})
+  })
+    .then(res=>console.log(res))
+    // .then(res=>(this.setState({people:res})));
     }
   }
   filterPeople(){

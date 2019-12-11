@@ -14,12 +14,14 @@ export default class Signin extends Component {
             pw : '',
             pos : '',
             sal : '',
+            cinema:1,
             rsa:'',
         }
        this.handleNameChange = this.handleNameChange.bind(this);
        this.handlePwChange = this.handlePwChange.bind(this);
        this.handlePosChange = this.handlePosChange.bind(this);
        this.handleSalChange = this.handleSalChange.bind(this);
+       this.handleCinemaChange = this.handleCinemaChange.bind(this);
        this.singUpSubmit = this.singUpSubmit.bind(this);
        this.getRSA();
     }
@@ -27,6 +29,9 @@ export default class Signin extends Component {
       fetch(CONFIG.HOMEPAGE+'/admin/personel/signin')
       .then(res=>res.text())
       .then(res=>this.setState({rsa:res}));
+    }
+    handleCinemaChange(event){
+      this.setState({cinema:event.target.value})
     }
     handlePosChange(event) {
         this.setState({pos: event.target.value});                                                                                                                                                           
@@ -66,6 +71,7 @@ export default class Signin extends Component {
           "passEnc" : encPw,
           "sal" : this.state.sal,
           "pos" : this.state.pos,
+          "cinema":this.state.cinema,
         })
     }).then(res=>res.text())
     .then(alert("회원가입완료!"))
@@ -110,6 +116,20 @@ export default class Signin extends Component {
                           <option value="saler">saler</option>
                           <option value="staff">staff</option>
                           <option value="parttime">parttime</option>
+
+                          </select>
+
+                        <select type = "text" 
+                        name="cinema"
+                        value={this.state.cinema} 
+                        placeholder="근무지"
+                        onChange={this.handleCinemaChange}
+                        className="select">
+                          <option value={1}>InJae</option>
+                          <option value={2}>ChangUi</option>
+                          <option value={3}>HaengBok</option>
+                          <option value={4}>Silim</option>
+                          <option value={5}>Joongang</option>
 
                           </select>
                         <br/>

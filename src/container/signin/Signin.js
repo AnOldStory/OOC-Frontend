@@ -91,6 +91,7 @@ export default class Signin extends Component {
           console.log(res.result);
           if (res.result.includes("ok")) {
             alert("회원가입완료!");
+            this.props.history.push("");
           } else {
             alert("중복된 아이디입니다.");
           }

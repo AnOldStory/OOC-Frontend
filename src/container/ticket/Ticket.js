@@ -19,7 +19,13 @@ export default class Ticket extends Component {
   showTickets() {
     fetch(CONFIG.HOMEPAGE+"/ticket?token="+this.props.token)
       .then(res =>res.json())
-      .then(res=>this.setState({tickets:res}))
+      .then(res=>{
+        this.setState({tickets:res})
+        if (this.state.tickets.length === 0)
+        {
+          alert("예약된 티켓이 없습니다");
+        }
+    })
   }
 
   cancelEvent = (e) => {
@@ -55,8 +61,7 @@ export default class Ticket extends Component {
           <div className="tickets">
             <button className = "ticket_button" onClick={this.showTickets}>조회</button>
 
-            {this.state.tickets.length === 0 &&
-            <div>예약된 티켓이 없습니다</div>}
+            
             {this.state.tickets.map(
               (index,i) => (
                 <div className="ticket" key={i}

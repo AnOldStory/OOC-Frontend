@@ -83,8 +83,13 @@ export default class Signin extends Component {
         })
       })
       .then(res => {
-        console.log(res);
-        alert("회원가입완료!");
+        console.log(res.statusText);
+        if(res.statusText.includes("OK")){
+          alert("회원가입완료!");
+        }
+        else {
+          alert("중복된 아이디입니다.");
+        }
       })
     }
   };

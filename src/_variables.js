@@ -1,3 +1,3 @@
 module.exports = {
-  HOMEPAGE: "http://erica.ml/api"
+  HOMEPAGE: "http://220.94.42.246:7001/api"
 };
